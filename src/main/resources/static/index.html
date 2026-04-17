@@ -20,7 +20,7 @@
                     },
                     colors: {
                         ink: { 950: '#0a0a0a', 900: '#111111', 800: '#161616', 700: '#1f1f1f' },
-                        accent: { DEFAULT: '#fbbf24', dim: '#f59e0b', glow: '#fcd34d' },
+                        signal: { DEFAULT: '#ef4444', dim: '#dc2626' },
                     }
                 }
             }
@@ -29,323 +29,374 @@
     <style>
         html { font-family: 'DM Sans', system-ui, sans-serif; }
         body { font-feature-settings: 'ss01', 'cv11'; }
-        .grid-bg {
-            background-image:
-                linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
-            background-size: 56px 56px;
-            background-position: -1px -1px;
-        }
-        .hairline { border-color: rgba(255,255,255,0.08); }
-        .hairline-thick { border-color: rgba(255,255,255,0.14); }
-        .caret { animation: blink 1.1s steps(2) infinite; }
-        @keyframes blink { 50% { opacity: 0 } }
-        .pulse-dot { animation: pulse 2s ease-in-out infinite; }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%      { opacity: 0.5; transform: scale(0.85); }
-        }
-        .mono-label {
+        .hairline { border-color: rgba(255,255,255,0.09); }
+        .hairline-thick { border-color: rgba(255,255,255,0.16); }
+        .label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.08em;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
+        .display {
+            letter-spacing: -0.04em;
+            line-height: 0.92;
+            font-feature-settings: 'ss01';
+        }
+        .signal-rule {
+            background: #ef4444;
+            height: 3px;
+        }
+        table.spec { border-collapse: collapse; width: 100%; }
+        table.spec th, table.spec td {
+            padding: 1.25rem 1rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(255,255,255,0.09);
+        }
+        table.spec th {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #737373;
+            font-weight: 500;
+            border-bottom-color: rgba(255,255,255,0.16);
+        }
+        table.spec tbody tr:last-child td { border-bottom: 0; }
     </style>
 </head>
 <body class="bg-ink-950 text-neutral-200 antialiased min-h-screen">
-    <!-- Nav -->
-    <header class="fixed top-0 left-0 right-0 z-50 border-b hairline bg-ink-950/85 backdrop-blur-md">
+    <!-- Masthead -->
+    <header class="fixed top-0 left-0 right-0 z-50 border-b hairline bg-ink-950/90 backdrop-blur-md">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-            <a href="/" class="flex items-center gap-3 text-white">
-                <span class="flex h-7 w-7 items-center justify-center border hairline-thick bg-ink-900">
-                    <span class="font-mono text-xs font-semibold text-accent">M</span>
-                </span>
-                <span class="font-mono text-sm tracking-wide">mins<span class="text-neutral-500">·</span>bot</span>
+            <a href="/" class="flex items-baseline gap-3 text-white">
+                <span class="font-mono text-sm font-semibold tracking-wide">MINS<span class="text-signal">·</span>BOT</span>
+                <span class="label hidden text-neutral-500 sm:inline">Desktop Agent</span>
             </a>
-            <div class="flex items-center gap-6 mono-label text-neutral-400">
-                <a href="#capabilities" class="hidden transition hover:text-white sm:inline-block">capabilities</a>
-                <a href="#install" class="hidden transition hover:text-white sm:inline-block">install</a>
-                <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">github</a>
-                <a href="#install" class="inline-flex items-center gap-2 border hairline-thick bg-ink-900 px-3 py-1.5 font-mono text-[0.72rem] font-medium uppercase tracking-wider text-white transition hover:border-accent hover:text-accent">
-                    get it →
-                </a>
+            <div class="flex items-baseline gap-6 label text-neutral-400">
+                <a href="#overview" class="hidden transition hover:text-white sm:inline-block">§01 Overview</a>
+                <a href="#capabilities" class="hidden transition hover:text-white sm:inline-block">§02 Capabilities</a>
+                <a href="#policy" class="hidden transition hover:text-white md:inline-block">§03 Policy</a>
+                <a href="#install" class="transition hover:text-white">§04 Install</a>
+                <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hidden transition hover:text-white sm:inline-block">GitHub ↗</a>
             </div>
         </nav>
     </header>
 
-    <main>
-        <!-- Hero -->
-        <section class="relative overflow-hidden border-b hairline pt-32 pb-20 sm:pt-40 lg:pt-48 lg:pb-28">
-            <div class="absolute inset-0 grid-bg opacity-80"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink-950"></div>
-            <div class="relative mx-auto max-w-7xl px-6 lg:px-10">
-                <div class="grid items-start gap-16 lg:grid-cols-12">
-                    <!-- Left -->
-                    <div class="lg:col-span-7">
-                        <div class="mb-10 flex flex-wrap items-center gap-x-3 gap-y-1 mono-label text-neutral-500">
-                            <span class="relative flex h-2 w-2">
-                                <span class="pulse-dot absolute inline-flex h-full w-full rounded-full bg-accent"></span>
-                            </span>
-                            <span class="text-neutral-300">live</span>
-                            <span class="text-neutral-700">/</span>
-                            <span>v0.4.2</span>
-                            <span class="text-neutral-700">/</span>
-                            <span>darwin · linux · windows</span>
-                        </div>
-                        <h1 class="text-5xl font-semibold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                            One agent,<br>
-                            <span class="text-neutral-500">running on your</span><br>
-                            own metal.
+    <main class="pt-14">
+
+        <!-- §01 Overview -->
+        <section id="overview" class="border-b hairline">
+            <!-- Section marker row -->
+            <div class="border-b hairline">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+                    <div class="label text-signal">§ 01 — Overview</div>
+                    <div class="label text-neutral-600">p. 01 / 04</div>
+                </div>
+            </div>
+
+            <div class="mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-24 sm:pb-28 lg:px-10 lg:pt-32 lg:pb-36">
+                <div class="grid gap-16 lg:grid-cols-12 lg:gap-10">
+                    <!-- Display headline -->
+                    <div class="lg:col-span-8">
+                        <div class="signal-rule mb-10 w-16"></div>
+                        <h1 class="display text-6xl font-semibold text-white sm:text-7xl lg:text-[7.5rem]">
+                            A desktop<br>
+                            agent,<br>
+                            <span class="text-neutral-500">made local.</span>
                         </h1>
-                        <p class="mt-8 max-w-xl text-base leading-relaxed text-neutral-400 sm:text-lg">
-                            Mins Bot lives on your desktop. It browses, handles files, drives your messaging tools, and runs an extensible skill library — locally, under your keys, on your schedule. No proxy. No data collection.
+                        <p class="mt-12 max-w-xl text-lg leading-relaxed text-neutral-400">
+                            Mins Bot runs on your machine. It browses the web, handles files, and drives your messaging tools — under your keys, under your rules. No proxy, no server, no telemetry.
                         </p>
-                        <div class="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-                            <a href="#install" class="group inline-flex items-center gap-3 bg-white px-6 py-3.5 font-mono text-sm font-medium text-black transition hover:bg-accent-glow">
-                                <span>download</span>
-                                <span class="text-neutral-500">→</span>
+                        <div class="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                            <a href="#install" class="inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-sm font-medium uppercase tracking-wider text-black transition hover:bg-signal hover:text-white">
+                                Download
+                                <span aria-hidden>→</span>
                             </a>
-                            <a href="#capabilities" class="inline-flex items-center gap-2 border hairline-thick bg-transparent px-6 py-3.5 font-mono text-sm font-medium text-neutral-300 transition hover:border-accent hover:text-white">
-                                read capabilities
+                            <a href="#capabilities" class="label inline-flex items-center gap-2 border-b border-transparent py-4 text-neutral-300 transition hover:border-signal hover:text-white">
+                                Read capabilities →
                             </a>
-                        </div>
-                        <div class="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t hairline pt-8">
-                            <div>
-                                <div class="mono-label text-neutral-600">runs on</div>
-                                <div class="mt-1 text-sm text-neutral-200">your machine</div>
-                            </div>
-                            <div>
-                                <div class="mono-label text-neutral-600">stores</div>
-                                <div class="mt-1 text-sm text-neutral-200">nothing</div>
-                            </div>
-                            <div>
-                                <div class="mono-label text-neutral-600">keys</div>
-                                <div class="mt-1 text-sm text-neutral-200">os keychain</div>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Right: terminal -->
-                    <div class="lg:col-span-5">
-                        <div class="border hairline-thick bg-ink-900/70 shadow-2xl shadow-black/40 backdrop-blur">
-                            <div class="flex items-center justify-between border-b hairline px-4 py-2.5">
-                                <div class="flex items-center gap-2 font-mono text-[0.72rem] text-neutral-500">
-                                    <span class="h-2.5 w-2.5 rounded-full border hairline-thick"></span>
-                                    <span class="h-2.5 w-2.5 rounded-full border hairline-thick"></span>
-                                    <span class="h-2.5 w-2.5 rounded-full border hairline-thick"></span>
-                                    <span class="ml-3">~ / mins</span>
+                    <!-- Colophon / metadata -->
+                    <aside class="lg:col-span-4">
+                        <div class="border-t border-b hairline-thick divide-y divide-white/10">
+                            <div class="label flex items-center justify-between py-3 text-neutral-500">
+                                <span>Colophon</span>
+                                <span class="text-neutral-700">04.17.26</span>
+                            </div>
+                            <dl class="divide-y divide-white/10">
+                                <div class="grid grid-cols-3 py-4">
+                                    <dt class="label text-neutral-600">Version</dt>
+                                    <dd class="col-span-2 font-mono text-sm text-neutral-100">0.4.2</dd>
                                 </div>
-                                <span class="mono-label text-neutral-600">session 02</span>
-                            </div>
-<pre class="overflow-x-auto px-5 py-5 font-mono text-[0.8rem] leading-relaxed text-neutral-300"><span class="text-accent">$</span> mins do <span class="text-neutral-400">"triage todays inbox, draft replies, file receipts"</span>
-
-<span class="text-neutral-600">[14:23:04]</span> <span class="text-accent">◆</span> planning   <span class="text-neutral-500">· 5 steps</span>
-<span class="text-neutral-600">[14:23:06]</span> <span class="text-emerald-400">✓</span> gmail      <span class="text-neutral-500">· 41 unread · past 24h</span>
-<span class="text-neutral-600">[14:23:11]</span> <span class="text-emerald-400">✓</span> cluster    <span class="text-neutral-500">· 7 threads · 9 ignored</span>
-<span class="text-neutral-600">[14:23:18]</span> <span class="text-emerald-400">✓</span> drafts     <span class="text-neutral-500">· 7 ready · saved</span>
-<span class="text-neutral-600">[14:23:22]</span> <span class="text-emerald-400">✓</span> receipts   <span class="text-neutral-500">· 4 → ~/Docs/2026/apr</span>
-<span class="text-neutral-600">[14:23:24]</span> <span class="text-accent">◆</span> review     <span class="text-neutral-500">· queued</span>
-
-<span class="text-accent">→</span> open drafts for review? <span class="text-neutral-500">[Y/n]</span> <span class="caret text-neutral-200">▊</span></pre>
+                                <div class="grid grid-cols-3 py-4">
+                                    <dt class="label text-neutral-600">Platforms</dt>
+                                    <dd class="col-span-2 font-mono text-sm text-neutral-100">darwin · linux · windows</dd>
+                                </div>
+                                <div class="grid grid-cols-3 py-4">
+                                    <dt class="label text-neutral-600">Footprint</dt>
+                                    <dd class="col-span-2 font-mono text-sm text-neutral-100">≈ 42 MB</dd>
+                                </div>
+                                <div class="grid grid-cols-3 py-4">
+                                    <dt class="label text-neutral-600">Keys</dt>
+                                    <dd class="col-span-2 font-mono text-sm text-neutral-100">OS Keychain</dd>
+                                </div>
+                                <div class="grid grid-cols-3 py-4">
+                                    <dt class="label text-neutral-600">Telemetry</dt>
+                                    <dd class="col-span-2 font-mono text-sm text-signal">None</dd>
+                                </div>
+                                <div class="grid grid-cols-3 py-4">
+                                    <dt class="label text-neutral-600">License</dt>
+                                    <dd class="col-span-2 font-mono text-sm text-neutral-100">Source-available</dd>
+                                </div>
+                            </dl>
                         </div>
-                        <div class="mt-3 flex items-center justify-between mono-label text-neutral-600">
-                            <span>local process · pid 41829</span>
-                            <span>no egress</span>
-                        </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
         </section>
 
-        <!-- Capabilities -->
-        <section id="capabilities" class="border-b hairline py-24 sm:py-32">
-            <div class="mx-auto max-w-7xl px-6 lg:px-10">
-                <div class="mb-12 flex items-end justify-between border-b hairline pb-6">
-                    <div>
-                        <div class="mono-label text-neutral-500">§ capabilities</div>
-                        <h2 class="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                            What it does.
+        <!-- §02 Capabilities -->
+        <section id="capabilities" class="border-b hairline">
+            <div class="border-b hairline">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+                    <div class="label text-signal">§ 02 — Capabilities</div>
+                    <div class="label text-neutral-600">p. 02 / 04</div>
+                </div>
+            </div>
+
+            <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
+                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div class="lg:col-span-4">
+                        <h2 class="display text-4xl font-semibold text-white sm:text-5xl">
+                            Four<br>primitives.
                         </h2>
+                        <p class="mt-8 max-w-sm text-neutral-400 leading-relaxed">
+                            Simple surfaces, composed into deep work. Every capability runs on your hardware, in your session, under your allow-list.
+                        </p>
                     </div>
-                    <div class="hidden mono-label text-neutral-600 sm:block">04 primitives</div>
-                </div>
 
-                <article class="grid gap-4 border-b hairline py-10 lg:grid-cols-12 lg:gap-6">
-                    <div class="mono-label text-accent lg:col-span-1">01</div>
-                    <div class="lg:col-span-4">
-                        <h3 class="text-xl font-semibold text-white">Autonomous browsing</h3>
-                    </div>
-                    <div class="text-neutral-400 leading-relaxed lg:col-span-5">
-                        Navigate, read, and act on the web under your session. Research, fill forms, scrape and synthesize — on the real pages you use, not a stripped-down proxy.
-                    </div>
-                    <div class="mono-label space-y-1 text-neutral-500 lg:col-span-2">
-                        <div><span class="text-neutral-600">engine</span> · chromium</div>
-                        <div><span class="text-neutral-600">scope</span> · per-task</div>
-                    </div>
-                </article>
-
-                <article class="grid gap-4 border-b hairline py-10 lg:grid-cols-12 lg:gap-6">
-                    <div class="mono-label text-accent lg:col-span-1">02</div>
-                    <div class="lg:col-span-4">
-                        <h3 class="text-xl font-semibold text-white">Filesystem access</h3>
-                    </div>
-                    <div class="text-neutral-400 leading-relaxed lg:col-span-5">
-                        Organize, search, move, and process files. Reads and writes under explicit allow-lists — predictable, reviewable, easy to undo.
-                    </div>
-                    <div class="mono-label space-y-1 text-neutral-500 lg:col-span-2">
-                        <div><span class="text-neutral-600">scope</span> · allow-list</div>
-                        <div><span class="text-neutral-600">audit</span> · local log</div>
-                    </div>
-                </article>
-
-                <article class="grid gap-4 border-b hairline py-10 lg:grid-cols-12 lg:gap-6">
-                    <div class="mono-label text-accent lg:col-span-1">03</div>
-                    <div class="lg:col-span-4">
-                        <h3 class="text-xl font-semibold text-white">Messaging integrations</h3>
-                    </div>
-                    <div class="text-neutral-400 leading-relaxed lg:col-span-5">
-                        Slack, Discord, Gmail, and more. Send, receive, and trigger workflows from the channels you already live in. Tokens stay in the OS keychain.
-                    </div>
-                    <div class="mono-label space-y-1 text-neutral-500 lg:col-span-2">
-                        <div><span class="text-neutral-600">creds</span> · os keychain</div>
-                        <div><span class="text-neutral-600">transport</span> · direct</div>
-                    </div>
-                </article>
-
-                <article class="grid gap-4 py-10 lg:grid-cols-12 lg:gap-6">
-                    <div class="mono-label text-accent lg:col-span-1">04</div>
-                    <div class="lg:col-span-4">
-                        <h3 class="text-xl font-semibold text-white">Skills inventory</h3>
-                    </div>
-                    <div class="text-neutral-400 leading-relaxed lg:col-span-5">
-                        Coding, writing, data analysis, and more — installable skills the agent can discover and compose. Bring your own, or pin to a shared registry.
-                    </div>
-                    <div class="mono-label space-y-1 text-neutral-500 lg:col-span-2">
-                        <div><span class="text-neutral-600">format</span> · manifest+code</div>
-                        <div><span class="text-neutral-600">source</span> · local / registry</div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Privacy stripe -->
-        <section class="border-b hairline py-16">
-            <div class="mx-auto max-w-7xl px-6 lg:px-10">
-                <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-                    <div>
-                        <div class="mono-label text-neutral-600">where data lives</div>
-                        <div class="mt-2 text-lg font-medium text-white">On your device.</div>
-                        <div class="mt-1 text-sm text-neutral-500">Never uploaded to a Mins server — there isn't one.</div>
-                    </div>
-                    <div>
-                        <div class="mono-label text-neutral-600">where keys live</div>
-                        <div class="mt-2 text-lg font-medium text-white">OS keychain.</div>
-                        <div class="mt-1 text-sm text-neutral-500">macOS Keychain, Windows Credential Manager, libsecret.</div>
-                    </div>
-                    <div>
-                        <div class="mono-label text-neutral-600">what we train on</div>
-                        <div class="mt-2 text-lg font-medium text-white">Nothing of yours.</div>
-                        <div class="mt-1 text-sm text-neutral-500">Your data never touches a training pipeline.</div>
-                    </div>
-                    <div>
-                        <div class="mono-label text-neutral-600">model calls</div>
-                        <div class="mt-2 text-lg font-medium text-white">Direct to provider.</div>
-                        <div class="mt-1 text-sm text-neutral-500">You pick the model. We don't sit in the middle.</div>
+                    <div class="lg:col-span-8">
+                        <table class="spec font-sans">
+                            <thead>
+                                <tr>
+                                    <th class="w-10">№</th>
+                                    <th>Capability</th>
+                                    <th>Engine</th>
+                                    <th>Scope</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-mono text-sm text-signal">01</td>
+                                    <td>
+                                        <div class="text-base font-semibold text-white">Autonomous browsing</div>
+                                        <div class="mt-1 text-sm text-neutral-400">Navigate, read, and act on the real web under your own session — not a stripped-down proxy.</div>
+                                    </td>
+                                    <td class="font-mono text-sm text-neutral-300">Chromium</td>
+                                    <td class="font-mono text-sm text-neutral-300">Per-task</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-mono text-sm text-signal">02</td>
+                                    <td>
+                                        <div class="text-base font-semibold text-white">Filesystem access</div>
+                                        <div class="mt-1 text-sm text-neutral-400">Organize, search, move, and process files. Reads and writes under explicit allow-lists.</div>
+                                    </td>
+                                    <td class="font-mono text-sm text-neutral-300">Local FS</td>
+                                    <td class="font-mono text-sm text-neutral-300">Path allow-list</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-mono text-sm text-signal">03</td>
+                                    <td>
+                                        <div class="text-base font-semibold text-white">Messaging integrations</div>
+                                        <div class="mt-1 text-sm text-neutral-400">Slack, Discord, Gmail and more — send, receive, and trigger workflows from your channels.</div>
+                                    </td>
+                                    <td class="font-mono text-sm text-neutral-300">Direct APIs</td>
+                                    <td class="font-mono text-sm text-neutral-300">Your tokens</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-mono text-sm text-signal">04</td>
+                                    <td>
+                                        <div class="text-base font-semibold text-white">Skills inventory</div>
+                                        <div class="mt-1 text-sm text-neutral-400">Installable skills — coding, writing, analysis — the agent can discover and compose at will.</div>
+                                    </td>
+                                    <td class="font-mono text-sm text-neutral-300">Manifest + code</td>
+                                    <td class="font-mono text-sm text-neutral-300">Local / registry</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Install -->
-        <section id="install" class="border-b hairline py-24 sm:py-32">
-            <div class="mx-auto max-w-5xl px-6 lg:px-10">
-                <div class="mono-label text-neutral-500">§ install</div>
-                <h2 class="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                    Ready on three platforms.
-                </h2>
-                <p class="mt-4 max-w-xl text-neutral-400">
-                    One binary. No background daemons. No account required.
-                </p>
-                <div class="mt-12 grid gap-px border hairline bg-white/5 sm:grid-cols-3">
-                    <a href="#" class="group flex flex-col justify-between gap-6 bg-ink-950 p-6 transition hover:bg-ink-900">
-                        <div class="flex items-center justify-between">
-                            <i class="fa-brands fa-apple text-2xl text-neutral-400 transition group-hover:text-white"></i>
-                            <span class="mono-label text-neutral-600">dmg</span>
-                        </div>
-                        <div>
-                            <div class="text-sm font-medium text-white">macOS</div>
-                            <div class="mono-label mt-1 text-neutral-500">arm64 · x86_64</div>
-                        </div>
-                    </a>
-                    <a href="#" class="group flex flex-col justify-between gap-6 bg-ink-950 p-6 transition hover:bg-ink-900">
-                        <div class="flex items-center justify-between">
-                            <i class="fa-brands fa-windows text-2xl text-neutral-400 transition group-hover:text-white"></i>
-                            <span class="mono-label text-neutral-600">msi</span>
-                        </div>
-                        <div>
-                            <div class="text-sm font-medium text-white">Windows</div>
-                            <div class="mono-label mt-1 text-neutral-500">x86_64 · 10+</div>
-                        </div>
-                    </a>
-                    <a href="#" class="group flex flex-col justify-between gap-6 bg-ink-950 p-6 transition hover:bg-ink-900">
-                        <div class="flex items-center justify-between">
-                            <i class="fa-brands fa-linux text-2xl text-neutral-400 transition group-hover:text-white"></i>
-                            <span class="mono-label text-neutral-600">appimage</span>
-                        </div>
-                        <div>
-                            <div class="text-sm font-medium text-white">Linux</div>
-                            <div class="mono-label mt-1 text-neutral-500">x86_64 · arm64</div>
-                        </div>
-                    </a>
+        <!-- §03 Policy -->
+        <section id="policy" class="border-b hairline">
+            <div class="border-b hairline">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+                    <div class="label text-signal">§ 03 — Data Policy</div>
+                    <div class="label text-neutral-600">p. 03 / 04</div>
                 </div>
-                <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 mono-label text-neutral-500">
-                    <span>prefer the cli?</span>
-                    <code class="border hairline bg-ink-900 px-2.5 py-1 font-mono text-[0.75rem] normal-case tracking-normal text-neutral-300">brew install mins-bot</code>
+            </div>
+
+            <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
+                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div class="lg:col-span-4">
+                        <h2 class="display text-4xl font-semibold text-white sm:text-5xl">
+                            Nothing<br>
+                            <span class="text-neutral-500">goes out.</span>
+                        </h2>
+                        <p class="mt-8 max-w-sm text-neutral-400 leading-relaxed">
+                            We don't run a server. There is no place for your data to go. Model calls travel direct from your machine to the provider you configure.
+                        </p>
+                        <a href="/privacy.html" class="label mt-6 inline-flex items-center gap-2 border-b border-signal pb-1 text-white transition hover:text-signal">
+                            Read full policy →
+                        </a>
+                    </div>
+
+                    <div class="lg:col-span-8">
+                        <dl class="divide-y divide-white/10 border-t border-b hairline-thick">
+                            <div class="grid grid-cols-12 gap-6 py-6">
+                                <dt class="label col-span-2 pt-1 text-signal">01</dt>
+                                <dd class="col-span-4 text-base font-semibold text-white">Data at rest</dd>
+                                <dd class="col-span-6 text-neutral-400">On your device only. No copy is held on infrastructure we operate.</dd>
+                            </div>
+                            <div class="grid grid-cols-12 gap-6 py-6">
+                                <dt class="label col-span-2 pt-1 text-signal">02</dt>
+                                <dd class="col-span-4 text-base font-semibold text-white">Credentials</dd>
+                                <dd class="col-span-6 text-neutral-400">Stored in macOS Keychain, Windows Credential Manager, or libsecret.</dd>
+                            </div>
+                            <div class="grid grid-cols-12 gap-6 py-6">
+                                <dt class="label col-span-2 pt-1 text-signal">03</dt>
+                                <dd class="col-span-4 text-base font-semibold text-white">Training use</dd>
+                                <dd class="col-span-6 text-neutral-400">None. Your data never enters a training pipeline. Nothing is resold.</dd>
+                            </div>
+                            <div class="grid grid-cols-12 gap-6 py-6">
+                                <dt class="label col-span-2 pt-1 text-signal">04</dt>
+                                <dd class="col-span-4 text-base font-semibold text-white">Model calls</dd>
+                                <dd class="col-span-6 text-neutral-400">Direct from your machine to the model provider you configure. We don't proxy.</dd>
+                            </div>
+                            <div class="grid grid-cols-12 gap-6 py-6">
+                                <dt class="label col-span-2 pt-1 text-signal">05</dt>
+                                <dd class="col-span-4 text-base font-semibold text-white">Google user data</dd>
+                                <dd class="col-span-6 text-neutral-400">Processed locally under your consent, scoped to the feature you invoke.</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- §04 Install -->
+        <section id="install" class="border-b hairline">
+            <div class="border-b hairline">
+                <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+                    <div class="label text-signal">§ 04 — Install</div>
+                    <div class="label text-neutral-600">p. 04 / 04</div>
+                </div>
+            </div>
+
+            <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
+                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div class="lg:col-span-4">
+                        <h2 class="display text-4xl font-semibold text-white sm:text-5xl">
+                            Three<br>platforms.<br>
+                            <span class="text-neutral-500">One binary.</span>
+                        </h2>
+                        <p class="mt-8 max-w-sm text-neutral-400 leading-relaxed">
+                            No background daemons. No account required. Uninstalls the way any binary does.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-8">
+                        <div class="grid grid-cols-1 border-t border-l hairline-thick sm:grid-cols-3">
+                            <a href="#" class="group flex flex-col justify-between gap-8 border-r border-b hairline-thick p-6 transition hover:bg-ink-900">
+                                <div class="flex items-center justify-between">
+                                    <span class="label text-neutral-500">01</span>
+                                    <i class="fa-brands fa-apple text-2xl text-neutral-300 transition group-hover:text-signal"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">macOS</div>
+                                    <div class="label mt-1 text-neutral-500">arm64 · x86_64 · dmg</div>
+                                </div>
+                            </a>
+                            <a href="#" class="group flex flex-col justify-between gap-8 border-r border-b hairline-thick p-6 transition hover:bg-ink-900">
+                                <div class="flex items-center justify-between">
+                                    <span class="label text-neutral-500">02</span>
+                                    <i class="fa-brands fa-windows text-2xl text-neutral-300 transition group-hover:text-signal"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Windows</div>
+                                    <div class="label mt-1 text-neutral-500">x86_64 · 10+ · msi</div>
+                                </div>
+                            </a>
+                            <a href="#" class="group flex flex-col justify-between gap-8 border-r border-b hairline-thick p-6 transition hover:bg-ink-900">
+                                <div class="flex items-center justify-between">
+                                    <span class="label text-neutral-500">03</span>
+                                    <i class="fa-brands fa-linux text-2xl text-neutral-300 transition group-hover:text-signal"></i>
+                                </div>
+                                <div>
+                                    <div class="text-sm font-semibold text-white">Linux</div>
+                                    <div class="label mt-1 text-neutral-500">x86_64 · arm64 · appimage</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+                            <span class="label text-neutral-500">via cli</span>
+                            <code class="border hairline-thick bg-ink-900 px-3 py-1.5 font-mono text-sm text-neutral-200">brew install mins-bot</code>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-ink-950 py-16">
-        <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <!-- Footer / Imprint -->
+    <footer class="bg-ink-950 pb-16">
+        <div class="border-b hairline">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+                <div class="label text-neutral-600">Imprint</div>
+                <div class="label text-neutral-600">End of document</div>
+            </div>
+        </div>
+
+        <div class="mx-auto max-w-7xl px-6 pt-16 lg:px-10">
             <div class="grid gap-12 lg:grid-cols-12">
                 <div class="lg:col-span-5">
-                    <div class="flex items-center gap-3 text-white">
-                        <span class="flex h-7 w-7 items-center justify-center border hairline-thick bg-ink-900">
-                            <span class="font-mono text-xs font-semibold text-accent">M</span>
-                        </span>
-                        <span class="font-mono text-sm tracking-wide">mins<span class="text-neutral-500">·</span>bot</span>
+                    <div class="flex items-baseline gap-3 text-white">
+                        <span class="font-mono text-sm font-semibold tracking-wide">MINS<span class="text-signal">·</span>BOT</span>
+                        <span class="label text-neutral-500">Desktop Agent</span>
                     </div>
                     <p class="mt-5 max-w-sm text-sm text-neutral-500">
                         A desktop agent that lives where your work does. Local by default.
                     </p>
                 </div>
                 <div class="lg:col-span-7">
-                    <div class="mono-label mb-4 text-neutral-600">partner sites</div>
+                    <div class="label mb-4 text-neutral-600">Partner sites</div>
                     <div class="grid grid-cols-2 gap-x-6 gap-y-2 font-mono text-xs sm:grid-cols-3">
-                        <a href="https://www.buildnextapp.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">buildnextapp</a>
-                        <a href="http://www.tym.io" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">tym.io</a>
-                        <a href="https://www.langswarm.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">langswarm</a>
-                        <a href="https://www.cvscorecard.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">cvscorecard</a>
-                        <a href="https://www.backerspot.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">backerspot</a>
-                        <a href="https://www.textutils.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">textutils</a>
-                        <a href="https://www.tellichat.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">tellichat</a>
-                        <a href="https://www.subqueue.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">subqueue</a>
-                        <a href="https://www.clipmerge.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">clipmerge</a>
-                        <a href="https://www.screenshotconverter.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">screenshotconverter</a>
-                        <a href="https://www.rescanflow.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-accent">rescanflow</a>
+                        <a href="https://www.buildnextapp.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">buildnextapp</a>
+                        <a href="http://www.tym.io" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">tym.io</a>
+                        <a href="https://www.langswarm.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">langswarm</a>
+                        <a href="https://www.cvscorecard.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">cvscorecard</a>
+                        <a href="https://www.backerspot.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">backerspot</a>
+                        <a href="https://www.textutils.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">textutils</a>
+                        <a href="https://www.tellichat.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">tellichat</a>
+                        <a href="https://www.subqueue.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">subqueue</a>
+                        <a href="https://www.clipmerge.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">clipmerge</a>
+                        <a href="https://www.screenshotconverter.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">screenshotconverter</a>
+                        <a href="https://www.rescanflow.com" target="_blank" rel="noopener noreferrer" class="text-neutral-500 transition hover:text-signal">rescanflow</a>
                     </div>
                 </div>
             </div>
 
             <div class="mt-16 flex flex-col items-start justify-between gap-4 border-t hairline pt-6 sm:flex-row sm:items-center">
-                <p class="mono-label text-neutral-600">© <span id="year"></span> mins bot</p>
-                <div class="flex items-center gap-6 mono-label text-neutral-500">
-                    <a href="/privacy.html" class="transition hover:text-white">privacy</a>
-                    <a href="/terms.html" class="transition hover:text-white">terms</a>
-                    <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">github</a>
+                <p class="label text-neutral-600">© <span id="year"></span> Mins Bot</p>
+                <div class="flex items-center gap-6 label text-neutral-500">
+                    <a href="/privacy.html" class="transition hover:text-white">Privacy</a>
+                    <a href="/terms.html" class="transition hover:text-white">Terms</a>
+                    <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="transition hover:text-white">GitHub ↗</a>
                 </div>
             </div>
         </div>
