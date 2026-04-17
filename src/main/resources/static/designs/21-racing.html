@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 21 Racing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Bebas Neue','sans-serif'], sans: ['Oswald','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+            colors: { carbon:'#0a0a0a', carbon2:'#161616', carbon3:'#1f1f1f', race:'#e10600', bone:'#f4f4f4', hazard:'#ffcb05' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Oswald', sans-serif; }
+        body { background:#0a0a0a; color:#f4f4f4; }
+        .display { font-family:'Bebas Neue',sans-serif; letter-spacing: 0.01em; line-height:.9; }
+        .mono { font-family:'JetBrains Mono', monospace; }
+        .hazard {
+            background: repeating-linear-gradient(135deg, #ffcb05 0 20px, #0a0a0a 20px 40px);
+        }
+        .hazard-thin {
+            background: repeating-linear-gradient(135deg, #ffcb05 0 8px, #0a0a0a 8px 16px);
+        }
+        .checker {
+            background:
+                conic-gradient(#0a0a0a 0 25%, #f4f4f4 0 50%, #0a0a0a 0 75%, #f4f4f4 0) 0 0 / 40px 40px;
+        }
+        .carbon-tex {
+            background-color: #161616;
+            background-image:
+                linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.04) 75%),
+                linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.04) 75%);
+            background-size: 6px 6px;
+            background-position: 0 0, 3px 3px;
+        }
+        .caps { font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.12em; font-size:.72rem; }
+        .lap-tile { background:#161616; border:1px solid #1f1f1f; }
+        .num-big { font-family:'Bebas Neue',sans-serif; font-size: 5rem; line-height: 1; }
+        .switcher { font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase; font-size:.72rem; letter-spacing:.1em; background:#0a0a0a; color:#f4f4f4; border:2px solid #e10600; padding:.35rem .6rem; }
+        @keyframes blink { 50% { opacity:.35; } }
+        .blink { animation: blink 1s ease-in-out infinite; }
+        .speed-btn { background:#e10600; color:#fff; clip-path: polygon(0 0, 100% 0, calc(100% - 16px) 100%, 0 100%); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- hazard stripe top -->
+    <div class="hazard-thin h-2"></div>
+
+    <header class="sticky top-2 z-50 bg-carbon/95 backdrop-blur border-b border-race">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+            <a href="/" class="flex items-baseline gap-3">
+                <span class="display text-2xl text-bone">MINS<span class="text-race">·</span>BOT</span>
+                <span class="caps text-race blink">● LIVE</span>
+            </a>
+            <div class="flex items-center gap-5 caps text-bone/70">
+                <a href="#capabilities" class="hidden hover:text-race md:inline-block">SPECS</a>
+                <a href="#install" class="hidden hover:text-race md:inline-block">PIT</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden">
+            <!-- carbon bg -->
+            <div class="absolute inset-0 carbon-tex"></div>
+            <!-- diagonal race stripe -->
+            <div class="absolute top-0 right-0 h-full w-1/3 bg-race" style="clip-path: polygon(40% 0, 100% 0, 100% 100%, 0 100%);"></div>
+
+            <div class="relative mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-10 lg:pt-28 lg:pb-24">
+                <div class="grid gap-10 lg:grid-cols-12">
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center gap-3 caps text-race"><span class="bg-race text-carbon px-2 py-1 text-xs">T−00:00</span><span>lap 0.4.2 · session live</span></div>
+                        <h1 class="display mt-5 text-7xl sm:text-8xl lg:text-[9rem] text-bone uppercase">
+                            DESKTOP<br>
+                            <span class="text-race">AGENT.</span><br>
+                            MAXIMUM<br>
+                            TRACTION.
+                        </h1>
+                        <p class="mt-8 max-w-lg text-lg font-medium text-bone/85">
+                            Built for the fast lane of local execution. Mins Bot runs on your metal, with zero lift off the throttle — and zero telemetry sent off-track.
+                        </p>
+                        <div class="mt-10 flex flex-wrap items-center gap-3">
+                            <a href="#install" class="speed-btn display text-xl pl-8 pr-10 py-4 hover:brightness-110">DOWNLOAD ⟶</a>
+                            <a href="#capabilities" class="caps border-2 border-bone px-6 py-3 hover:bg-bone hover:text-carbon">TELEMETRY →</a>
+                        </div>
+                    </div>
+
+                    <!-- Telemetry panel -->
+                    <div class="lg:col-span-5">
+                        <div class="lap-tile p-5">
+                            <div class="flex items-center justify-between border-b border-carbon3 pb-3">
+                                <div class="caps text-bone/60">TELEMETRY · #41829</div>
+                                <span class="caps text-hazard blink">● REC</span>
+                            </div>
+                            <div class="mt-4 grid grid-cols-3 gap-3">
+                                <div><div class="caps text-bone/50">Lap 01</div><div class="mono font-bold text-xl text-race">00:41.23</div></div>
+                                <div><div class="caps text-bone/50">Lap 02</div><div class="mono font-bold text-xl text-race">00:38.91</div></div>
+                                <div><div class="caps text-bone/50">Best</div><div class="mono font-bold text-xl text-hazard">00:38.91</div></div>
+                            </div>
+                            <div class="mt-4 grid grid-cols-2 gap-3">
+                                <div class="lap-tile p-3"><div class="caps text-bone/50">RPM</div><div class="mono text-lg text-bone">8,420</div></div>
+                                <div class="lap-tile p-3"><div class="caps text-bone/50">Gear</div><div class="mono text-lg text-bone">4</div></div>
+                                <div class="lap-tile p-3"><div class="caps text-bone/50">Egress</div><div class="mono text-lg text-race">0 bytes</div></div>
+                                <div class="lap-tile p-3"><div class="caps text-bone/50">Keys</div><div class="mono text-sm text-bone">KEYCHAIN</div></div>
+                            </div>
+                            <div class="mt-4 h-2 checker"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- speed lines -->
+            <div class="absolute bottom-0 left-0 right-0 h-2 bg-race"></div>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="py-20 border-b border-carbon3">
+            <div class="mx-auto max-w-7xl px-6 lg:px-10">
+                <div class="flex items-end justify-between border-b border-race pb-4 mb-10">
+                    <h2 class="display text-4xl sm:text-5xl uppercase text-bone"><span class="text-race">§</span> Specs</h2>
+                    <span class="caps text-bone/60 hidden sm:inline">4 SYSTEMS · ALL ONLINE</span>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="lap-tile p-5 hover:border-race">
+                        <div class="flex items-center justify-between border-b border-carbon3 pb-2"><span class="num-big text-race">01</span><i class="fa-solid fa-flag-checkered text-2xl text-bone/70"></i></div>
+                        <h3 class="display mt-4 text-2xl uppercase">Browse</h3>
+                        <p class="mt-2 text-sm text-bone/70">Hot-lap the web in your session. Chromium, zero lag.</p>
+                        <div class="mt-3 caps text-bone/50">ENG: CHROMIUM · SCP: TASK</div>
+                    </article>
+                    <article class="lap-tile p-5 hover:border-race">
+                        <div class="flex items-center justify-between border-b border-carbon3 pb-2"><span class="num-big text-race">02</span><i class="fa-solid fa-hard-drive text-2xl text-bone/70"></i></div>
+                        <h3 class="display mt-4 text-2xl uppercase">Files</h3>
+                        <p class="mt-2 text-sm text-bone/70">Allow-list scoped. Local audit log. Reversible.</p>
+                        <div class="mt-3 caps text-bone/50">SCP: ALLOW-LIST · AUDIT: LOCAL</div>
+                    </article>
+                    <article class="lap-tile p-5 hover:border-race">
+                        <div class="flex items-center justify-between border-b border-carbon3 pb-2"><span class="num-big text-race">03</span><i class="fa-solid fa-broadcast-tower text-2xl text-bone/70"></i></div>
+                        <h3 class="display mt-4 text-2xl uppercase">Message</h3>
+                        <p class="mt-2 text-sm text-bone/70">Slack, Gmail, Discord. Tokens in OS keychain.</p>
+                        <div class="mt-3 caps text-bone/50">CREDS: KEYCHAIN · TX: DIRECT</div>
+                    </article>
+                    <article class="lap-tile p-5 hover:border-race">
+                        <div class="flex items-center justify-between border-b border-carbon3 pb-2"><span class="num-big text-race">04</span><i class="fa-solid fa-cogs text-2xl text-bone/70"></i></div>
+                        <h3 class="display mt-4 text-2xl uppercase">Skills</h3>
+                        <p class="mt-2 text-sm text-bone/70">Installable modules. Compose your own rig.</p>
+                        <div class="mt-3 caps text-bone/50">FMT: MANIFEST · SRC: LOCAL/REG</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="py-20 relative overflow-hidden">
+            <div class="absolute inset-0 carbon-tex opacity-40"></div>
+            <div class="relative mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="hazard h-3 mb-8"></div>
+                <h2 class="display text-5xl sm:text-7xl uppercase">
+                    <span class="text-race">ZERO</span> OFF-TRACK<br>
+                    DATA EGRESS.
+                </h2>
+                <p class="caps mt-4 text-bone/70">Your data doesn't leave the circuit. Period.</p>
+
+                <div class="mt-12 grid gap-px bg-carbon3 sm:grid-cols-4">
+                    <div class="bg-carbon p-6"><div class="caps text-race">AT REST</div><div class="display text-3xl mt-2">ON DEVICE</div><div class="mono text-xs mt-1 text-bone/50">0 B REMOTE</div></div>
+                    <div class="bg-carbon p-6"><div class="caps text-race">CREDS</div><div class="display text-3xl mt-2">KEYCHAIN</div><div class="mono text-xs mt-1 text-bone/50">OS-MANAGED</div></div>
+                    <div class="bg-carbon p-6"><div class="caps text-race">TRAINING</div><div class="display text-3xl mt-2 text-hazard">NULL</div><div class="mono text-xs mt-1 text-bone/50">NEVER</div></div>
+                    <div class="bg-carbon p-6"><div class="caps text-race">CALLS</div><div class="display text-3xl mt-2">DIRECT</div><div class="mono text-xs mt-1 text-bone/50">PROVIDER-BOUND</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-8 inline-flex items-center gap-2 text-hazard hover:text-bone">▶ FULL SCRUTINEERING REPORT</a>
+                <div class="hazard h-3 mt-8"></div>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-20">
+            <div class="mx-auto max-w-7xl px-6 lg:px-10">
+                <div class="flex items-end justify-between border-b border-race pb-4 mb-10">
+                    <h2 class="display text-4xl sm:text-5xl uppercase"><span class="text-race">§</span> Pit Lane</h2>
+                    <span class="caps text-bone/60 hidden sm:inline">3 COMPOUNDS</span>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-3">
+                    <a href="#" class="lap-tile group p-6 hover:border-race">
+                        <div class="flex items-center justify-between"><span class="num-big text-race">01</span><i class="fa-brands fa-apple text-3xl text-bone/70 group-hover:text-race"></i></div>
+                        <div class="display text-3xl uppercase mt-6">macOS</div>
+                        <div class="caps mt-1 text-bone/50">ARM64 · X86_64</div>
+                    </a>
+                    <a href="#" class="lap-tile group p-6 hover:border-race">
+                        <div class="flex items-center justify-between"><span class="num-big text-race">02</span><i class="fa-brands fa-windows text-3xl text-bone/70 group-hover:text-race"></i></div>
+                        <div class="display text-3xl uppercase mt-6">Windows</div>
+                        <div class="caps mt-1 text-bone/50">X86_64 · 10+</div>
+                    </a>
+                    <a href="#" class="lap-tile group p-6 hover:border-race">
+                        <div class="flex items-center justify-between"><span class="num-big text-race">03</span><i class="fa-brands fa-linux text-3xl text-bone/70 group-hover:text-race"></i></div>
+                        <div class="display text-3xl uppercase mt-6">Linux</div>
+                        <div class="caps mt-1 text-bone/50">X86_64 · ARM64</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t-2 border-race py-6 bg-carbon">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps text-bone/60">
+            <p>© <span id="year"></span> · MINS BOT RACING · #42</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-race">Privacy</a><a href="/terms.html" class="hover:text-race">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-race">GitHub</a></div>
+        </div>
+    </footer>
+    <div class="hazard-thin h-2"></div>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

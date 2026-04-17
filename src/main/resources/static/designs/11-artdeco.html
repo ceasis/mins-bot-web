@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 11 Art Deco</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poiret+One&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Limelight','serif'], deco: ['Poiret One','sans-serif'], serif: ['Cormorant Garamond','serif'] },
+            colors: { night:'#0d0d0d', cream:'#f1e4c3', cream2:'#e8d8b0', gold:'#c9a55a', gold2:'#b08f45', burgundy:'#611c2a' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Cormorant Garamond', serif; }
+        body { background:#0d0d0d; color:#f1e4c3; }
+        .display { font-family:'Limelight',serif; letter-spacing:0.02em; }
+        .deco { font-family:'Poiret One',sans-serif; letter-spacing:0.2em; text-transform:uppercase; }
+        .gold-rule { height:1px; background: linear-gradient(90deg, transparent, #c9a55a, transparent); }
+        .frame { border: 1px solid #c9a55a; position: relative; }
+        .frame::before, .frame::after {
+            content:''; position:absolute; width:14px; height:14px; border:2px solid #c9a55a;
+        }
+        .frame::before { top:-6px; left:-6px; border-right:0; border-bottom:0; }
+        .frame::after { bottom:-6px; right:-6px; border-left:0; border-top:0; }
+        .chevron {
+            background:
+                repeating-linear-gradient(135deg, #c9a55a 0, #c9a55a 2px, transparent 2px, transparent 8px);
+            height: 12px;
+            width: 100%;
+        }
+        .fan {
+            width: 120px; height: 60px;
+            background: radial-gradient(ellipse at center bottom, #c9a55a 0, #c9a55a 2px, transparent 2px),
+                conic-gradient(from 180deg at 50% 100%, #c9a55a 0deg, transparent 4deg, transparent 16deg, #c9a55a 16deg, #c9a55a 20deg, transparent 20deg, transparent 32deg, #c9a55a 32deg, #c9a55a 36deg, transparent 36deg);
+        }
+        .ornament { color:#c9a55a; font-family:'Cormorant Garamond',serif; font-size:1.4em; }
+        .btn-deco { background:#c9a55a; color:#0d0d0d; }
+        .btn-deco:hover { background:#f1e4c3; }
+        .switcher { font-family:'Poiret One',sans-serif; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; background:#0d0d0d; color:#f1e4c3; border:1px solid #c9a55a; padding:.3rem .6rem; }
+        .roman { font-family:'Cormorant Garamond',serif; font-variant:small-caps; letter-spacing:.15em; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 border-b border-gold/40 bg-night/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="text-gold text-xl">◆</span><span class="deco text-sm text-gold">Mins · Bot</span><span class="text-gold text-xl">◆</span></a>
+            <div class="flex items-center gap-5 deco text-xs text-cream2">
+                <a href="#capabilities" class="hidden hover:text-gold md:inline-block">Par II</a>
+                <a href="#install" class="hidden hover:text-gold md:inline-block">Par IV</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden pt-28 pb-24 lg:pt-36 lg:pb-36">
+            <div class="chevron"></div>
+            <div class="mx-auto max-w-5xl px-6 text-center lg:px-10 mt-20">
+                <div class="flex items-center justify-center gap-6 text-gold">
+                    <span class="gold-rule flex-1 max-w-[120px]"></span><span class="deco text-xs tracking-[.4em]">Anno 2026 · Édition I</span><span class="gold-rule flex-1 max-w-[120px]"></span>
+                </div>
+                <h1 class="display mt-10 text-5xl text-cream sm:text-7xl lg:text-8xl" style="line-height:1.08">
+                    The Desktop<br>
+                    <span class="text-gold">Agent</span>
+                </h1>
+                <div class="flex items-center justify-center gap-4 mt-8">
+                    <span class="text-gold text-3xl">◇</span><span class="text-gold text-2xl">◆</span><span class="text-gold text-3xl">◇</span>
+                </div>
+                <p class="serif mt-10 mx-auto max-w-2xl text-2xl italic leading-relaxed text-cream2">
+                    "A small machine of considerable manners. It browses, files, and answers &mdash; all within the confines of your own drawing room."
+                </p>
+                <div class="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <a href="#install" class="btn-deco deco inline-flex items-center gap-3 px-10 py-4 text-xs tracking-[.3em]">◆ Acquire ◆</a>
+                    <a href="#capabilities" class="deco border-b border-gold pb-1 text-xs tracking-[.3em] text-gold hover:text-cream">— Read the Programme —</a>
+                </div>
+            </div>
+            <div class="chevron mt-20"></div>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="py-28 border-t border-b border-gold/40">
+            <div class="mx-auto max-w-5xl px-6 lg:px-10">
+                <div class="text-center mb-14">
+                    <div class="deco text-gold text-xs">— Part II —</div>
+                    <h2 class="display mt-4 text-4xl text-cream sm:text-5xl">The Four Movements</h2>
+                    <div class="mt-6"><span class="ornament">✦</span></div>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2">
+                    <article class="frame p-8 text-center">
+                        <div class="deco text-gold text-xs">Movement I</div>
+                        <h3 class="display mt-4 text-3xl text-cream">Browse</h3>
+                        <div class="mt-3 ornament">※</div>
+                        <p class="serif mt-3 text-lg italic text-cream2">Navigates the pages of the web with the practiced ease of a hotel concierge.</p>
+                    </article>
+                    <article class="frame p-8 text-center">
+                        <div class="deco text-gold text-xs">Movement II</div>
+                        <h3 class="display mt-4 text-3xl text-cream">Arrange</h3>
+                        <div class="mt-3 ornament">※</div>
+                        <p class="serif mt-3 text-lg italic text-cream2">Tends to one's files with the discretion of a trusted butler.</p>
+                    </article>
+                    <article class="frame p-8 text-center">
+                        <div class="deco text-gold text-xs">Movement III</div>
+                        <h3 class="display mt-4 text-3xl text-cream">Correspond</h3>
+                        <div class="mt-3 ornament">※</div>
+                        <p class="serif mt-3 text-lg italic text-cream2">Writes and replies across Slack, Discord, and the post.</p>
+                    </article>
+                    <article class="frame p-8 text-center">
+                        <div class="deco text-gold text-xs">Movement IV</div>
+                        <h3 class="display mt-4 text-3xl text-cream">Acquire Skills</h3>
+                        <div class="mt-3 ornament">※</div>
+                        <p class="serif mt-3 text-lg italic text-cream2">A library of installable talents &mdash; grow the agent as one grows a gentleman.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="py-28">
+            <div class="mx-auto max-w-4xl px-6 text-center lg:px-10">
+                <div class="deco text-gold text-xs">— Part III · A Gentleman's Word —</div>
+                <h2 class="display mt-6 text-4xl text-cream sm:text-5xl">Discretion, Absolute.</h2>
+                <div class="mt-6"><span class="ornament">✦ ✦ ✦</span></div>
+                <p class="serif mt-8 max-w-2xl mx-auto text-xl italic leading-relaxed text-cream2">
+                    No ledger is kept on our premises. No copy is made beyond your own establishment. Not a word is borrowed for the training of other machines.
+                </p>
+                <div class="mt-14 grid gap-8 sm:grid-cols-2 text-left">
+                    <div class="frame p-6"><div class="deco text-xs text-gold">At Rest</div><div class="display mt-2 text-xl text-cream">On one's device.</div></div>
+                    <div class="frame p-6"><div class="deco text-xs text-gold">Credentials</div><div class="display mt-2 text-xl text-cream">In the Keychain.</div></div>
+                    <div class="frame p-6"><div class="deco text-xs text-gold">Training</div><div class="display mt-2 text-xl text-gold">None whatsoever.</div></div>
+                    <div class="frame p-6"><div class="deco text-xs text-gold">Correspondence</div><div class="display mt-2 text-xl text-cream">Direct to the provider.</div></div>
+                </div>
+                <a href="/privacy.html" class="deco mt-12 inline-block border-b border-gold pb-1 text-xs text-gold hover:text-cream">Read the Full Compact →</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-28 border-t border-gold/40">
+            <div class="mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <div class="deco text-gold text-xs">— Part IV · Delivery —</div>
+                <h2 class="display mt-4 text-4xl text-cream sm:text-5xl">Available upon three platforms.</h2>
+                <div class="mt-14 grid gap-6 sm:grid-cols-3">
+                    <a href="#" class="frame group p-10 text-center hover:bg-night/50"><i class="fa-brands fa-apple text-4xl text-gold"></i><div class="display mt-4 text-2xl text-cream">macOS</div><div class="deco mt-2 text-xs text-cream2">arm64 · x86_64</div></a>
+                    <a href="#" class="frame group p-10 text-center hover:bg-night/50"><i class="fa-brands fa-windows text-4xl text-gold"></i><div class="display mt-4 text-2xl text-cream">Windows</div><div class="deco mt-2 text-xs text-cream2">x86_64 · 10+</div></a>
+                    <a href="#" class="frame group p-10 text-center hover:bg-night/50"><i class="fa-brands fa-linux text-4xl text-gold"></i><div class="display mt-4 text-2xl text-cream">Linux</div><div class="deco mt-2 text-xs text-cream2">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-gold/40 py-10">
+        <div class="chevron mb-8"></div>
+        <div class="mx-auto max-w-6xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center deco text-xs text-cream2">
+            <p>© <span id="year"></span> · Mins Bot · Établi </p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-gold">Privacy</a><a href="/terms.html" class="hover:text-gold">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-gold">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

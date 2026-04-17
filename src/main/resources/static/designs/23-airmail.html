@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 23 Airmail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Courier+Prime:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Playfair Display','serif'], sans: ['Inter','system-ui','sans-serif'], mono: ['Courier Prime','monospace'] },
+            colors: { envelope:'#f1ecdd', envelope2:'#e5dec6', kraft:'#c8b48a', stamp:'#c22727', air:'#1e4a8b', ink:'#1c1a15', wax:'#7a1e1e' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body { background:#d9cfa8; color:#1c1a15; min-height: 100vh; padding: 2rem 1rem; }
+        .envelope {
+            background: #f1ecdd;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 3px 10px rgba(0,0,0,0.15);
+        }
+        .airmail-border {
+            position: relative;
+            border: 4px solid transparent;
+            background:
+                linear-gradient(#f1ecdd, #f1ecdd) padding-box,
+                repeating-linear-gradient(-135deg, #c22727 0 12px, #1e4a8b 12px 24px, #f1ecdd 24px 36px) border-box;
+        }
+        .mono { font-family:'Courier Prime', monospace; }
+        .display { font-family:'Playfair Display', serif; }
+        .caps { font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:#1c1a15; font-weight:500; }
+        .postmark {
+            display: inline-block;
+            border: 2px solid #1e4a8b;
+            border-radius: 9999px;
+            padding: .6rem 1.2rem;
+            color:#1e4a8b;
+            text-align: center;
+            font-family:'Courier Prime', monospace;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            font-size: .7rem;
+            font-weight:700;
+            transform: rotate(-6deg);
+            line-height: 1.3;
+        }
+        .postmark-red {
+            border-color:#c22727; color:#c22727;
+        }
+        .stamp-box {
+            border: 1px dashed #1c1a15;
+            padding: .5rem;
+            background: #f1ecdd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family:'Playfair Display', serif;
+        }
+        .stamp-inner {
+            border: 2px solid #c22727;
+            padding: .5rem .7rem;
+            color: #c22727;
+            width: 100%;
+        }
+        .via-air {
+            background: repeating-linear-gradient(-135deg, #c22727 0 10px, transparent 10px 14px, #1e4a8b 14px 24px, transparent 24px 28px);
+            padding: .5rem 1rem;
+            background-color: #f1ecdd;
+        }
+        .address-block {
+            font-family:'Courier Prime', monospace;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            letter-spacing: .05em;
+        }
+        .wax-seal {
+            display:inline-block;
+            width: 60px; height: 60px;
+            background: radial-gradient(circle at 35% 35%, #a53333, #7a1e1e 60%, #5a1616);
+            border-radius: 50%;
+            color:#f1ecdd;
+            font-family:'Playfair Display', serif;
+            font-size: 1.75rem;
+            display:flex; align-items:center; justify-content:center;
+            box-shadow: inset -3px -3px 4px rgba(0,0,0,0.3), 2px 2px 6px rgba(0,0,0,.2);
+            transform: rotate(-10deg);
+        }
+        .switcher { font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:#f1ecdd; color:#1c1a15; border:1px solid #1c1a15; padding:.3rem .5rem; }
+        .dashed-rule { border-top: 2px dashed rgba(28,26,21,0.4); }
+    </style>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto mb-4 flex items-center justify-between text-xs uppercase tracking-widest">
+        <a href="/" class="hover:underline">✉ MINS/BOT · POSTAL SERVICE</a>
+        <span data-design-switcher data-select-class="switcher"></span>
+    </div>
+
+    <main class="max-w-4xl mx-auto airmail-border">
+        <div class="envelope px-6 py-8 sm:px-12 sm:py-10">
+            <!-- Via Air Mail banner -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="via-air caps text-sm font-bold tracking-widest text-air">✈ Via Air Mail · Par Avion</div>
+                <div class="stamp-box rotate-3" style="width:100px; height:120px;">
+                    <div class="stamp-inner">
+                        <i class="fa-solid fa-robot text-xl text-stamp"></i>
+                        <div class="mono text-[9px] mt-1 tracking-widest">MINS BOT · 42¢</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- From / To -->
+            <section class="grid gap-8 sm:grid-cols-12 mb-10">
+                <div class="sm:col-span-5">
+                    <div class="caps">From</div>
+                    <div class="address-block mt-2">
+                        MINS BOT, AGENT<br>
+                        c/o DESKTOP, LOCAL<br>
+                        YOUR MACHINE, 0.4.2<br>
+                        —
+                    </div>
+                </div>
+                <div class="sm:col-span-7 relative">
+                    <div class="caps">To</div>
+                    <div class="address-block mt-2 pl-4 border-l-2 border-ink/30">
+                        <span class="display text-3xl italic block mb-1">The Curious User</span>
+                        c/o YOUR BROWSER<br>
+                        WHEREVER YOU ARE READING<br>
+                        THIS, NOW
+                    </div>
+                    <!-- Postmarks -->
+                    <div class="absolute top-0 right-4">
+                        <div class="postmark">● Apr 18 ●<br>Local only<br>Desk 01</div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashed-rule mb-10"></div>
+
+            <!-- Hero message -->
+            <section class="relative">
+                <div class="caps mb-3 text-stamp">Enclosed: a desktop agent.</div>
+                <h1 class="display text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
+                    It travels <em class="not-italic text-air">light</em>.<br>
+                    It returns <em class="not-italic text-stamp">nothing.</em>
+                </h1>
+                <p class="mt-6 max-w-xl text-lg leading-relaxed">
+                    Mins Bot is a correspondence agent for your desk. It browses, files, and replies — without a single courier stopping at our office. Every parcel, every word, stays at your address.
+                </p>
+                <div class="mt-8 flex flex-wrap items-center gap-4">
+                    <a href="#install" class="display italic bg-air text-envelope px-8 py-3 text-xl hover:bg-ink">Deliver it to me →</a>
+                    <a href="#capabilities" class="caps border-b border-ink pb-1 hover:text-stamp">Open the enclosure</a>
+                </div>
+                <div class="absolute -top-4 -right-4 hidden sm:block">
+                    <div class="postmark postmark-red">✦ Apr 18 ✦<br>By Hand<br>On Desk</div>
+                </div>
+            </section>
+
+            <div class="dashed-rule my-10"></div>
+
+            <!-- Enclosure list = capabilities -->
+            <section id="capabilities">
+                <div class="flex items-baseline justify-between mb-5"><div class="caps">Enclosure A — Contents</div><div class="caps">Four items</div></div>
+                <div class="grid gap-4 sm:grid-cols-2">
+                    <article class="border border-ink/30 p-5 bg-envelope flex gap-4"><div class="stamp-box shrink-0" style="width:56px;height:64px;"><div class="stamp-inner text-[9px]">01</div></div><div><div class="display text-xl">Browse</div><p class="mt-1 text-sm">Chromium under your session. Reads real pages.</p></div></article>
+                    <article class="border border-ink/30 p-5 bg-envelope flex gap-4"><div class="stamp-box shrink-0" style="width:56px;height:64px;"><div class="stamp-inner text-[9px]">02</div></div><div><div class="display text-xl">File</div><p class="mt-1 text-sm">Only paths you've allowed. Local journal.</p></div></article>
+                    <article class="border border-ink/30 p-5 bg-envelope flex gap-4"><div class="stamp-box shrink-0" style="width:56px;height:64px;"><div class="stamp-inner text-[9px]">03</div></div><div><div class="display text-xl">Message</div><p class="mt-1 text-sm">Slack, Gmail, Discord. Tokens stay home.</p></div></article>
+                    <article class="border border-ink/30 p-5 bg-envelope flex gap-4"><div class="stamp-box shrink-0" style="width:56px;height:64px;"><div class="stamp-inner text-[9px]">04</div></div><div><div class="display text-xl">Skills</div><p class="mt-1 text-sm">Manifest + code. Installable capabilities.</p></div></article>
+                </div>
+            </section>
+
+            <div class="dashed-rule my-10"></div>
+
+            <!-- Policy - "declaration form" -->
+            <section>
+                <div class="caps mb-5">Enclosure B — Customs Declaration</div>
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="border-b border-ink/40">
+                            <th class="text-left py-2 caps">Item</th><th class="text-left py-2 caps">Transported</th><th class="text-left py-2 caps">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-ink/20"><td class="py-2">Data at rest</td><td class="py-2 mono">0</td><td class="py-2">On device only</td></tr>
+                        <tr class="border-b border-ink/20"><td class="py-2">Credentials</td><td class="py-2 mono">0</td><td class="py-2">OS keychain</td></tr>
+                        <tr class="border-b border-ink/20"><td class="py-2 text-stamp">Training use</td><td class="py-2 mono text-stamp">0</td><td class="py-2 text-stamp">None whatsoever</td></tr>
+                        <tr><td class="py-2">Model calls</td><td class="py-2 mono">—</td><td class="py-2">Direct to provider</td></tr>
+                    </tbody>
+                </table>
+                <div class="mt-6 flex items-center gap-4">
+                    <span class="wax-seal">✉</span>
+                    <div>
+                        <div class="display italic text-lg">Sealed, signed, and sent on your behalf.</div>
+                        <a href="/privacy.html" class="caps border-b border-ink pb-0.5 hover:text-stamp">Full declaration →</a>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashed-rule my-10"></div>
+
+            <!-- Install - "delivery options" -->
+            <section id="install">
+                <div class="caps mb-5">Enclosure C — Delivery Options</div>
+                <div class="grid gap-4 sm:grid-cols-3">
+                    <a href="#" class="group border-2 border-dashed border-air p-6 bg-envelope hover:bg-envelope2 text-center">
+                        <i class="fa-brands fa-apple text-3xl"></i>
+                        <div class="display mt-3 text-2xl">macOS</div>
+                        <div class="caps mt-1">By sea · arm64</div>
+                    </a>
+                    <a href="#" class="group border-2 border-dashed border-air p-6 bg-envelope hover:bg-envelope2 text-center">
+                        <i class="fa-brands fa-windows text-3xl"></i>
+                        <div class="display mt-3 text-2xl">Windows</div>
+                        <div class="caps mt-1">By air · x86_64</div>
+                    </a>
+                    <a href="#" class="group border-2 border-dashed border-air p-6 bg-envelope hover:bg-envelope2 text-center">
+                        <i class="fa-brands fa-linux text-3xl"></i>
+                        <div class="display mt-3 text-2xl">Linux</div>
+                        <div class="caps mt-1">Overland · arm64</div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <div class="dashed-rule mt-10 mb-6"></div>
+            <div class="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps text-ink/70">
+                <p>© <span id="year"></span> · Mins Bot · Royal Mail not included</p>
+                <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-stamp">Privacy</a><a href="/terms.html" class="hover:text-stamp">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-stamp">GitHub</a></div>
+            </div>
+        </div>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

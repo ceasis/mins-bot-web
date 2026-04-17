@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 30 Vogue</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { didone: ['Bodoni Moda','Didot','serif'], sans: ['Inter','system-ui','sans-serif'] },
+            colors: { cream:'#f1ede3', ink:'#0a0808', blush:'#c77787', plum:'#3a1a28', gold:'#b08f3a' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', sans-serif; }
+        body { background:#f1ede3; color:#0a0808; }
+        .didone { font-family:'Bodoni Moda','Didot',serif; }
+        .mega { font-family:'Bodoni Moda','Didot',serif; font-weight: 900; letter-spacing: -0.04em; line-height: 0.82; }
+        .italic-lg { font-family:'Bodoni Moda',serif; font-style: italic; font-weight: 500; }
+        .caps { font-family:'Inter',sans-serif; font-size:.68rem; letter-spacing:.3em; text-transform:uppercase; font-weight:500; color:#0a0808; }
+        .deckle { border-bottom: 1px solid #0a0808; }
+        .thin-rule { border-top: 1px solid #0a0808; }
+        .thick-rule { border-top: 3px solid #0a0808; }
+        .switcher { font-family:'Inter',sans-serif; font-size:.68rem; letter-spacing:.25em; text-transform:uppercase; background:#f1ede3; color:#0a0808; border:1px solid #0a0808; padding:.3rem .5rem; }
+        .drop-cap::first-letter { font-family:'Bodoni Moda',serif; font-size: 6rem; font-weight: 900; float: left; line-height: .85; padding-right: .6rem; padding-top: .4rem; }
+        .ruled-columns { column-count: 1; }
+        @media (min-width: 768px) { .ruled-columns { column-count: 3; column-gap: 2rem; column-rule: 1px solid rgba(10,8,8,0.2); } }
+        .issue-no { writing-mode: vertical-rl; transform: rotate(180deg); letter-spacing: .25em; }
+        .portrait-frame { background: #0a0808; aspect-ratio: 3/4; position: relative; overflow: hidden; }
+        .portrait-frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Masthead -->
+    <header class="border-b border-ink">
+        <div class="mx-auto max-w-7xl px-6 py-5 lg:px-10">
+            <div class="flex items-baseline justify-between caps">
+                <span>Vol. 0.4 · № 02</span>
+                <span class="hidden sm:inline">Spring · MMXXVI</span>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+            <div class="mt-5 text-center">
+                <a href="/" class="didone block text-7xl sm:text-8xl lg:text-9xl font-black tracking-[0.02em]">MINSBOT</a>
+                <div class="caps mt-2">Desktop Agent · Local Couture · Spring Collection</div>
+            </div>
+        </div>
+        <nav class="thin-rule">
+            <div class="mx-auto max-w-7xl px-6 py-2 lg:px-10 flex flex-wrap items-center justify-between gap-3 caps">
+                <a href="#feature" class="hover:text-blush">The Cover Story</a>
+                <a href="#capabilities" class="hover:text-blush">Collection</a>
+                <a href="#policy" class="hover:text-blush">House Rules</a>
+                <a href="#install" class="hover:text-blush">Acquire</a>
+                <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-blush">Atelier</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-6 lg:px-10">
+        <!-- Cover / Hero -->
+        <section id="feature" class="grid gap-10 lg:grid-cols-12 py-16 lg:py-24 items-start">
+            <!-- Vertical issue tag -->
+            <div class="hidden lg:block lg:col-span-1">
+                <div class="issue-no caps" style="min-height: 180px;">Feature · 01</div>
+            </div>
+            <!-- Text -->
+            <div class="lg:col-span-6">
+                <div class="caps text-blush">— The Cover Story —</div>
+                <h1 class="mega mt-5 text-7xl sm:text-8xl lg:text-[10rem]">
+                    Local<br>
+                    <em class="italic-lg">is the new</em><br>
+                    <span class="text-blush">couture.</span>
+                </h1>
+                <p class="mt-8 max-w-lg text-lg leading-relaxed">
+                    <em>Mins Bot</em> dresses the desktop. Tailored to the machine, fitted to the keyboard, and — on the subject of your data — <strong>discreet to a fault</strong>.
+                </p>
+                <div class="mt-10 flex flex-wrap items-center gap-5">
+                    <a href="#install" class="didone italic-lg text-xl underline decoration-blush decoration-2 underline-offset-4 hover:text-blush">Photographed for acquisition →</a>
+                    <a href="#capabilities" class="caps border-b border-ink pb-1 hover:text-blush">Continue editorial</a>
+                </div>
+            </div>
+            <!-- Portrait -->
+            <figure class="lg:col-span-5">
+                <div class="portrait-frame">
+                    <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <linearGradient id="bgg" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#3a1a28"/>
+                                <stop offset="100%" stop-color="#0a0808"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="300" height="400" fill="url(#bgg)"/>
+                        <!-- silhouette -->
+                        <ellipse cx="150" cy="130" rx="55" ry="72" fill="#f1ede3"/>
+                        <path d="M 70 400 Q 70 240 150 220 Q 230 240 230 400 Z" fill="#f1ede3"/>
+                        <!-- face details (minimal) -->
+                        <rect x="120" y="100" width="60" height="24" fill="#0a0808" rx="4"/>
+                        <path d="M 140 160 Q 150 170 160 160" stroke="#0a0808" stroke-width="2" fill="none"/>
+                        <!-- accent -->
+                        <circle cx="150" cy="270" r="30" fill="#c77787" opacity=".8"/>
+                        <text x="150" y="275" font-family="Bodoni Moda" font-size="22" font-style="italic" text-anchor="middle" fill="#0a0808">M</text>
+                    </svg>
+                </div>
+                <figcaption class="mt-4 caps flex justify-between"><span>Photographed at Home</span><span>P. 01</span></figcaption>
+            </figure>
+        </section>
+
+        <!-- Dekker with multi-col body -->
+        <section class="thick-rule py-14">
+            <div class="caps text-blush">— Credits —</div>
+            <h2 class="didone italic-lg text-3xl sm:text-4xl mt-4 max-w-3xl">On the desk, on demand, on its best behavior.</h2>
+            <div class="mt-8 ruled-columns text-[15px] leading-[1.7]">
+                <p class="drop-cap">Minsbot is a desktop AI agent — but one with manners. It browses the web on one's behalf, tends to the filing cabinet, drafts replies, and runs an entire library of skills upon one's desktop. The distinction is the address. It lives where <em>you</em> live; it files under <em>your</em> name.</p>
+                <p class="mt-4">No server sits between you and the work. No pipeline sips from the documents on your disc. No copy of your correspondence is shelved away in the back rooms of a data centre. It is a polite arrangement, and one we have put in writing.</p>
+                <p class="mt-4">For Spring MMXXVI, the collection introduces four finishes — a browsing primitive, a filesystem primitive, a messaging primitive, and a skills library — each tailored to the user's measurements, each revocable, each unfashionable to share.</p>
+            </div>
+        </section>
+
+        <!-- Capabilities: editorial grid -->
+        <section id="capabilities" class="thick-rule py-14">
+            <div class="flex items-baseline justify-between caps mb-8">
+                <span class="text-blush">— The Spring Collection · Four Looks —</span>
+                <span>Look I — IV</span>
+            </div>
+            <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+                <article>
+                    <div class="portrait-frame" style="aspect-ratio:4/5;"><svg viewBox="0 0 200 250"><rect width="200" height="250" fill="#3a1a28"/><circle cx="100" cy="100" r="50" fill="#c77787"/><rect x="50" y="160" width="100" height="70" fill="#f1ede3"/><text x="100" y="200" font-family="Bodoni Moda" font-size="18" text-anchor="middle" font-style="italic" fill="#0a0808">I</text></svg></div>
+                    <div class="caps mt-3 text-blush">Look I</div>
+                    <h3 class="didone italic-lg text-2xl mt-1">The Browser</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Reads the real web — Chromium under the user's own session.</p>
+                </article>
+                <article>
+                    <div class="portrait-frame" style="aspect-ratio:4/5;"><svg viewBox="0 0 200 250"><rect width="200" height="250" fill="#b08f3a"/><ellipse cx="100" cy="100" rx="52" ry="48" fill="#f1ede3"/><rect x="55" y="150" width="90" height="80" fill="#0a0808"/><text x="100" y="200" font-family="Bodoni Moda" font-size="18" text-anchor="middle" fill="#f1ede3" font-style="italic">II</text></svg></div>
+                    <div class="caps mt-3 text-blush">Look II</div>
+                    <h3 class="didone italic-lg text-2xl mt-1">The Archivist</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Files only under an allow-list. Every stitch journaled.</p>
+                </article>
+                <article>
+                    <div class="portrait-frame" style="aspect-ratio:4/5;"><svg viewBox="0 0 200 250"><rect width="200" height="250" fill="#0a0808"/><circle cx="100" cy="100" r="45" fill="#f1ede3"/><path d="M 50 155 L 150 155 L 140 230 L 60 230 Z" fill="#c77787"/><text x="100" y="200" font-family="Bodoni Moda" font-size="18" text-anchor="middle" fill="#0a0808" font-style="italic">III</text></svg></div>
+                    <div class="caps mt-3 text-blush">Look III</div>
+                    <h3 class="didone italic-lg text-2xl mt-1">The Correspondent</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Slack, Gmail, Discord — the tokens hang in the keychain.</p>
+                </article>
+                <article>
+                    <div class="portrait-frame" style="aspect-ratio:4/5;"><svg viewBox="0 0 200 250"><rect width="200" height="250" fill="#3a1a28"/><ellipse cx="100" cy="110" rx="48" ry="55" fill="#f1ede3"/><rect x="60" y="170" width="80" height="60" fill="#b08f3a"/><text x="100" y="210" font-family="Bodoni Moda" font-size="18" text-anchor="middle" fill="#0a0808" font-style="italic">IV</text></svg></div>
+                    <div class="caps mt-3 text-blush">Look IV</div>
+                    <h3 class="didone italic-lg text-2xl mt-1">The Tailor</h3>
+                    <p class="mt-2 text-sm leading-relaxed">Installable skills. Bespoke by manifest and code.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Policy - pull quote & ledger -->
+        <section id="policy" class="thick-rule py-14 grid gap-10 lg:grid-cols-12 items-start">
+            <div class="lg:col-span-6">
+                <div class="caps text-blush">— House Rules —</div>
+                <blockquote class="didone italic-lg mt-6 text-4xl sm:text-5xl leading-[1.1]">
+                    "The best pieces<br>leave <em class="not-italic">nothing</em><br>behind but<br>an <em>impression</em>."
+                </blockquote>
+                <div class="caps mt-6">— The house, on data</div>
+            </div>
+            <div class="lg:col-span-6">
+                <dl class="thin-rule deckle">
+                    <div class="flex items-baseline justify-between py-4 deckle"><dt class="caps">At rest</dt><dd class="didone italic-lg text-xl">On the device, alone.</dd></div>
+                    <div class="flex items-baseline justify-between py-4 deckle"><dt class="caps">Keys</dt><dd class="didone italic-lg text-xl">Kept in the operating system's keychain.</dd></div>
+                    <div class="flex items-baseline justify-between py-4 deckle"><dt class="caps text-blush">Training use</dt><dd class="didone italic-lg text-xl text-blush">None whatsoever.</dd></div>
+                    <div class="flex items-baseline justify-between py-4"><dt class="caps">Model calls</dt><dd class="didone italic-lg text-xl">Direct, to the chosen provider.</dd></div>
+                </dl>
+                <a href="/privacy.html" class="caps mt-8 inline-flex items-center gap-2 border-b border-blush pb-0.5 text-blush hover:text-ink">The full rules →</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="thick-rule py-14">
+            <div class="caps text-blush mb-4">— Acquire —</div>
+            <h2 class="didone italic-lg text-4xl sm:text-5xl">Three fittings, one cut.</h2>
+            <div class="mt-10 grid gap-6 sm:grid-cols-3">
+                <a href="#" class="group block border border-ink p-8 hover:bg-cream/70">
+                    <div class="flex items-center justify-between"><i class="fa-brands fa-apple text-3xl"></i><span class="caps">Fitting I</span></div>
+                    <div class="didone italic-lg text-3xl mt-8">macOS</div>
+                    <div class="caps mt-2">arm64 · x86_64</div>
+                </a>
+                <a href="#" class="group block border border-ink p-8 hover:bg-cream/70">
+                    <div class="flex items-center justify-between"><i class="fa-brands fa-windows text-3xl"></i><span class="caps">Fitting II</span></div>
+                    <div class="didone italic-lg text-3xl mt-8">Windows</div>
+                    <div class="caps mt-2">x86_64 · 10+</div>
+                </a>
+                <a href="#" class="group block border border-ink p-8 hover:bg-cream/70">
+                    <div class="flex items-center justify-between"><i class="fa-brands fa-linux text-3xl"></i><span class="caps">Fitting III</span></div>
+                    <div class="didone italic-lg text-3xl mt-8">Linux</div>
+                    <div class="caps mt-2">x86_64 · arm64</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-ink mt-10">
+        <div class="mx-auto max-w-7xl px-6 py-8 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> · Mins Bot Magazine · Spring MMXXVI</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-blush">Privacy</a><a href="/terms.html" class="hover:text-blush">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-blush">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

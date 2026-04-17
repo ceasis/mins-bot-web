@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 13 Notebook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { hand: ['Caveat','cursive'], marker: ['Kalam','cursive'], sans: ['Inter','system-ui','sans-serif'] },
+            colors: { paper:'#fdfaf2', paper2:'#f5f0e0', ink:'#1e2a44', pen:'#c42f2f', pencil:'#4a4a4a', yellow:'#f4d06f' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body {
+            background: #fdfaf2;
+            color: #1e2a44;
+            background-image:
+                linear-gradient(rgba(30,42,68,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30,42,68,0.08) 1px, transparent 1px);
+            background-size: 22px 22px;
+        }
+        .hand { font-family:'Caveat',cursive; }
+        .marker { font-family:'Kalam',cursive; }
+        .sketch { border: 2px solid #1e2a44; border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; }
+        .sketch2 { border: 2px solid #1e2a44; border-radius: 15px 225px 15px 255px / 225px 15px 255px 15px; }
+        .underline-hand { background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12'><path d='M2 8 Q 30 2 60 7 T 118 6' stroke='%23c42f2f' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>") no-repeat bottom/100% auto; padding-bottom: 10px; }
+        .circle-hand {
+            display: inline-block;
+            padding: 0 .5rem;
+            background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'><path d='M50 3 Q 90 5 95 20 Q 93 36 50 37 Q 8 38 5 20 Q 7 5 50 3 Z' stroke='%23c42f2f' stroke-width='2.5' fill='none' stroke-linecap='round'/></svg>") no-repeat center/100% 100%;
+        }
+        .highlight-yellow {
+            background-image: linear-gradient(180deg, transparent 40%, rgba(244,208,111,.8) 40%, rgba(244,208,111,.8) 85%, transparent 85%);
+            padding: 0 .2rem;
+        }
+        .sticky-note {
+            background: #f4d06f;
+            padding: 1.25rem;
+            transform: rotate(-2deg);
+            box-shadow: 2px 4px 8px rgba(0,0,0,.12);
+        }
+        .dashed { border: 2px dashed #1e2a44; }
+        .arrow-hand { display:inline-block; width:60px; height:20px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 20'><path d='M2 10 Q 30 0 52 10 M 44 4 L 54 10 L 44 16' stroke='%231e2a44' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat; }
+        .switcher { font-family:'Kalam',cursive; font-size:.9rem; background:#fdfaf2; color:#1e2a44; border:2px solid #1e2a44; padding:.25rem .5rem; border-radius:6px; }
+        .page-label { font-family:'Caveat',cursive; font-size:1.1rem; color:#c42f2f; }
+        .cross-out { text-decoration: line-through; text-decoration-color: #c42f2f; text-decoration-thickness: 2px; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 backdrop-blur bg-paper/95 border-b-2 border-dashed border-ink/30">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="hand text-4xl font-semibold text-ink">mins bot</span><span class="text-pen text-2xl">✎</span></a>
+            <div class="flex items-center gap-4 marker text-sm">
+                <a href="#capabilities" class="hidden hover:text-pen md:inline-block">what it does</a>
+                <a href="#install" class="hidden hover:text-pen md:inline-block">get it</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 lg:px-10 py-12">
+        <!-- Page header -->
+        <div class="flex items-baseline justify-between mb-8">
+            <div class="page-label">Notebook № 04 · Apr 18, 2026</div>
+            <div class="page-label">page 01 / 04</div>
+        </div>
+
+        <!-- Hero -->
+        <section class="relative">
+            <!-- sticky note -->
+            <div class="sticky-note absolute -top-2 right-0 hidden sm:block max-w-[200px]">
+                <div class="marker text-sm font-bold mb-1">remember:</div>
+                <div class="hand text-xl leading-tight">local by default. keys in os keychain. zero egress.</div>
+            </div>
+
+            <div class="max-w-3xl">
+                <div class="marker text-pen mb-4 text-lg">// hypothesis</div>
+                <h1 class="hand text-6xl font-semibold leading-[1.05] sm:text-7xl lg:text-[7rem]">
+                    <span>what if the agent</span><br>
+                    <span class="highlight-yellow">lived on your desk</span><br>
+                    <span>instead of theirs?</span>
+                </h1>
+                <p class="mt-10 max-w-xl text-lg leading-relaxed">
+                    <span class="marker font-bold text-pen">Mins Bot</span> — a desktop agent. It browses, files, messages, and runs skills <span class="underline-hand">without phoning home</span>. Not a proxy. Not a cloud. Not a service you log into.
+                </p>
+                <div class="mt-10 flex flex-wrap items-center gap-5">
+                    <a href="#install" class="sketch bg-ink text-paper px-8 py-3 marker text-lg font-bold hover:bg-pen">↓ download</a>
+                    <span class="arrow-hand"></span>
+                    <a href="#capabilities" class="hand text-xl text-pen hover:underline">see the experiment →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashed divider with page number -->
+        <div class="flex items-center gap-4 my-20"><div class="flex-1 border-t-2 border-dashed border-ink/40"></div><span class="page-label">· page 02 ·</span><div class="flex-1 border-t-2 border-dashed border-ink/40"></div></div>
+
+        <!-- Capabilities -->
+        <section id="capabilities">
+            <div class="marker text-pen text-lg mb-2">// the four things</div>
+            <h2 class="hand text-5xl font-semibold"><span class="circle-hand">it does four things</span></h2>
+
+            <div class="mt-12 grid gap-8 md:grid-cols-2">
+                <article class="dashed p-6 bg-paper2/50 relative">
+                    <span class="absolute -top-4 -left-4 bg-pen text-paper h-10 w-10 rounded-full flex items-center justify-center marker text-lg font-bold">1</span>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-globe text-2xl text-ink"></i>
+                        <h3 class="hand text-3xl font-semibold">browse the web</h3>
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed">navigates pages <em>as you would</em>, under your session. <span class="cross-out text-pen">scraping</span> actual reading.</p>
+                    <div class="marker mt-3 text-sm text-pencil">// chromium · per-task sandbox</div>
+                </article>
+                <article class="dashed p-6 bg-paper2/50 relative">
+                    <span class="absolute -top-4 -left-4 bg-pen text-paper h-10 w-10 rounded-full flex items-center justify-center marker text-lg font-bold">2</span>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-folder-tree text-2xl text-ink"></i>
+                        <h3 class="hand text-3xl font-semibold">tend your files</h3>
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed">moves, renames, <span class="highlight-yellow">only where you've allowed</span>. every edit in a local journal.</p>
+                    <div class="marker mt-3 text-sm text-pencil">// scope · allow-list · audit · local</div>
+                </article>
+                <article class="dashed p-6 bg-paper2/50 relative">
+                    <span class="absolute -top-4 -left-4 bg-pen text-paper h-10 w-10 rounded-full flex items-center justify-center marker text-lg font-bold">3</span>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-paper-plane text-2xl text-ink"></i>
+                        <h3 class="hand text-3xl font-semibold">answer messages</h3>
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed">slack, discord, gmail — tokens live in the <span class="underline-hand">OS keychain</span>, not with us.</p>
+                    <div class="marker mt-3 text-sm text-pencil">// creds · keychain · transport · direct</div>
+                </article>
+                <article class="dashed p-6 bg-paper2/50 relative">
+                    <span class="absolute -top-4 -left-4 bg-pen text-paper h-10 w-10 rounded-full flex items-center justify-center marker text-lg font-bold">4</span>
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-puzzle-piece text-2xl text-ink"></i>
+                        <h3 class="hand text-3xl font-semibold">install skills</h3>
+                    </div>
+                    <p class="mt-3 text-base leading-relaxed">manifests + code. bring your own, or pin a registry.</p>
+                    <div class="marker mt-3 text-sm text-pencil">// format · manifest+code</div>
+                </article>
+            </div>
+        </section>
+
+        <div class="flex items-center gap-4 my-20"><div class="flex-1 border-t-2 border-dashed border-ink/40"></div><span class="page-label">· page 03 ·</span><div class="flex-1 border-t-2 border-dashed border-ink/40"></div></div>
+
+        <!-- Policy -->
+        <section class="relative">
+            <div class="marker text-pen text-lg mb-2">// the promise</div>
+            <h2 class="hand text-5xl font-semibold leading-tight"><span class="cross-out">we collect</span> <span class="highlight-yellow">we don't collect</span> <br>anything of yours.</h2>
+
+            <div class="mt-10 grid gap-4 sm:grid-cols-2">
+                <div class="sketch2 p-5"><div class="marker text-sm text-pencil">data at rest</div><div class="hand mt-1 text-2xl">on your device.</div></div>
+                <div class="sketch p-5"><div class="marker text-sm text-pencil">credentials</div><div class="hand mt-1 text-2xl">OS keychain.</div></div>
+                <div class="sketch2 p-5 bg-yellow/40"><div class="marker text-sm text-pencil">training use</div><div class="hand mt-1 text-2xl text-pen">none — ever.</div></div>
+                <div class="sketch p-5"><div class="marker text-sm text-pencil">model calls</div><div class="hand mt-1 text-2xl">direct to provider.</div></div>
+            </div>
+            <a href="/privacy.html" class="mt-8 hand text-2xl text-pen hover:underline inline-block">read the full policy →</a>
+        </section>
+
+        <div class="flex items-center gap-4 my-20"><div class="flex-1 border-t-2 border-dashed border-ink/40"></div><span class="page-label">· page 04 ·</span><div class="flex-1 border-t-2 border-dashed border-ink/40"></div></div>
+
+        <!-- Install -->
+        <section id="install">
+            <div class="marker text-pen text-lg mb-2">// to-do: install</div>
+            <h2 class="hand text-5xl font-semibold">pick your flavor.</h2>
+            <div class="mt-10 grid gap-5 sm:grid-cols-3">
+                <a href="#" class="sketch p-6 bg-paper hover:bg-yellow/40 block"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-3xl"></i><span class="marker text-pen">☐</span></div><div class="hand mt-4 text-3xl">macOS</div><div class="marker mt-1 text-sm text-pencil">arm64 · x86_64</div></a>
+                <a href="#" class="sketch2 p-6 bg-paper hover:bg-yellow/40 block"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-3xl"></i><span class="marker text-pen">☐</span></div><div class="hand mt-4 text-3xl">Windows</div><div class="marker mt-1 text-sm text-pencil">x86_64 · 10+</div></a>
+                <a href="#" class="sketch p-6 bg-paper hover:bg-yellow/40 block"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-3xl"></i><span class="marker text-pen">☐</span></div><div class="hand mt-4 text-3xl">Linux</div><div class="marker mt-1 text-sm text-pencil">x86_64 · arm64</div></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t-2 border-dashed border-ink/40 py-8 mx-auto max-w-6xl px-6 lg:px-10 mt-10">
+        <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center marker text-sm">
+            <p>© <span id="year"></span> · mins bot · <span class="text-pen">scribbled</span> locally</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-pen">privacy</a><a href="/terms.html" class="hover:text-pen">terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-pen">github</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

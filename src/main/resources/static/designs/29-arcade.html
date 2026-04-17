@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 29 Arcade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { pixel: ['"Press Start 2P"','monospace'], tty: ['VT323','monospace'] },
+            colors: { nes:{bg:'#1a1c2c', bg2:'#29366f', panel:'#3b5dc9', red:'#e43b44', green:'#63c74d', yellow:'#fee761', pink:'#ff77a8', gray:'#c0c7d4', dark:'#2a2e42'}, bone:'#f6f6f6' }
+        }}}
+    </script>
+    <style>
+        html, body { font-family: 'VT323', monospace; image-rendering: pixelated; }
+        body {
+            background:#1a1c2c;
+            color:#f6f6f6;
+            min-height:100vh;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.03) 2px, transparent 2px);
+            background-size: 100% 4px;
+        }
+        .pixel { font-family: 'Press Start 2P', monospace; letter-spacing:.02em; }
+        .tty { font-family: 'VT323', monospace; font-size: 1.15rem; }
+        .nes-panel {
+            background:#29366f;
+            border: 4px solid #f6f6f6;
+            box-shadow:
+                4px 0 0 #f6f6f6, -4px 0 0 #f6f6f6, 0 4px 0 #f6f6f6, 0 -4px 0 #f6f6f6,
+                8px 8px 0 #000;
+            padding: 1.5rem;
+        }
+        .nes-panel-yellow { background:#fee761; color:#1a1c2c; }
+        .nes-panel-red { background:#e43b44; }
+        .nes-panel-green { background:#63c74d; color:#1a1c2c; }
+        .nes-btn {
+            background: #e43b44;
+            color: #f6f6f6;
+            border: 3px solid #1a1c2c;
+            box-shadow: 4px 4px 0 #1a1c2c, 4px 4px 0 4px rgba(246,246,246,0.2);
+            padding: .75rem 1.5rem;
+            font-family:'Press Start 2P',monospace;
+            font-size:.75rem;
+            display: inline-block;
+            transition: all .1s;
+        }
+        .nes-btn:active { transform: translate(4px,4px); box-shadow: 0 0 0 #1a1c2c; }
+        .nes-btn-y { background:#fee761; color:#1a1c2c; }
+        .nes-btn-g { background:#63c74d; color:#1a1c2c; }
+        .dither-border {
+            border: 0;
+            background:
+                linear-gradient(#29366f, #29366f) padding-box,
+                repeating-conic-gradient(#f6f6f6 0 25%, #1a1c2c 0 50%) border-box;
+            border: 4px solid transparent;
+            background-size: 8px 8px, auto;
+            background-origin: border-box;
+        }
+        .scanlines::after {
+            content:'';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(255,255,255,0.04) 2px 3px);
+        }
+        .pixel-shadow { text-shadow: 2px 2px 0 #1a1c2c, 4px 4px 0 #e43b44; }
+        @keyframes blinker { 50% { opacity: 0.3; } }
+        .blink { animation: blinker 1s steps(2) infinite; }
+        @keyframes flicker { 50% { opacity: 0; } }
+        .flicker { animation: flicker 1.2s steps(2) infinite; }
+        .sprite {
+            width: 64px; height: 64px;
+            background: #f6f6f6;
+            image-rendering: pixelated;
+            box-shadow: 6px 6px 0 #1a1c2c;
+        }
+        .caps { font-family:'Press Start 2P',monospace; font-size:.6rem; letter-spacing:.05em; text-transform: uppercase; }
+        .switcher { font-family:'Press Start 2P', monospace; font-size:.55rem; letter-spacing:.02em; text-transform:uppercase; background:#1a1c2c; color:#fee761; border:3px solid #fee761; padding:.3rem .4rem; }
+        .hud-row { border-bottom: 2px dashed rgba(246,246,246,0.25); }
+        .coin-box {
+            background: #fee761;
+            border: 3px solid #1a1c2c;
+            padding: .25rem .75rem;
+            font-family:'Press Start 2P';
+            color:#1a1c2c;
+            display: inline-block;
+            font-size: .65rem;
+            box-shadow: 3px 3px 0 #000;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- HUD top bar -->
+    <header class="sticky top-0 z-50 border-b-4 border-f6f6f6 bg-nes-dark/95 backdrop-blur" style="border-color:#f6f6f6;">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 lg:px-8 gap-4 flex-wrap">
+            <a href="/" class="flex items-center gap-3 flex-wrap">
+                <span class="pixel text-sm" style="color:#fee761;">MINS-BOT</span>
+                <span class="coin-box">● 1UP</span>
+                <span class="pixel text-xs text-nes-gray">LVL 0.4.2</span>
+            </a>
+            <div class="flex items-center gap-3 caps">
+                <span class="hidden md:inline" style="color:#fee761;">SCORE·0041829</span>
+                <a href="#capabilities" class="hidden hover:text-nes-yellow md:inline-block">LV·2</a>
+                <a href="#install" class="hidden hover:text-nes-yellow md:inline-block">EXIT</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-4 lg:px-8 py-10 space-y-10">
+        <!-- Hero: title screen -->
+        <section class="relative scanlines">
+            <div class="nes-panel text-center py-14">
+                <div class="caps mb-4 blink" style="color:#fee761;">► PRESS START TO BEGIN</div>
+                <h1 class="pixel pixel-shadow text-4xl sm:text-6xl lg:text-7xl leading-[1.25] tracking-tight">
+                    MINS<br>
+                    <span style="color:#fee761;">BOT</span>
+                </h1>
+                <div class="mt-6 caps text-nes-gray">A DESKTOP AGENT · LOCAL QUEST</div>
+
+                <!-- mock sprite row -->
+                <div class="mt-10 flex items-end justify-center gap-6">
+                    <div class="sprite flex items-center justify-center" style="background:#e43b44;"><i class="fa-solid fa-globe text-2xl" style="color:#f6f6f6"></i></div>
+                    <div class="sprite flex items-center justify-center" style="background:#63c74d;"><i class="fa-solid fa-folder text-2xl" style="color:#1a1c2c"></i></div>
+                    <div class="sprite flex items-center justify-center" style="background:#fee761;"><i class="fa-solid fa-envelope text-2xl" style="color:#1a1c2c"></i></div>
+                    <div class="sprite flex items-center justify-center" style="background:#ff77a8;"><i class="fa-solid fa-cubes text-2xl" style="color:#1a1c2c"></i></div>
+                </div>
+
+                <p class="mt-10 mx-auto max-w-xl tty text-xl" style="color:#f6f6f6">
+                    A small, sovereign AI agent. Lives on your machine. Browses. Files. Messages. Runs skills. Ships <span style="color:#fee761">ZERO</span> data home.
+                </p>
+
+                <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
+                    <a href="#install" class="nes-btn">▶ START</a>
+                    <a href="#capabilities" class="nes-btn nes-btn-y">? ABOUT</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities = "player skills" -->
+        <section id="capabilities">
+            <div class="pixel text-sm mb-4" style="color:#fee761;">─── LVL 2 · SKILLS ───</div>
+            <div class="grid gap-5 md:grid-cols-2">
+                <article class="nes-panel">
+                    <div class="flex items-center justify-between mb-3"><div class="caps" style="color:#fee761;">SKILL 01</div><span class="coin-box">XP 120</span></div>
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="sprite" style="background:#e43b44;width:48px;height:48px;"></div>
+                        <div>
+                            <h3 class="pixel text-sm">BROWSE</h3>
+                            <div class="caps text-nes-gray mt-1">CHROMIUM · SESSION</div>
+                        </div>
+                    </div>
+                    <p class="tty text-xl">&gt; Reads real pages. Fills real forms.</p>
+                </article>
+                <article class="nes-panel">
+                    <div class="flex items-center justify-between mb-3"><div class="caps" style="color:#63c74d;">SKILL 02</div><span class="coin-box">XP 160</span></div>
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="sprite" style="background:#63c74d;width:48px;height:48px;"></div>
+                        <div>
+                            <h3 class="pixel text-sm">FILE</h3>
+                            <div class="caps text-nes-gray mt-1">ALLOW-LIST · AUDIT</div>
+                        </div>
+                    </div>
+                    <p class="tty text-xl">&gt; Only the paths you've unlocked.</p>
+                </article>
+                <article class="nes-panel">
+                    <div class="flex items-center justify-between mb-3"><div class="caps" style="color:#fee761;">SKILL 03</div><span class="coin-box">XP 140</span></div>
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="sprite" style="background:#fee761;width:48px;height:48px;"></div>
+                        <div>
+                            <h3 class="pixel text-sm">MESSAGE</h3>
+                            <div class="caps text-nes-gray mt-1">KEYCHAIN · DIRECT</div>
+                        </div>
+                    </div>
+                    <p class="tty text-xl">&gt; Slack, Gmail, Discord — your tokens.</p>
+                </article>
+                <article class="nes-panel">
+                    <div class="flex items-center justify-between mb-3"><div class="caps" style="color:#ff77a8;">SKILL 04</div><span class="coin-box">XP 200</span></div>
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="sprite" style="background:#ff77a8;width:48px;height:48px;"></div>
+                        <div>
+                            <h3 class="pixel text-sm">SKILLS</h3>
+                            <div class="caps text-nes-gray mt-1">MANIFEST + CODE</div>
+                        </div>
+                    </div>
+                    <p class="tty text-xl">&gt; Install new abilities. Combine.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Policy = inventory/pause screen -->
+        <section>
+            <div class="pixel text-sm mb-4" style="color:#fee761;">─── PAUSE · INVENTORY ───</div>
+            <div class="nes-panel p-6">
+                <div class="pixel text-sm mb-5" style="color:#e43b44;">WHAT THE GAME KEEPS</div>
+                <div class="grid gap-3 sm:grid-cols-4">
+                    <div class="border-2 border-nes-gray p-3"><div class="caps text-nes-gray">DATA</div><div class="tty text-2xl mt-1">on device</div></div>
+                    <div class="border-2 border-nes-gray p-3"><div class="caps text-nes-gray">KEYS</div><div class="tty text-2xl mt-1">keychain</div></div>
+                    <div class="border-2 border-nes-red p-3"><div class="caps" style="color:#e43b44">TRAINING</div><div class="tty text-2xl mt-1" style="color:#e43b44">NIL · 0/∞</div></div>
+                    <div class="border-2 border-nes-gray p-3"><div class="caps text-nes-gray">CALLS</div><div class="tty text-2xl mt-1">direct</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-6 inline-block text-nes-yellow hover:text-f6f6f6 blink">&gt; READ FULL SCROLL ◂</a>
+            </div>
+        </section>
+
+        <!-- Install = select character -->
+        <section id="install">
+            <div class="pixel text-sm mb-4" style="color:#fee761;">─── SELECT CHARACTER ───</div>
+            <div class="grid gap-5 sm:grid-cols-3">
+                <a href="#" class="nes-panel nes-panel-green hover:brightness-110"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-3xl"></i><span class="caps">P1</span></div><div class="pixel mt-4 text-sm">MACOS</div><div class="caps mt-1">arm64·x86_64</div></a>
+                <a href="#" class="nes-panel nes-panel-yellow hover:brightness-110"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-3xl"></i><span class="caps">P2</span></div><div class="pixel mt-4 text-sm">WINDOWS</div><div class="caps mt-1">x86_64·10+</div></a>
+                <a href="#" class="nes-panel nes-panel-red hover:brightness-110"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-3xl"></i><span class="caps">P3</span></div><div class="pixel mt-4 text-sm">LINUX</div><div class="caps mt-1">x86_64·arm64</div></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-10 border-t-4 py-5 bg-nes-dark" style="border-color:#f6f6f6">
+        <div class="mx-auto max-w-7xl px-4 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 caps">
+            <p>© <span id="year"></span> MINS·BOT · GAME OVER</p>
+            <div class="flex items-center gap-5"><a href="/privacy.html" class="hover:text-nes-yellow">PRIVACY</a><a href="/terms.html" class="hover:text-nes-yellow">TERMS</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-nes-yellow">GITHUB</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

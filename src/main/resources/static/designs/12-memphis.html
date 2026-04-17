@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 12 Memphis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Archivo Black','Impact','sans-serif'], sans: ['Work Sans','sans-serif'] },
+            colors: { paper:'#f7f3e8', ink:'#0a0a0a', mpink:'#ff4d8b', mcyan:'#00d9ff', myellow:'#ffd93d', mpurple:'#7b3ff2', mgreen:'#3ee7a0' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Work Sans', sans-serif; }
+        body { background: #f7f3e8; color: #0a0a0a; overflow-x:hidden; }
+        .display { font-family: 'Archivo Black', Impact, sans-serif; letter-spacing:-.02em; text-transform: uppercase; line-height:.92; }
+        .b3 { border: 3px solid #0a0a0a; }
+        .terrazzo {
+            background-color: #f7f3e8;
+            background-image:
+                radial-gradient(#ff4d8b 6px, transparent 7px),
+                radial-gradient(#00d9ff 5px, transparent 6px),
+                radial-gradient(#ffd93d 4px, transparent 5px),
+                radial-gradient(#0a0a0a 3px, transparent 4px);
+            background-size: 80px 80px, 120px 120px, 60px 60px, 50px 50px;
+            background-position: 0 0, 40px 20px, 10px 60px, 70px 30px;
+        }
+        .dots {
+            background-image: radial-gradient(#0a0a0a 2px, transparent 2.5px);
+            background-size: 18px 18px;
+        }
+        .zigzag {
+            background:
+                linear-gradient(135deg, #0a0a0a 25%, transparent 25%) -8px 0,
+                linear-gradient(225deg, #0a0a0a 25%, transparent 25%) -8px 0;
+            background-size: 16px 16px;
+            background-color: #ffd93d;
+        }
+        .stripes {
+            background: repeating-linear-gradient(45deg, #0a0a0a 0 6px, #ff4d8b 6px 14px);
+        }
+        .squiggle { display:inline-block; width:64px; height:20px; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 20'><path d='M0 10 Q 8 0 16 10 T 32 10 T 48 10 T 64 10' stroke='%230a0a0a' stroke-width='3' fill='none'/></svg>") no-repeat; }
+        .switcher { font-family:'Work Sans',sans-serif; font-weight:700; font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; background:#f7f3e8; color:#0a0a0a; border:3px solid #0a0a0a; padding:.3rem .5rem; }
+        .caps { font-weight:700; text-transform:uppercase; letter-spacing:.2em; font-size:.7rem; }
+        .rotate-r { transform: rotate(2deg); }
+        .rotate-l { transform: rotate(-2deg); }
+        .shadow-hard { box-shadow: 6px 6px 0 #0a0a0a; }
+        .shadow-pink { box-shadow: 6px 6px 0 #ff4d8b; }
+        .shadow-cyan { box-shadow: 6px 6px 0 #00d9ff; }
+        @keyframes wobble { 0%,100%{transform:rotate(-2deg);} 50%{transform:rotate(2deg);} }
+        .wobble { animation: wobble 4s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="b3 border-t-0 border-l-0 border-r-0 bg-paper sticky top-0 z-50">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3">
+                <span class="h-8 w-8 rounded-full bg-mpink b3"></span>
+                <span class="display text-xl">Mins!Bot</span>
+                <span class="h-6 w-6 b3 bg-mcyan"></span>
+            </a>
+            <div class="flex items-center gap-4 caps">
+                <a href="#capabilities" class="hidden hover:text-mpink md:inline-block">What</a>
+                <a href="#install" class="hidden hover:text-mpink md:inline-block">Get</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden py-16 lg:py-24">
+            <!-- scattered decorations -->
+            <span class="absolute top-10 left-[8%] h-24 w-24 rounded-full bg-myellow b3 wobble"></span>
+            <span class="absolute top-40 right-[10%] h-20 w-20 b3 bg-mcyan" style="clip-path: polygon(50% 0, 100% 100%, 0 100%);"></span>
+            <span class="absolute bottom-10 right-[25%] h-14 w-28 rounded-full b3 bg-mpink"></span>
+            <span class="squiggle absolute top-32 left-[45%]"></span>
+            <span class="absolute bottom-20 left-[8%] h-16 w-16 b3 bg-mpurple rounded-full"></span>
+            <span class="absolute top-20 right-[30%] text-5xl text-mpink">✳</span>
+
+            <div class="relative mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="grid gap-12 lg:grid-cols-12 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="inline-block b3 bg-myellow px-4 py-2 rotate-l caps">★ New · Ver 0.4.2</div>
+                        <h1 class="display mt-8 text-6xl sm:text-7xl lg:text-[7rem]">
+                            Desktop<br>
+                            <span class="bg-mpink text-white px-3 inline-block rotate-r">Agent</span><br>
+                            with <span class="bg-mcyan px-3 inline-block">attitude!</span>
+                        </h1>
+                        <p class="mt-8 max-w-lg text-lg font-medium">Browses. Files. Messages. Runs skills. Zero tracking, zero tedium, maximum vibes. Live from your desktop, yours alone.</p>
+                        <div class="mt-10 flex flex-wrap items-center gap-4">
+                            <a href="#install" class="b3 bg-ink text-paper display px-8 py-4 text-lg shadow-pink hover:bg-mpink hover:text-ink">Download ▸</a>
+                            <a href="#capabilities" class="b3 bg-myellow display px-8 py-4 text-lg shadow-cyan hover:bg-mcyan">See specs</a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 relative min-h-[340px]">
+                        <div class="absolute inset-0">
+                            <span class="absolute top-0 left-0 h-32 w-32 b3 bg-mpink rounded-full shadow-hard rotate-r"></span>
+                            <span class="absolute top-10 right-4 h-28 w-28 b3 zigzag shadow-hard"></span>
+                            <span class="absolute bottom-4 left-16 h-32 w-48 b3 bg-mcyan shadow-hard rotate-l"></span>
+                            <span class="absolute bottom-0 right-0 h-24 w-24 b3 bg-mpurple rounded-full shadow-hard"></span>
+                            <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 display text-5xl text-ink bg-paper b3 px-5 py-3 shadow-hard">BOT!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="b3 border-l-0 border-r-0 bg-myellow py-16">
+            <div class="mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="text-center mb-12">
+                    <span class="display inline-block bg-ink text-paper px-4 py-2 rotate-l">§ Capabilities</span>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="b3 bg-paper p-6 shadow-hard rotate-l">
+                        <span class="h-12 w-12 inline-flex items-center justify-center rounded-full bg-mpink b3"><i class="fa-solid fa-globe text-white"></i></span>
+                        <h3 class="display mt-4 text-3xl">Browse</h3>
+                        <p class="mt-2 text-sm font-medium">Real web, real session, real fast.</p>
+                    </article>
+                    <article class="b3 bg-paper p-6 shadow-hard rotate-r">
+                        <span class="h-12 w-12 inline-flex items-center justify-center bg-mcyan b3"><i class="fa-solid fa-folder-open text-ink"></i></span>
+                        <h3 class="display mt-4 text-3xl">File</h3>
+                        <p class="mt-2 text-sm font-medium">Only paths you OK. Audit local.</p>
+                    </article>
+                    <article class="b3 bg-paper p-6 shadow-hard rotate-l">
+                        <span class="h-12 w-12 inline-flex items-center justify-center rounded-full bg-mpurple b3"><i class="fa-solid fa-paper-plane text-white"></i></span>
+                        <h3 class="display mt-4 text-3xl">Message</h3>
+                        <p class="mt-2 text-sm font-medium">Slack, Gmail, Discord — your keys.</p>
+                    </article>
+                    <article class="b3 bg-paper p-6 shadow-hard rotate-r">
+                        <span class="h-12 w-12 inline-flex items-center justify-center bg-mgreen b3"><i class="fa-solid fa-puzzle-piece text-ink"></i></span>
+                        <h3 class="display mt-4 text-3xl">Skill</h3>
+                        <p class="mt-2 text-sm font-medium">Install, compose, remix.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="b3 border-l-0 border-r-0 bg-mcyan py-20">
+            <div class="mx-auto max-w-4xl px-6 text-center lg:px-10">
+                <h2 class="display text-5xl sm:text-7xl">We keep <span class="bg-ink text-paper px-3">ZERO</span> of your stuff.</h2>
+                <div class="mt-12 grid gap-5 sm:grid-cols-2">
+                    <div class="b3 bg-paper p-6 shadow-hard rotate-l text-left"><div class="caps">Data</div><div class="display mt-2 text-2xl">On your device.</div></div>
+                    <div class="b3 bg-paper p-6 shadow-hard rotate-r text-left"><div class="caps">Keys</div><div class="display mt-2 text-2xl">OS keychain.</div></div>
+                    <div class="b3 bg-mpink p-6 shadow-hard text-paper text-left"><div class="caps">Training</div><div class="display mt-2 text-2xl">None. Ever.</div></div>
+                    <div class="b3 bg-paper p-6 shadow-hard rotate-l text-left"><div class="caps">Calls</div><div class="display mt-2 text-2xl">Direct to provider.</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-10 inline-block b3 bg-ink text-paper px-6 py-3 shadow-hard hover:bg-mpink">Full policy ↗</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-20 relative overflow-hidden">
+            <span class="absolute top-10 right-[15%] h-20 w-20 rounded-full bg-mpink b3"></span>
+            <span class="absolute bottom-10 left-[10%] h-20 w-40 b3 zigzag"></span>
+            <div class="relative mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <span class="display inline-block bg-ink text-paper px-4 py-2 rotate-r">Get it!</span>
+                <div class="mt-10 grid gap-6 sm:grid-cols-3">
+                    <a href="#" class="group b3 bg-paper p-8 shadow-pink hover:bg-mpink hover:text-paper"><i class="fa-brands fa-apple text-4xl"></i><div class="display mt-3 text-2xl">macOS</div><div class="caps mt-2">arm64 · x86_64</div></a>
+                    <a href="#" class="group b3 bg-paper p-8 shadow-cyan hover:bg-mcyan"><i class="fa-brands fa-windows text-4xl"></i><div class="display mt-3 text-2xl">Windows</div><div class="caps mt-2">x86_64 · 10+</div></a>
+                    <a href="#" class="group b3 bg-paper p-8 shadow-hard hover:bg-myellow"><i class="fa-brands fa-linux text-4xl"></i><div class="display mt-3 text-2xl">Linux</div><div class="caps mt-2">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="b3 border-l-0 border-r-0 border-b-0 py-8 bg-mpink text-paper">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> Mins!Bot — max vibe</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-myellow">Privacy</a><a href="/terms.html" class="hover:text-myellow">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-myellow">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

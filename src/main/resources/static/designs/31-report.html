@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 31 Annual Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { serif: ['Source Serif 4','Georgia','serif'], sans: ['IBM Plex Sans','system-ui','sans-serif'] },
+            colors: { paper:'#fafaf7', paper2:'#f1ede4', ink:'#121a26', navy:'#1c3659', steel:'#3a5a80', muted:'#6c7a8a', sage:'#7a9178', sand:'#d4c9a8', brick:'#963a3a' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+        body { background:#fafaf7; color:#121a26; }
+        .serif { font-family:'Source Serif 4',Georgia,serif; }
+        .display { font-family:'Source Serif 4',serif; font-weight: 600; letter-spacing:-0.015em; line-height: 1.05; }
+        .caps { font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:#6c7a8a; font-weight:500; }
+        .thin-rule { border-top: 1px solid rgba(18,26,38,0.12); }
+        .double-rule { border-top: 3px double rgba(18,26,38,0.35); }
+        .switcher { font-family:'IBM Plex Sans',sans-serif; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; background:#fafaf7; color:#121a26; border:1px solid #121a26; padding:.3rem .5rem; }
+        .kpi { border: 1px solid rgba(18,26,38,0.1); padding: 1.5rem; }
+        .pull { padding-left: 1rem; border-left: 3px solid #1c3659; }
+        .footnote { font-family:'Source Serif 4',serif; font-style: italic; color:#6c7a8a; font-size: .85rem; }
+        .chart-bar { background: repeating-linear-gradient(90deg, rgba(28,54,89,0.1) 0 1px, transparent 1px 24px); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Cover/Masthead -->
+    <header class="border-b thin-rule bg-paper">
+        <div class="mx-auto max-w-7xl px-6 py-4 lg:px-10 flex items-center justify-between caps">
+            <span>Mins Bot · Desktop Agent, Inc.</span>
+            <span class="hidden sm:inline">Annual Report · 2026</span>
+            <span data-design-switcher data-select-class="switcher"></span>
+        </div>
+    </header>
+
+    <main>
+        <!-- Cover page -->
+        <section class="border-b thin-rule">
+            <div class="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+                <div class="grid gap-10 lg:grid-cols-12 items-end">
+                    <div class="lg:col-span-8">
+                        <div class="caps">Fiscal year ending 31 · XII · 2026</div>
+                        <h1 class="display mt-4 text-5xl sm:text-7xl lg:text-[6.5rem]">
+                            <span class="text-navy">Annual Report.</span><br>
+                            <span class="text-muted serif italic font-normal">An accounting of work performed, </span><br>
+                            <span class="text-muted serif italic font-normal">and of data <em>not</em> collected.</span>
+                        </h1>
+                    </div>
+                    <div class="lg:col-span-4">
+                        <dl class="thin-rule border-b border-ink/20">
+                            <div class="flex justify-between py-3 thin-rule"><dt class="caps">Entity</dt><dd class="serif">Mins Bot</dd></div>
+                            <div class="flex justify-between py-3 thin-rule"><dt class="caps">Category</dt><dd class="serif">Desktop agent</dd></div>
+                            <div class="flex justify-between py-3 thin-rule"><dt class="caps">Version</dt><dd class="serif">0.4.2</dd></div>
+                            <div class="flex justify-between py-3 thin-rule"><dt class="caps">Footprint</dt><dd class="serif">≈ 42 MB</dd></div>
+                            <div class="flex justify-between py-3"><dt class="caps">Auditor</dt><dd class="serif italic">The user</dd></div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI strip -->
+        <section class="bg-paper2 border-b thin-rule">
+            <div class="mx-auto max-w-7xl px-6 py-12 lg:px-10">
+                <div class="caps mb-6">Key metrics at a glance</div>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="kpi bg-paper"><div class="caps">Data at rest (remote)</div><div class="display mt-3 text-4xl text-navy">0 <span class="serif italic text-muted text-base">B</span></div><div class="footnote mt-1">see note 01</div></div>
+                    <div class="kpi bg-paper"><div class="caps">Training use</div><div class="display mt-3 text-4xl text-brick">None</div><div class="footnote mt-1">see note 02</div></div>
+                    <div class="kpi bg-paper"><div class="caps">Session egress</div><div class="display mt-3 text-4xl text-navy">Direct <span class="serif italic text-muted text-base">↪</span></div><div class="footnote mt-1">see note 03</div></div>
+                    <div class="kpi bg-paper"><div class="caps">Telemetry collected</div><div class="display mt-3 text-4xl text-navy">0 <span class="serif italic text-muted text-base">events/yr</span></div><div class="footnote mt-1">see note 04</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Letter to shareholders -->
+        <section class="border-b thin-rule">
+            <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10 grid gap-10 lg:grid-cols-12">
+                <div class="lg:col-span-4">
+                    <div class="caps">Section I</div>
+                    <h2 class="display text-3xl sm:text-4xl mt-3">A letter to the user.</h2>
+                    <div class="pull serif italic text-muted mt-4 text-base">
+                        "Running on your own metal, under your own keys, is a principle — and a responsibility."
+                    </div>
+                </div>
+                <div class="lg:col-span-8 serif text-[17px] leading-[1.7] columns-1 md:columns-2 md:gap-8">
+                    <p>Dear User,</p>
+                    <p class="mt-3">In the fiscal year ending this spring, Mins Bot performed its duties on your desktop: reading the web, tending your files, answering your correspondence, and running an installable library of skills. We are pleased to report that it performed these duties without routing your data through our infrastructure, because we do not operate any.</p>
+                    <p class="mt-3">Notable accomplishments for the year include: (i) zero server-side retention, (ii) zero telemetry events generated, (iii) zero records touched by any training pipeline, and (iv) one binary, shipped to three platforms. The board considers these achievements to be on-policy.</p>
+                    <p class="mt-3">Looking forward, we intend to continue the practice of collecting nothing. Risks to this policy, as we see them, remain negligible — principally because we have not built the machinery required to change course.</p>
+                    <p class="mt-3 italic">Respectfully,<br>— The Mins Bot Agent</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Segment report (capabilities) -->
+        <section class="border-b thin-rule">
+            <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+                <div class="caps mb-3">Section II — Segment Report</div>
+                <h2 class="display text-3xl sm:text-4xl mb-10">Four operating segments.</h2>
+
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="double-rule border-b border-ink/50">
+                            <th class="caps text-left py-3 w-12">№</th>
+                            <th class="caps text-left py-3">Segment</th>
+                            <th class="caps text-left py-3 hidden sm:table-cell">Underlying</th>
+                            <th class="caps text-left py-3 hidden sm:table-cell">Scope</th>
+                            <th class="caps text-right py-3">Remote retention</th>
+                        </tr>
+                    </thead>
+                    <tbody class="serif">
+                        <tr class="thin-rule border-b">
+                            <td class="py-4 text-navy font-semibold">01</td>
+                            <td class="py-4"><div class="font-semibold">Autonomous browsing</div><div class="text-muted text-sm italic">Reads real pages, on your session.</div></td>
+                            <td class="py-4 hidden sm:table-cell">Chromium</td>
+                            <td class="py-4 hidden sm:table-cell">Per-task</td>
+                            <td class="py-4 text-right">0 B</td>
+                        </tr>
+                        <tr class="thin-rule border-b">
+                            <td class="py-4 text-navy font-semibold">02</td>
+                            <td class="py-4"><div class="font-semibold">Filesystem access</div><div class="text-muted text-sm italic">Allow-list scoped; local audit log.</div></td>
+                            <td class="py-4 hidden sm:table-cell">Local FS</td>
+                            <td class="py-4 hidden sm:table-cell">Allow-list</td>
+                            <td class="py-4 text-right">0 B</td>
+                        </tr>
+                        <tr class="thin-rule border-b">
+                            <td class="py-4 text-navy font-semibold">03</td>
+                            <td class="py-4"><div class="font-semibold">Messaging integrations</div><div class="text-muted text-sm italic">Slack, Gmail, Discord — tokens in OS keychain.</div></td>
+                            <td class="py-4 hidden sm:table-cell">Direct API</td>
+                            <td class="py-4 hidden sm:table-cell">Your tokens</td>
+                            <td class="py-4 text-right">0 B</td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 text-navy font-semibold">04</td>
+                            <td class="py-4"><div class="font-semibold">Skills inventory</div><div class="text-muted text-sm italic">Manifest + code; locally installable.</div></td>
+                            <td class="py-4 hidden sm:table-cell">Manifest</td>
+                            <td class="py-4 hidden sm:table-cell">Local/registry</td>
+                            <td class="py-4 text-right">0 B</td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="double-rule border-t">
+                        <tr><td colspan="4" class="py-3 caps text-right">Consolidated retention</td><td class="py-3 text-right font-semibold text-navy">0 B</td></tr>
+                    </tfoot>
+                </table>
+
+                <!-- Simple bar chart -->
+                <div class="mt-10 grid lg:grid-cols-2 gap-10">
+                    <div>
+                        <div class="caps mb-3">Fig. 01 — Egress by segment (24 mo.)</div>
+                        <div class="border border-ink/10 p-5 bg-paper2">
+                            <div class="space-y-2 font-serif text-sm">
+                                <div class="flex items-center gap-3"><span class="w-24 text-muted">Browse</span><span class="flex-1 h-3 bg-navy" style="width:2px;"></span><span>0</span></div>
+                                <div class="flex items-center gap-3"><span class="w-24 text-muted">File</span><span class="flex-1 h-3 bg-navy" style="width:2px;"></span><span>0</span></div>
+                                <div class="flex items-center gap-3"><span class="w-24 text-muted">Message</span><span class="flex-1 h-3 bg-navy" style="width:2px;"></span><span>0</span></div>
+                                <div class="flex items-center gap-3"><span class="w-24 text-muted">Skills</span><span class="flex-1 h-3 bg-navy" style="width:2px;"></span><span>0</span></div>
+                            </div>
+                            <div class="mt-4 thin-rule pt-3 footnote">A flat chart is the best chart.</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="caps mb-3">Fig. 02 — Composition by locality</div>
+                        <div class="border border-ink/10 p-5 bg-paper2 flex items-end gap-5">
+                            <div class="text-center flex-1">
+                                <div class="bg-navy mx-auto" style="width: 40px; height: 150px;"></div>
+                                <div class="mt-2 caps">Local</div>
+                                <div class="serif font-semibold">100%</div>
+                            </div>
+                            <div class="text-center flex-1">
+                                <div class="bg-brick mx-auto" style="width: 40px; height: 3px;"></div>
+                                <div class="mt-2 caps">Remote</div>
+                                <div class="serif font-semibold">0%</div>
+                            </div>
+                            <div class="text-center flex-1">
+                                <div class="bg-sage mx-auto" style="width: 40px; height: 0;"></div>
+                                <div class="mt-2 caps">Partner</div>
+                                <div class="serif font-semibold">0%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footnotes (Policy) -->
+        <section class="border-b thin-rule bg-paper2">
+            <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+                <div class="caps mb-3">Section III — Notes to the Report</div>
+                <h2 class="display text-3xl sm:text-4xl mb-10">Notes on data policy.</h2>
+
+                <dl class="grid gap-6 md:grid-cols-2">
+                    <div><dt class="caps">Note 01 — Data at rest</dt><dd class="serif mt-1">No copy of user data is held on infrastructure operated by Mins Bot. There is, in fact, no such infrastructure.</dd></div>
+                    <div><dt class="caps">Note 02 — Training use</dt><dd class="serif mt-1 text-brick italic">None of your data enters a training pipeline, now or at any future audit.</dd></div>
+                    <div><dt class="caps">Note 03 — Credentials</dt><dd class="serif mt-1">Third-party tokens rest exclusively in the operating system's credential store.</dd></div>
+                    <div><dt class="caps">Note 04 — Model calls</dt><dd class="serif mt-1">Model calls travel direct from user device to the user-selected provider, without interstitial handling.</dd></div>
+                </dl>
+                <a href="/privacy.html" class="caps mt-8 inline-flex items-center gap-2 border-b border-navy pb-0.5 hover:text-navy">Full policy →</a>
+            </div>
+        </section>
+
+        <!-- Distribution (Install) -->
+        <section class="border-b thin-rule">
+            <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+                <div class="caps mb-3">Section IV — Distribution</div>
+                <h2 class="display text-3xl sm:text-4xl mb-10">Three channels of distribution.</h2>
+                <div class="grid gap-px bg-ink/10 border border-ink/15 sm:grid-cols-3">
+                    <a href="#" class="bg-paper p-8 hover:bg-paper2">
+                        <div class="flex items-center justify-between"><i class="fa-brands fa-apple text-2xl"></i><span class="caps">Channel A</span></div>
+                        <div class="serif text-2xl font-semibold mt-6">macOS</div>
+                        <div class="caps mt-1">arm64 · x86_64 · dmg</div>
+                    </a>
+                    <a href="#" class="bg-paper p-8 hover:bg-paper2">
+                        <div class="flex items-center justify-between"><i class="fa-brands fa-windows text-2xl"></i><span class="caps">Channel B</span></div>
+                        <div class="serif text-2xl font-semibold mt-6">Windows</div>
+                        <div class="caps mt-1">x86_64 · 10+ · msi</div>
+                    </a>
+                    <a href="#" class="bg-paper p-8 hover:bg-paper2">
+                        <div class="flex items-center justify-between"><i class="fa-brands fa-linux text-2xl"></i><span class="caps">Channel C</span></div>
+                        <div class="serif text-2xl font-semibold mt-6">Linux</div>
+                        <div class="caps mt-1">x86_64 · arm64 · appimage</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> Mins Bot · Annual Report 2026 · 04 / 04</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-navy">Privacy</a><a href="/terms.html" class="hover:text-navy">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-navy">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 33 Riso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Anton','Impact','sans-serif'], sans: ['Space Grotesk','sans-serif'] },
+            colors: { riso: { pink:'#ff558f', pinkd:'#e53577', teal:'#1a8ba0', tealD:'#0f5e6e', paper:'#f3efe4', paper2:'#e8e1cd', ink:'#121212' } }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Space Grotesk', sans-serif; }
+        body {
+            background:#f3efe4;
+            color:#121212;
+        }
+        /* Paper grain */
+        body::before {
+            content:'';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+            background-image:
+                radial-gradient(rgba(18,18,18,0.06) 1px, transparent 1.5px),
+                radial-gradient(rgba(18,18,18,0.04) 1px, transparent 1.5px);
+            background-size: 3px 3px, 7px 7px;
+            background-position: 0 0, 2px 2px;
+            opacity:.6;
+        }
+        .display { font-family:'Anton',Impact,sans-serif; letter-spacing: 0.005em; line-height: 0.9; text-transform: uppercase; }
+        .caps { font-family:'Space Grotesk',sans-serif; font-weight: 500; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; }
+
+        /* Spot-color overprints */
+        .ink-pink { color: #ff558f; }
+        .ink-teal { color: #1a8ba0; }
+
+        /* Misregistered text (color shadow offset) */
+        .mis-pink { text-shadow: 3px 4px 0 rgba(255,85,143,0.75); }
+        .mis-teal { text-shadow: -3px 4px 0 rgba(26,139,160,0.75); }
+
+        /* Halftone circles — flat and grainy */
+        .dot-pink {
+            background-image: radial-gradient(rgba(255,85,143,0.85) 30%, transparent 32%);
+            background-size: 12px 12px;
+        }
+        .dot-teal {
+            background-image: radial-gradient(rgba(26,139,160,0.85) 30%, transparent 32%);
+            background-size: 12px 12px;
+        }
+        .dot-ink {
+            background-image: radial-gradient(rgba(18,18,18,0.35) 20%, transparent 22%);
+            background-size: 8px 8px;
+        }
+
+        /* Shape cards with print offset */
+        .print-card {
+            position: relative;
+            background:#f3efe4;
+            padding: 1.5rem;
+            border: 1.5px solid #121212;
+        }
+        .print-card::before {
+            content:'';
+            position:absolute;
+            inset: -6px -6px auto auto;
+            width: 70%; height: 40%;
+            background: #ff558f;
+            mix-blend-mode: multiply;
+            z-index: -1;
+            border-radius: 12px;
+        }
+        .print-card-teal::before { background:#1a8ba0; }
+
+        .blob-pink {
+            background: radial-gradient(circle at 30% 30%, #ff558f, #e53577 80%);
+            mix-blend-mode: multiply;
+        }
+        .blob-teal {
+            background: radial-gradient(circle at 30% 30%, #1a8ba0, #0f5e6e 80%);
+            mix-blend-mode: multiply;
+        }
+
+        .switcher { font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:#f3efe4; color:#121212; border:2px solid #121212; padding:.3rem .5rem; }
+
+        .reg-mark {
+            display: inline-block;
+            width: 20px; height: 20px;
+            background:
+                linear-gradient(to right, transparent 9px, #121212 9px 11px, transparent 11px),
+                linear-gradient(to bottom, transparent 9px, #121212 9px 11px, transparent 11px);
+        }
+
+        .stroke-rule { border-top: 1.5px solid #121212; }
+        .offset-block {
+            position: relative;
+            z-index: 0;
+        }
+        .offset-block::before {
+            content:'';
+            position: absolute;
+            inset: 8px -8px -8px 8px;
+            background: var(--off);
+            mix-blend-mode: multiply;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="stroke-rule border-b-[1.5px] bg-riso-paper">
+        <div class="mx-auto max-w-7xl px-6 py-3 lg:px-10 flex items-center justify-between caps">
+            <a href="/" class="flex items-center gap-3">
+                <span class="reg-mark"></span>
+                <span class="font-bold text-lg tracking-tight">MINS BOT</span>
+                <span class="hidden sm:inline">— Riso Edition · 2 spot colors</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="#capabilities" class="hidden hover:text-riso-pink md:inline-block">02</a>
+                <a href="#install" class="hidden hover:text-riso-pink md:inline-block">04</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-6 lg:px-10 py-12">
+        <!-- Hero -->
+        <section class="relative">
+            <div class="flex items-center justify-between mb-8"><div class="caps">Edition 33 / 2026 · Run of 500</div><div class="caps">Color: <span class="ink-pink">■</span> fluorescent pink · <span class="ink-teal">■</span> teal</div></div>
+
+            <div class="grid gap-10 lg:grid-cols-12 items-start">
+                <div class="lg:col-span-8 relative">
+                    <h1 class="display text-[5rem] sm:text-[7rem] lg:text-[11rem]">
+                        <span class="mis-pink">A desktop</span><br>
+                        <span class="mis-teal">agent,</span><br>
+                        <span>pressed</span><br>
+                        <span class="ink-pink">local.</span>
+                    </h1>
+
+                    <!-- blob decorations -->
+                    <span class="blob-pink absolute top-8 -right-4 h-32 w-32 rounded-full opacity-90 hidden lg:block"></span>
+
+                    <p class="mt-10 max-w-xl text-lg leading-relaxed">
+                        Mins Bot is hand-pressed onto your machine in two colors: one for the quiet work it does for you, and one for the loud nothing it sends home.
+                    </p>
+
+                    <div class="mt-10 flex flex-wrap items-center gap-4">
+                        <a href="#install" class="bg-ink text-paper display text-lg px-8 py-3 hover:bg-riso-pink">▶ Acquire the print</a>
+                        <a href="#capabilities" class="caps border-b-[1.5px] border-ink pb-1 hover:text-riso-teal">— Inspect the plates</a>
+                    </div>
+                </div>
+
+                <!-- Right side print mockup -->
+                <aside class="lg:col-span-4 relative">
+                    <div class="relative">
+                        <!-- big teal shape behind -->
+                        <div class="blob-teal absolute -top-4 -left-4 h-72 w-72 rounded-full"></div>
+                        <div class="blob-pink absolute top-12 left-24 h-40 w-40 rounded-full"></div>
+                        <div class="relative border-[1.5px] border-ink bg-riso-paper p-5 mt-6">
+                            <div class="caps">Pass 01 — Pink plate</div>
+                            <div class="dot-pink h-28 mt-3"></div>
+                            <div class="caps mt-5">Pass 02 — Teal plate</div>
+                            <div class="dot-teal h-28 mt-3"></div>
+                            <div class="caps mt-5">Final — black ink</div>
+                            <div class="dot-ink h-8 mt-3"></div>
+                            <div class="mt-4 stroke-rule pt-3 flex justify-between caps"><span>Reg. offset</span><span>+3 · -4</span></div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Section divider w/ reg marks -->
+        <div class="flex items-center gap-4 my-16"><span class="reg-mark"></span><div class="flex-1 stroke-rule"></div><span class="caps">§ 02 · Plates</span><div class="flex-1 stroke-rule"></div><span class="reg-mark"></span></div>
+
+        <!-- Capabilities -->
+        <section id="capabilities">
+            <div class="flex items-baseline justify-between mb-6"><h2 class="display text-4xl sm:text-5xl">Four plates.<br><span class="ink-pink mis-teal">Two inks.</span></h2><span class="caps hidden sm:inline">4 × 1</span></div>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <article class="print-card">
+                    <div class="flex items-center justify-between caps"><span>Plate 01</span><span class="ink-pink">P</span></div>
+                    <div class="dot-pink h-16 mt-3"></div>
+                    <h3 class="display text-3xl mt-4">Browse</h3>
+                    <p class="mt-2 text-sm">Chromium under your session. Real pages.</p>
+                </article>
+                <article class="print-card print-card-teal">
+                    <div class="flex items-center justify-between caps"><span>Plate 02</span><span class="ink-teal">T</span></div>
+                    <div class="dot-teal h-16 mt-3"></div>
+                    <h3 class="display text-3xl mt-4">File</h3>
+                    <p class="mt-2 text-sm">Allow-list scoped. Local journal.</p>
+                </article>
+                <article class="print-card">
+                    <div class="flex items-center justify-between caps"><span>Plate 03</span><span class="ink-pink">P</span></div>
+                    <div class="dot-pink h-16 mt-3"></div>
+                    <h3 class="display text-3xl mt-4">Message</h3>
+                    <p class="mt-2 text-sm">Slack, Gmail, Discord. Tokens in keychain.</p>
+                </article>
+                <article class="print-card print-card-teal">
+                    <div class="flex items-center justify-between caps"><span>Plate 04</span><span class="ink-teal">T</span></div>
+                    <div class="dot-teal h-16 mt-3"></div>
+                    <h3 class="display text-3xl mt-4">Skills</h3>
+                    <p class="mt-2 text-sm">Manifest + code. Install, compose.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="flex items-center gap-4 my-16"><span class="reg-mark"></span><div class="flex-1 stroke-rule"></div><span class="caps">§ 03 · Policy</span><div class="flex-1 stroke-rule"></div><span class="reg-mark"></span></div>
+
+        <!-- Policy -->
+        <section>
+            <div class="grid gap-10 lg:grid-cols-12 items-end">
+                <div class="lg:col-span-7">
+                    <h2 class="display text-5xl sm:text-7xl">
+                        <span class="mis-pink">We press</span><br>
+                        <span class="mis-teal">no copies</span><br>
+                        <span>of you.</span>
+                    </h2>
+                </div>
+                <div class="lg:col-span-5">
+                    <dl class="stroke-rule border-b-[1.5px] border-ink">
+                        <div class="flex justify-between items-baseline py-3 stroke-rule"><dt class="caps">Data at rest</dt><dd class="display text-xl">On device</dd></div>
+                        <div class="flex justify-between items-baseline py-3 stroke-rule"><dt class="caps">Credentials</dt><dd class="display text-xl">OS keychain</dd></div>
+                        <div class="flex justify-between items-baseline py-3 stroke-rule"><dt class="caps ink-pink">Training use</dt><dd class="display text-xl ink-pink">Null</dd></div>
+                        <div class="flex justify-between items-baseline py-3"><dt class="caps">Model calls</dt><dd class="display text-xl">Direct</dd></div>
+                    </dl>
+                    <a href="/privacy.html" class="caps mt-6 inline-flex items-center gap-2 border-b-[1.5px] border-ink pb-0.5 hover:text-riso-teal">Read the full sheet →</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex items-center gap-4 my-16"><span class="reg-mark"></span><div class="flex-1 stroke-rule"></div><span class="caps">§ 04 · Editions</span><div class="flex-1 stroke-rule"></div><span class="reg-mark"></span></div>
+
+        <!-- Install -->
+        <section id="install">
+            <h2 class="display text-4xl sm:text-5xl mb-8">Three editions. <span class="ink-pink">One run.</span></h2>
+            <div class="grid gap-5 sm:grid-cols-3">
+                <a href="#" class="print-card hover:bg-riso-paper2"><div class="flex items-center justify-between caps"><span>Ed. 01</span><i class="fa-brands fa-apple text-3xl"></i></div><div class="display text-3xl mt-6">macOS</div><div class="caps mt-1">arm64 · x86_64</div></a>
+                <a href="#" class="print-card print-card-teal hover:bg-riso-paper2"><div class="flex items-center justify-between caps"><span>Ed. 02</span><i class="fa-brands fa-windows text-3xl"></i></div><div class="display text-3xl mt-6">Windows</div><div class="caps mt-1">x86_64 · 10+</div></a>
+                <a href="#" class="print-card hover:bg-riso-paper2"><div class="flex items-center justify-between caps"><span>Ed. 03</span><i class="fa-brands fa-linux text-3xl"></i></div><div class="display text-3xl mt-6">Linux</div><div class="caps mt-1">x86_64 · arm64</div></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="stroke-rule border-t-[1.5px] py-6 mt-10">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> · Mins Bot · Edition 33 / Run 500</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-riso-pink">Privacy</a><a href="/terms.html" class="hover:text-riso-pink">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-riso-pink">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 25 Y2K</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Chivo+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { sans: ['Space Grotesk','sans-serif'], mono: ['Chivo Mono','monospace'] },
+            colors: { lime:'#baff39', hot:'#ff4da6', cyan:'#39d9ff', yellow:'#ffd900', paper:'#f2efe6', ink:'#0a0a0a' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Space Grotesk', sans-serif; font-weight:600; }
+        body { background:#f2efe6; color:#0a0a0a; }
+        .mono { font-family:'Chivo Mono', monospace; }
+        .nb-border { border: 3px solid #0a0a0a; border-radius: 14px; }
+        .nb-shadow { box-shadow: 6px 6px 0 #0a0a0a; }
+        .nb-shadow-lime { box-shadow: 6px 6px 0 #baff39, 6px 6px 0 3px #0a0a0a; }
+        .nb-shadow-hot { box-shadow: 6px 6px 0 #ff4da6, 6px 6px 0 3px #0a0a0a; }
+        .nb-shadow-cyan { box-shadow: 6px 6px 0 #39d9ff, 6px 6px 0 3px #0a0a0a; }
+        .press-btn { transition: all 0.15s; }
+        .press-btn:active { transform: translate(6px,6px); box-shadow: 0 0 0 #0a0a0a; }
+        .caps { font-family:'Chivo Mono',monospace; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; font-weight:700; }
+        .sticker-text { display: inline-block; background:#ff4da6; color:#fff; padding: .2rem .6rem; border-radius: 8px; border: 2px solid #0a0a0a; }
+        .blob-1 { background: radial-gradient(circle at 30% 30%, #baff39, #6bc912); }
+        .blob-2 { background: radial-gradient(circle at 30% 30%, #ff4da6, #c91278); }
+        .blob-3 { background: radial-gradient(circle at 30% 30%, #39d9ff, #0e97b9); }
+        .squiggly-underline {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'><path d='M0 5 Q 10 0 20 5 T 40 5 T 60 5 T 80 5 T 100 5 T 120 5' stroke='%23ff4da6' stroke-width='3' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 100% 10px;
+            padding-bottom: 10px;
+        }
+        .switcher { font-family:'Chivo Mono',monospace; font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; font-weight:700; background:#fff; color:#0a0a0a; border:3px solid #0a0a0a; padding:.3rem .5rem; border-radius:10px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spin { animation: spin 8s linear infinite; display:inline-block; }
+        .gradient-text {
+            background: linear-gradient(90deg, #ff4da6, #39d9ff, #baff39);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b-[3px] border-ink">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3">
+                <span class="nb-border bg-lime px-3 py-1 text-sm font-bold">MINS★BOT</span>
+                <span class="caps hidden sm:inline">ver.0.4.2</span>
+            </a>
+            <div class="flex items-center gap-3 caps">
+                <a href="#capabilities" class="hidden hover:text-hot md:inline-block">what</a>
+                <a href="#install" class="hidden hover:text-hot md:inline-block">grab</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden py-20 lg:py-28">
+            <!-- decorative blobs -->
+            <span class="absolute top-12 right-[8%] h-32 w-32 blob-1 rounded-full border-[3px] border-ink nb-shadow"></span>
+            <span class="absolute bottom-20 left-[5%] h-20 w-40 blob-2 rounded-full border-[3px] border-ink nb-shadow rotate-6"></span>
+            <span class="absolute top-40 left-[12%] caps">
+                <span class="spin text-3xl">✦</span>
+            </span>
+
+            <div class="relative mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="grid gap-12 lg:grid-cols-12 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="sticker-text mb-6 -rotate-2">
+                            ★ NEW! · LOCAL · ZERO TRACKING ★
+                        </div>
+                        <h1 class="text-6xl sm:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-tight">
+                            Your desktop,<br>
+                            <span class="gradient-text">your rules.</span><br>
+                            <span class="squiggly-underline">That's it.</span>
+                        </h1>
+                        <p class="mt-8 max-w-lg text-lg font-medium">Mins Bot is an AI agent that lives on your machine. It browses. It files. It messages. It does <strong class="underline decoration-hot decoration-4">not</strong> phone home. Not even once.</p>
+                        <div class="mt-10 flex flex-wrap items-center gap-4">
+                            <a href="#install" class="press-btn nb-border nb-shadow bg-lime px-8 py-4 text-lg font-bold hover:bg-yellow">⬇ DOWNLOAD</a>
+                            <a href="#capabilities" class="press-btn nb-border nb-shadow bg-white px-8 py-4 text-lg font-bold hover:bg-cyan">✦ LEARN MORE</a>
+                        </div>
+                        <div class="mt-8 flex flex-wrap gap-3 caps">
+                            <span class="nb-border bg-white px-3 py-1">★ local only</span>
+                            <span class="nb-border bg-white px-3 py-1">★ zero telemetry</span>
+                            <span class="nb-border bg-white px-3 py-1">★ you pick the model</span>
+                        </div>
+                    </div>
+
+                    <!-- Chunky dashboard mock -->
+                    <div class="lg:col-span-5">
+                        <div class="nb-border nb-shadow bg-white p-5">
+                            <div class="flex items-center justify-between border-b-[3px] border-ink pb-2">
+                                <div class="flex gap-1.5">
+                                    <span class="h-4 w-4 rounded-full bg-hot border-2 border-ink"></span>
+                                    <span class="h-4 w-4 rounded-full bg-yellow border-2 border-ink"></span>
+                                    <span class="h-4 w-4 rounded-full bg-lime border-2 border-ink"></span>
+                                </div>
+                                <span class="caps">LIVE!</span>
+                            </div>
+                            <div class="mt-4 space-y-3">
+                                <div class="nb-border bg-lime p-3 flex items-center gap-3"><span class="nb-border bg-white h-10 w-10 flex items-center justify-center"><i class="fa-solid fa-envelope"></i></span><div><div class="font-bold">41 emails triaged</div><div class="caps">7 drafts ready</div></div></div>
+                                <div class="nb-border bg-cyan p-3 flex items-center gap-3"><span class="nb-border bg-white h-10 w-10 flex items-center justify-center"><i class="fa-solid fa-folder-open"></i></span><div><div class="font-bold">4 receipts filed</div><div class="caps">~/Docs/2026</div></div></div>
+                                <div class="nb-border bg-hot text-white p-3 flex items-center gap-3"><span class="nb-border bg-white text-ink h-10 w-10 flex items-center justify-center"><i class="fa-solid fa-bolt"></i></span><div><div class="font-bold">0 BYTES SENT HOME</div><div class="caps">yes, really</div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="py-20 bg-cyan/30 border-y-[3px] border-ink">
+            <div class="mx-auto max-w-7xl px-6 lg:px-10">
+                <div class="text-center mb-12">
+                    <div class="sticker-text -rotate-1">★ THE FOUR THINGS ★</div>
+                    <h2 class="mt-6 text-5xl sm:text-6xl font-bold">What it <span class="gradient-text">actually</span> does.</h2>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="press-btn nb-border nb-shadow-lime bg-white p-6 rotate-[-1deg]">
+                        <span class="inline-flex h-12 w-12 items-center justify-center nb-border bg-lime"><i class="fa-solid fa-globe text-xl"></i></span>
+                        <h3 class="mt-4 text-2xl font-bold">Browse</h3>
+                        <p class="mt-2 text-sm font-medium">Real pages. Your session. Chromium.</p>
+                    </article>
+                    <article class="press-btn nb-border nb-shadow-hot bg-white p-6 rotate-[1deg]">
+                        <span class="inline-flex h-12 w-12 items-center justify-center nb-border bg-hot text-white"><i class="fa-solid fa-folder-open text-xl"></i></span>
+                        <h3 class="mt-4 text-2xl font-bold">File</h3>
+                        <p class="mt-2 text-sm font-medium">Allow-list scoped. Local audit.</p>
+                    </article>
+                    <article class="press-btn nb-border nb-shadow-cyan bg-white p-6 rotate-[-1deg]">
+                        <span class="inline-flex h-12 w-12 items-center justify-center nb-border bg-cyan"><i class="fa-solid fa-paper-plane text-xl"></i></span>
+                        <h3 class="mt-4 text-2xl font-bold">Message</h3>
+                        <p class="mt-2 text-sm font-medium">Slack, Gmail, Discord. Keychain.</p>
+                    </article>
+                    <article class="press-btn nb-border nb-shadow bg-white p-6 rotate-[1deg]">
+                        <span class="inline-flex h-12 w-12 items-center justify-center nb-border bg-yellow"><i class="fa-solid fa-cubes text-xl"></i></span>
+                        <h3 class="mt-4 text-2xl font-bold">Skills</h3>
+                        <p class="mt-2 text-sm font-medium">Installable. Composable. Yours.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="py-20 bg-lime/40 border-b-[3px] border-ink">
+            <div class="mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <div class="sticker-text -rotate-2">★ THE RULES ★</div>
+                <h2 class="mt-6 text-5xl sm:text-7xl font-bold">Zero.<br>Data.<br><span class="gradient-text">Shipped.</span></h2>
+                <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="nb-border nb-shadow bg-white p-5"><div class="caps">At rest</div><div class="mt-2 text-xl font-bold">On device.</div></div>
+                    <div class="nb-border nb-shadow bg-white p-5"><div class="caps">Keys</div><div class="mt-2 text-xl font-bold">OS keychain.</div></div>
+                    <div class="nb-border nb-shadow bg-hot text-white p-5"><div class="caps">Training</div><div class="mt-2 text-xl font-bold">NONE.</div></div>
+                    <div class="nb-border nb-shadow bg-white p-5"><div class="caps">Calls</div><div class="mt-2 text-xl font-bold">Direct.</div></div>
+                </div>
+                <a href="/privacy.html" class="press-btn nb-border nb-shadow mt-10 inline-flex items-center gap-2 bg-white px-6 py-3 font-bold hover:bg-yellow">📋 FULL POLICY →</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-20">
+            <div class="mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <div class="sticker-text rotate-1">★ GRAB IT ★</div>
+                <h2 class="mt-6 text-5xl sm:text-6xl font-bold">Three platforms. <span class="gradient-text">One click.</span></h2>
+                <div class="mt-12 grid gap-6 sm:grid-cols-3">
+                    <a href="#" class="press-btn nb-border nb-shadow-lime bg-white p-8 rotate-[-1deg] hover:bg-lime"><i class="fa-brands fa-apple text-5xl"></i><div class="mt-4 text-2xl font-bold">macOS</div><div class="caps mt-2">arm64 · x86_64</div></a>
+                    <a href="#" class="press-btn nb-border nb-shadow-hot bg-white p-8 rotate-[1deg] hover:bg-hot hover:text-white"><i class="fa-brands fa-windows text-5xl"></i><div class="mt-4 text-2xl font-bold">Windows</div><div class="caps mt-2">x86_64 · 10+</div></a>
+                    <a href="#" class="press-btn nb-border nb-shadow-cyan bg-white p-8 rotate-[-1deg] hover:bg-cyan"><i class="fa-brands fa-linux text-5xl"></i><div class="mt-4 text-2xl font-bold">Linux</div><div class="caps mt-2">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t-[3px] border-ink py-8 bg-hot text-white">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> ★ MINS BOT ★ MAX FUN</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-lime">privacy</a><a href="/terms.html" class="hover:text-lime">terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-lime">github</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

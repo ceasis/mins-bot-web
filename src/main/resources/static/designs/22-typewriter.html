@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 22 Typewriter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { mono: ['Courier Prime','Courier New','monospace'], type: ['Special Elite','monospace'] },
+            colors: { page:'#f4ecd6', page2:'#e9dfc0', ink:'#221b0c', stamp:'#a82626', ribbon:'#3a3aa8' }
+        }}}
+    </script>
+    <style>
+        html, body { font-family: 'Courier Prime', 'Courier New', monospace; }
+        body {
+            background:#d4c8a2;
+            color:#221b0c;
+            min-height:100vh;
+            padding: 2rem 1rem;
+        }
+        .page {
+            background: #f4ecd6;
+            background-image:
+                radial-gradient(rgba(60,40,10,0.04) 1px, transparent 1.5px),
+                linear-gradient(90deg, transparent 0, rgba(60,40,10,0.015) 50%, transparent 100%);
+            background-size: 5px 5px, 100% 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .page::before {
+            content:'';
+            position:absolute;
+            left:0; top:0; bottom:0; width: 40px;
+            background: repeating-linear-gradient(180deg, transparent 0 25px, rgba(168,38,38,0.0) 25px 28px);
+            border-right: 1px solid rgba(168,38,38,0.15);
+        }
+        .page::after {
+            content:'';
+            position: absolute;
+            left: 3.5rem;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(168,38,38,0.25);
+        }
+        .typewritten {
+            font-family:'Courier Prime', monospace;
+            font-size: 15px;
+            line-height: 2.1;
+            letter-spacing: 0.02em;
+            color: #221b0c;
+        }
+        .typewritten strong { font-weight: 700; }
+        .strike { text-decoration: line-through; text-decoration-color: #221b0c; text-decoration-thickness: 2px; }
+        .xxx::before { content: 'xxxxx'; letter-spacing: 1px; color: #221b0c; }
+        .stamp {
+            border: 3px double #a82626;
+            color: #a82626;
+            padding: .5rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-weight: 700;
+            font-size: .8rem;
+            transform: rotate(-8deg);
+            display: inline-block;
+            font-family: 'Special Elite', monospace;
+        }
+        .page-num {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 0.75rem;
+            letter-spacing: .15em;
+            color: rgba(34,27,12,0.5);
+            text-transform: uppercase;
+        }
+        .carriage-hole {
+            width: 20px; height: 10px; border-radius: 50%; background:#f4ecd6; border: 1px solid rgba(34,27,12,.3); box-shadow: inset 0 1px 2px rgba(34,27,12,0.2);
+        }
+        .holes { display:flex; flex-direction: column; justify-content:space-around; position:absolute; left: 0.75rem; top: 2rem; bottom: 2rem; }
+        .switcher { font-family:'Courier Prime', monospace; font-size:.8rem; background:#f4ecd6; color:#221b0c; border:1px solid #221b0c; padding:.2rem .4rem; }
+        .hanging-indent { text-indent: 2em; }
+        @keyframes blink-ctype { 50% { opacity: 0 } }
+        .caret { animation: blink-ctype 1s steps(2) infinite; }
+    </style>
+</head>
+<body>
+    <!-- Switcher floats above the page -->
+    <div class="max-w-3xl mx-auto mb-4 flex items-center justify-between text-xs uppercase tracking-widest">
+        <a href="/" class="hover:underline">&larr; MINS/BOT · CORRESPONDENCE</a>
+        <span data-design-switcher data-select-class="switcher"></span>
+    </div>
+
+    <main class="page max-w-3xl mx-auto">
+        <div class="holes">
+            <span class="carriage-hole"></span>
+            <span class="carriage-hole"></span>
+            <span class="carriage-hole"></span>
+            <span class="carriage-hole"></span>
+            <span class="carriage-hole"></span>
+            <span class="carriage-hole"></span>
+            <span class="carriage-hole"></span>
+        </div>
+        <div class="page-num">PAGE 01 OF 04</div>
+
+        <div class="pl-20 pr-12 py-14">
+            <!-- Letterhead -->
+            <div class="text-right typewritten">
+                <div>MINS &amp; BOT</div>
+                <div>Desk 01 · Your Own Machine</div>
+                <div>Version 0.4.2</div>
+                <div>April 18, 2026</div>
+            </div>
+
+            <div class="mt-6 border-t border-b border-ink/30 py-2 typewritten uppercase tracking-widest text-xs text-center">
+                MEMO · CONFIDENTIAL · FOR YOUR DESK ONLY
+            </div>
+
+            <!-- Letter body -->
+            <div class="mt-8 typewritten">
+                <p><strong>TO:</strong> <span class="underline">The User</span></p>
+                <p><strong>FROM:</strong> Mins Bot (agent-in-residence)</p>
+                <p><strong>RE:</strong> A desktop agent, discussed plainly</p>
+            </div>
+
+            <div class="mt-8 typewritten">
+                <p class="hanging-indent">Dear Friend,</p>
+                <p class="hanging-indent">I write to introduce a small machine that would like to keep you company, quietly, on your desktop. It is called <strong>Mins Bot</strong>. It browses the web when asked. It tends to your files. It answers your messages. It runs a library of skills you may choose and install.</p>
+                <p class="hanging-indent">The matter of its manners is, I think, the interesting part. It runs on your own device. It does <strong>not</strong> report to a central office. It sends <span class="strike">your data</span> nothing of yours home. There is no server to which it could. This is a choice, and we have made it on purpose.</p>
+            </div>
+
+            <!-- Stamp -->
+            <div class="mt-6 flex justify-end">
+                <span class="stamp">RECEIVED · APR 18 · LOCAL ONLY</span>
+            </div>
+
+            <!-- Capabilities as a typed list -->
+            <div class="mt-10 typewritten">
+                <p><strong>I. THE FOUR THINGS IT DOES.</strong></p>
+                <p class="hanging-indent"><strong>01.</strong> <u>Browse.</u> Chromium under your session. Reads real pages, fills real forms.</p>
+                <p class="hanging-indent"><strong>02.</strong> <u>File.</u> Moves and renames only under your explicit allow-list. Everything journaled to a local text file.</p>
+                <p class="hanging-indent"><strong>03.</strong> <u>Message.</u> Slack, Discord, Gmail. Tokens rest in the operating system's keychain. You revoke at the provider.</p>
+                <p class="hanging-indent"><strong>04.</strong> <u>Skill.</u> A manifest with some code. Install it, compose it, remove it. The agent discovers what is present.</p>
+            </div>
+
+            <!-- Policy -->
+            <div class="mt-10 typewritten">
+                <p><strong>II. A LEDGER OF WHAT IS NOT TAKEN.</strong></p>
+                <p class="hanging-indent">Data at rest ....... on your device.</p>
+                <p class="hanging-indent">Credentials ........ OS keychain.</p>
+                <p class="hanging-indent">Training use ....... <strong class="underline">none at all</strong>.</p>
+                <p class="hanging-indent">Model calls ........ direct to the provider you pick.</p>
+                <p class="hanging-indent">(The full policy is attached. One page. Plain English.)</p>
+                <p class="hanging-indent"><a href="/privacy.html" class="underline">&rarr; Read the full policy.</a></p>
+            </div>
+
+            <!-- Install -->
+            <div class="mt-10 typewritten">
+                <p><strong>III. SHOULD YOU WISH TO RECEIVE IT.</strong></p>
+                <p class="hanging-indent">Select your platform below. One binary, one envelope.</p>
+            </div>
+
+            <div class="mt-4 space-y-2 typewritten">
+                <a href="#" class="block border-t border-dashed border-ink/50 py-2 hover:bg-page2 px-2 flex items-center justify-between"><span><i class="fa-brands fa-apple mr-3"></i> macOS (arm64, x86_64)</span><span class="uppercase tracking-widest text-sm">&rarr; receive</span></a>
+                <a href="#" class="block border-t border-dashed border-ink/50 py-2 hover:bg-page2 px-2 flex items-center justify-between"><span><i class="fa-brands fa-windows mr-3"></i> Windows (x86_64, 10+)</span><span class="uppercase tracking-widest text-sm">&rarr; receive</span></a>
+                <a href="#" class="block border-t border-b border-dashed border-ink/50 py-2 hover:bg-page2 px-2 flex items-center justify-between"><span><i class="fa-brands fa-linux mr-3"></i> Linux (x86_64, arm64)</span><span class="uppercase tracking-widest text-sm">&rarr; receive</span></a>
+            </div>
+
+            <!-- Sign-off -->
+            <div class="mt-10 typewritten">
+                <p>With quiet regards,</p>
+                <p class="mt-6"><em>Mins Bot</em></p>
+                <p class="text-xs uppercase tracking-widest mt-1">AGENT · SIGNED, 4:18 PM</p>
+            </div>
+
+            <!-- End -->
+            <div class="mt-10 border-t border-ink/30 pt-4 text-center text-xs uppercase tracking-widest text-ink/60">
+                — END OF MEMO — <span class="caret">█</span>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 flex flex-col sm:flex-row items-start justify-between gap-3 text-xs uppercase tracking-widest text-ink/60">
+                <p>© <span id="year"></span> · Mins Bot · typed on site</p>
+                <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-ink">Privacy</a><a href="/terms.html" class="hover:text-ink">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-ink">GitHub</a></div>
+            </div>
+        </div>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

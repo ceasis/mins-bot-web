@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 32 Noir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,400;1,600&family=Oswald:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Playfair Display','serif'], sans: ['Oswald','sans-serif'], type: ['Special Elite','monospace'] },
+            colors: { noir:'#070707', noir2:'#1a1a1a', smoke:'#232323', ash:'#8a8a8a', bone:'#e9e6dc', cigarette:'#d14949' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Oswald', sans-serif; }
+        body { background:#070707; color:#e9e6dc; overflow-x:hidden; }
+        .display { font-family:'Playfair Display',serif; letter-spacing:-0.02em; line-height:0.95; }
+        .type { font-family:'Special Elite', monospace; }
+        .caps { font-family:'Oswald',sans-serif; font-weight:500; letter-spacing:.3em; text-transform:uppercase; font-size:.7rem; color:#8a8a8a; }
+
+        /* Venetian blinds overlay */
+        .blinds-bg {
+            background:
+                linear-gradient(180deg, #070707, #1a1a1a);
+            position: relative;
+            overflow: hidden;
+        }
+        .blinds-bg::after {
+            content:'';
+            position:absolute;
+            inset:0;
+            background: repeating-linear-gradient(
+                100deg,
+                transparent 0 40px,
+                rgba(233,230,220,0.04) 40px 44px,
+                transparent 44px 88px,
+                rgba(233,230,220,0.01) 88px 120px
+            );
+            pointer-events:none;
+        }
+        .vignette::before {
+            content:'';
+            position:absolute;
+            inset:0;
+            background: radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(7,7,7,0.7) 80%);
+            pointer-events:none;
+        }
+        .film-grain {
+            position: relative;
+        }
+        .film-grain::after {
+            content:'';
+            position:absolute;
+            inset:0;
+            pointer-events:none;
+            background-image:
+                radial-gradient(rgba(233,230,220,0.015) 1px, transparent 1.5px);
+            background-size: 3px 3px;
+            opacity:.8;
+        }
+        .spot-light {
+            background: radial-gradient(ellipse at 20% 0%, rgba(233,230,220,0.1) 0, transparent 50%);
+        }
+        .hair-rule { border-color: rgba(233,230,220,0.18); }
+        .switcher { font-family:'Oswald',sans-serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; background:#070707; color:#e9e6dc; border:1px solid #e9e6dc; padding:.3rem .5rem; }
+        .stamp-file {
+            display: inline-block;
+            border: 2px solid #d14949;
+            color:#d14949;
+            padding: .35rem .9rem;
+            text-transform: uppercase;
+            letter-spacing: .2em;
+            font-size: .7rem;
+            transform: rotate(-4deg);
+        }
+        .reel-sprocket {
+            background:
+                repeating-linear-gradient(90deg, transparent 0 20px, rgba(233,230,220,0.18) 20px 28px);
+            height: 18px;
+        }
+        .case-label {
+            background:#e9e6dc;
+            color:#070707;
+            padding:.3rem .5rem;
+            font-family:'Special Elite',monospace;
+            font-size:.72rem;
+            letter-spacing:.1em;
+            text-transform: uppercase;
+            display:inline-block;
+        }
+        @keyframes flick { 0%,97%{opacity:1} 98%{opacity:0.6} 99%{opacity:1} 100%{opacity:0.9} }
+        .flick { animation: flick 4s infinite; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Film reel strip -->
+    <div class="reel-sprocket"></div>
+
+    <header class="sticky top-0 z-50 border-b hair-rule bg-noir/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-baseline gap-3">
+                <span class="display text-xl italic font-bold">Mins Bot</span>
+                <span class="caps hidden sm:inline">A Desktop Tale</span>
+            </a>
+            <div class="flex items-center gap-5 caps">
+                <a href="#capabilities" class="hidden hover:text-cigarette md:inline-block">Act II</a>
+                <a href="#install" class="hidden hover:text-cigarette md:inline-block">Epilogue</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Cold open / hero -->
+        <section class="blinds-bg film-grain relative vignette">
+            <div class="relative mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-36">
+                <div class="grid gap-12 lg:grid-cols-12 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center gap-3 mb-6"><span class="stamp-file">CASE FILE № 32</span><span class="caps flick">REEL 01 · OPENING</span></div>
+                        <div class="display italic text-xl text-ash mb-4">"It was late. The rain had a rhythm and so did the keyboard."</div>
+                        <h1 class="display text-6xl sm:text-8xl lg:text-[9rem] font-black">
+                            NOBODY<br>
+                            <span class="italic font-semibold text-ash">left a trail.</span><br>
+                            <span class="text-cigarette">NOT EVEN ME.</span>
+                        </h1>
+                        <p class="mt-10 max-w-xl text-lg leading-relaxed text-bone/85">
+                            A desktop agent with a past it kept to itself. Runs on your machine. Works your cases. Keeps <em>zero</em> files on anyone's desk but yours.
+                        </p>
+                        <div class="mt-12 flex flex-wrap items-center gap-5">
+                            <a href="#install" class="inline-flex items-center gap-3 bg-bone text-noir px-10 py-4 caps hover:bg-cigarette hover:text-bone">▷ Start the reel</a>
+                            <a href="#capabilities" class="caps border-b hair-rule pb-1 hover:text-cigarette">Read the file →</a>
+                        </div>
+                    </div>
+                    <!-- Silhouette figure -->
+                    <div class="lg:col-span-5">
+                        <div class="aspect-[3/4] bg-noir2 border hair-rule relative overflow-hidden">
+                            <svg viewBox="0 0 300 400" class="w-full h-full">
+                                <!-- light spill -->
+                                <defs>
+                                    <linearGradient id="spot" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#2a2a2a"/>
+                                        <stop offset="100%" stop-color="#070707"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect width="300" height="400" fill="url(#spot)"/>
+                                <!-- window frame shadow -->
+                                <g opacity="0.35" fill="#e9e6dc">
+                                    <rect x="20" y="60" width="120" height="6"/>
+                                    <rect x="20" y="90" width="100" height="6"/>
+                                    <rect x="20" y="120" width="140" height="6"/>
+                                    <rect x="20" y="150" width="90" height="6"/>
+                                    <rect x="20" y="180" width="130" height="6"/>
+                                    <rect x="20" y="210" width="110" height="6"/>
+                                </g>
+                                <!-- silhouette: fedora + trenchcoat figure (abstract) -->
+                                <g fill="#070707" stroke="#070707">
+                                    <!-- Hat -->
+                                    <ellipse cx="180" cy="145" rx="72" ry="14"/>
+                                    <path d="M 130 145 Q 145 90 180 88 Q 215 90 230 145 Z"/>
+                                    <!-- Head -->
+                                    <ellipse cx="180" cy="175" rx="38" ry="34"/>
+                                    <!-- Shoulders & coat -->
+                                    <path d="M 90 400 Q 90 250 180 230 Q 270 250 270 400 Z"/>
+                                </g>
+                                <!-- cigarette ember -->
+                                <circle cx="205" cy="195" r="3" fill="#d14949"/>
+                                <line x1="205" y1="195" x2="215" y2="200" stroke="#e9e6dc" stroke-width="1.2" opacity=".7"/>
+                                <!-- smoke -->
+                                <g opacity=".35" stroke="#e9e6dc" fill="none" stroke-width="1.3">
+                                    <path d="M 215 200 Q 230 190 220 175 Q 210 160 230 150"/>
+                                    <path d="M 225 170 Q 240 155 228 140"/>
+                                </g>
+                            </svg>
+                            <div class="absolute bottom-2 right-3 caps">EXT. DESK — NIGHT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="reel-sprocket"></div>
+
+        <!-- Act II: The Four Suspects (capabilities) -->
+        <section id="capabilities" class="py-20 lg:py-28">
+            <div class="mx-auto max-w-7xl px-6 lg:px-10">
+                <div class="text-center mb-14">
+                    <div class="caps">— Act II —</div>
+                    <h2 class="display mt-3 text-4xl sm:text-5xl italic">Four suspects. All cooperative.</h2>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="relative border hair-rule bg-smoke p-6">
+                        <div class="case-label absolute -top-3 left-5">EXHIBIT A</div>
+                        <i class="fa-solid fa-compass text-3xl text-cigarette mt-2"></i>
+                        <h3 class="display italic text-2xl mt-4">The Browser</h3>
+                        <p class="type text-sm mt-2 text-bone/80">Chromium. On your session. No accomplices.</p>
+                    </article>
+                    <article class="relative border hair-rule bg-smoke p-6">
+                        <div class="case-label absolute -top-3 left-5">EXHIBIT B</div>
+                        <i class="fa-solid fa-folder-open text-3xl text-cigarette mt-2"></i>
+                        <h3 class="display italic text-2xl mt-4">The Filer</h3>
+                        <p class="type text-sm mt-2 text-bone/80">Allow-list scoped. Every move on record — locally.</p>
+                    </article>
+                    <article class="relative border hair-rule bg-smoke p-6">
+                        <div class="case-label absolute -top-3 left-5">EXHIBIT C</div>
+                        <i class="fa-solid fa-phone text-3xl text-cigarette mt-2"></i>
+                        <h3 class="display italic text-2xl mt-4">The Contact</h3>
+                        <p class="type text-sm mt-2 text-bone/80">Slack, Gmail, Discord. Tokens in the safe.</p>
+                    </article>
+                    <article class="relative border hair-rule bg-smoke p-6">
+                        <div class="case-label absolute -top-3 left-5">EXHIBIT D</div>
+                        <i class="fa-solid fa-briefcase text-3xl text-cigarette mt-2"></i>
+                        <h3 class="display italic text-2xl mt-4">The Library</h3>
+                        <p class="type text-sm mt-2 text-bone/80">Skills install like books. Read, revoke, return.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pull quote / act III -->
+        <section class="border-y hair-rule py-20 bg-noir2 vignette relative">
+            <div class="relative mx-auto max-w-4xl px-6 text-center lg:px-10">
+                <div class="caps">— Act III · Monologue —</div>
+                <blockquote class="display italic mt-8 text-3xl sm:text-5xl leading-[1.15]">
+                    "<span class="text-bone">They asked me what I kept.</span><br>
+                    <span class="text-ash">I told 'em the truth —</span><br>
+                    <span class="text-cigarette not-italic font-black uppercase tracking-tight">nothing but the receipts.</span>"
+                </blockquote>
+                <div class="caps mt-10">— Fade out —</div>
+            </div>
+        </section>
+
+        <!-- Policy: case notes -->
+        <section class="py-20">
+            <div class="mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="caps">— The Case Notes —</div>
+                <h2 class="display text-4xl sm:text-5xl italic mt-3">The dossier, such as it is.</h2>
+
+                <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <div class="border hair-rule p-5"><div class="caps">Data</div><div class="display italic text-xl mt-2">On the device.</div><div class="type text-xs mt-1 text-ash">No safehouse anywhere else.</div></div>
+                    <div class="border hair-rule p-5"><div class="caps">Keys</div><div class="display italic text-xl mt-2">In the keychain.</div><div class="type text-xs mt-1 text-ash">Locked, OS-issued.</div></div>
+                    <div class="border border-cigarette p-5"><div class="caps text-cigarette">Training</div><div class="display italic text-xl mt-2 text-cigarette">Not a word.</div><div class="type text-xs mt-1 text-ash">Off the record.</div></div>
+                    <div class="border hair-rule p-5"><div class="caps">Calls</div><div class="display italic text-xl mt-2">Direct to the source.</div><div class="type text-xs mt-1 text-ash">No middleman.</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-10 inline-flex items-center gap-2 border-b border-cigarette pb-0.5 text-cigarette hover:text-bone">Read the full dossier →</a>
+            </div>
+        </section>
+
+        <!-- Install: distribution -->
+        <section id="install" class="border-t hair-rule py-20 bg-noir2">
+            <div class="mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="caps">— Epilogue · Distribution —</div>
+                <h2 class="display text-4xl sm:text-5xl italic mt-3">Three prints, one script.</h2>
+                <div class="mt-10 grid gap-5 sm:grid-cols-3">
+                    <a href="#" class="group border hair-rule bg-noir p-8 hover:bg-smoke">
+                        <div class="flex items-center justify-between"><i class="fa-brands fa-apple text-3xl"></i><span class="caps">Reel I</span></div>
+                        <div class="display italic text-3xl mt-6">macOS</div>
+                        <div class="caps mt-2">arm64 · x86_64</div>
+                    </a>
+                    <a href="#" class="group border hair-rule bg-noir p-8 hover:bg-smoke">
+                        <div class="flex items-center justify-between"><i class="fa-brands fa-windows text-3xl"></i><span class="caps">Reel II</span></div>
+                        <div class="display italic text-3xl mt-6">Windows</div>
+                        <div class="caps mt-2">x86_64 · 10+</div>
+                    </a>
+                    <a href="#" class="group border hair-rule bg-noir p-8 hover:bg-smoke">
+                        <div class="flex items-center justify-between"><i class="fa-brands fa-linux text-3xl"></i><span class="caps">Reel III</span></div>
+                        <div class="display italic text-3xl mt-6">Linux</div>
+                        <div class="caps mt-2">x86_64 · arm64</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="reel-sprocket"></div>
+
+    <footer class="py-6 bg-noir">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> · MINS BOT · <span class="italic display">THE END</span></p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-cigarette">Privacy</a><a href="/terms.html" class="hover:text-cigarette">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-cigarette">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

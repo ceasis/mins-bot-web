@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 15 Nordic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { serif: ['Libre Baskerville','Georgia','serif'], sans: ['Plus Jakarta Sans','system-ui','sans-serif'] },
+            colors: {
+                nord: {
+                    bone:'#f5f1ea', sand:'#e8dcc6', stone:'#d8cbb0', sage:'#a8b5a0', sage2:'#8a9b80',
+                    terra:'#c9916c', deep:'#2e3a44', slate:'#5d6b75', ink:'#1f2830', rose:'#d4a5a5'
+                }
+            }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+        body { background:#f5f1ea; color:#1f2830; }
+        .serif { font-family:'Libre Baskerville',Georgia,serif; }
+        .display { font-family:'Libre Baskerville',serif; letter-spacing:-0.015em; line-height:1.08; }
+        .caps { font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:#5d6b75; }
+        .card { background:#fff; border-radius: 28px; }
+        .soft-border { border: 1px solid rgba(31,40,48,0.1); }
+        .hair { border-color: rgba(31,40,48,0.12); }
+        .switcher { font-family:'Plus Jakarta Sans',sans-serif; font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; background:#f5f1ea; color:#1f2830; border:1px solid #1f2830; border-radius:9999px; padding:.35rem .75rem; }
+        .pill { border-radius: 9999px; }
+        .blob-bg {
+            background:
+                radial-gradient(ellipse at 85% 15%, #e8dcc6 0, transparent 45%),
+                radial-gradient(ellipse at 15% 85%, #a8b5a0 0, transparent 40%),
+                #f5f1ea;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 backdrop-blur bg-nord-bone/85 border-b hair">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="h-9 w-9 rounded-full bg-nord-sage flex items-center justify-center text-nord-bone font-bold">m</span><span class="serif text-xl">Mins Bot</span></a>
+            <div class="flex items-center gap-5 caps">
+                <a href="#capabilities" class="hidden hover:text-nord-terra md:inline-block">Tools</a>
+                <a href="#install" class="hidden hover:text-nord-terra md:inline-block">Take home</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="blob-bg pt-16 pb-24 lg:pt-28 lg:pb-32">
+            <div class="mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="grid items-center gap-14 lg:grid-cols-12">
+                    <div class="lg:col-span-7">
+                        <div class="caps text-nord-sage2">— A calm companion</div>
+                        <h1 class="display mt-6 text-5xl text-nord-ink sm:text-6xl lg:text-7xl">
+                            A little helper,<br>
+                            <em class="text-nord-terra">slow-made</em><br>
+                            for your desk.
+                        </h1>
+                        <p class="mt-8 max-w-lg text-lg leading-relaxed text-nord-slate">
+                            Mins Bot is a small, quiet agent. It browses the web, tends to your files, writes replies — always on your machine, never through ours.
+                        </p>
+                        <div class="mt-10 flex flex-wrap items-center gap-4">
+                            <a href="#install" class="pill inline-flex items-center gap-3 bg-nord-deep px-8 py-4 text-sm font-semibold text-nord-bone hover:bg-nord-terra">Take it home <span aria-hidden>→</span></a>
+                            <a href="#capabilities" class="pill caps soft-border px-6 py-3 hover:border-nord-terra hover:text-nord-terra">Gentle walkthrough</a>
+                        </div>
+                        <div class="mt-12 flex flex-wrap items-center gap-6 caps text-nord-slate">
+                            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-nord-sage"></span>Local by default</span>
+                            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-nord-terra"></span>Zero telemetry</span>
+                            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-nord-rose"></span>Version 0.4.2</span>
+                        </div>
+                    </div>
+                    <!-- soft panel -->
+                    <div class="lg:col-span-5">
+                        <div class="card p-10 shadow-[0_20px_60px_-20px_rgba(46,58,68,0.15)]">
+                            <div class="flex items-center justify-between">
+                                <div class="caps">Today</div>
+                                <div class="caps text-nord-slate">Apr 18</div>
+                            </div>
+                            <div class="mt-6 space-y-4">
+                                <div class="flex items-center gap-4 pill bg-nord-sand/60 p-3"><span class="h-9 w-9 pill bg-nord-sage inline-flex items-center justify-center text-nord-bone"><i class="fa-solid fa-leaf"></i></span><div><div class="font-semibold text-nord-ink">Morning inbox sorted</div><div class="caps text-nord-slate">7 drafts ready · calmly</div></div></div>
+                                <div class="flex items-center gap-4 pill bg-nord-stone/50 p-3"><span class="h-9 w-9 pill bg-nord-terra inline-flex items-center justify-center text-nord-bone"><i class="fa-solid fa-folder"></i></span><div><div class="font-semibold text-nord-ink">Receipts filed</div><div class="caps text-nord-slate">4 moved to Documents</div></div></div>
+                                <div class="flex items-center gap-4 pill bg-nord-rose/30 p-3"><span class="h-9 w-9 pill bg-nord-rose inline-flex items-center justify-center text-nord-ink"><i class="fa-solid fa-mug-hot"></i></span><div><div class="font-semibold text-nord-ink">Ready when you are</div><div class="caps text-nord-slate">No hurry</div></div></div>
+                            </div>
+                            <div class="mt-6 caps text-nord-slate text-right">local · pid 41829</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="py-24">
+            <div class="mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="text-center mb-14 max-w-2xl mx-auto">
+                    <div class="caps text-nord-sage2">— Four gentle tools</div>
+                    <h2 class="display mt-4 text-4xl text-nord-ink sm:text-5xl">Enough to be useful. <em>Not a bit more.</em></h2>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="card soft-border p-8">
+                        <div class="h-12 w-12 pill bg-nord-sage/40 inline-flex items-center justify-center"><i class="fa-solid fa-compass text-nord-sage2"></i></div>
+                        <h3 class="serif mt-6 text-xl font-bold">Browse</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-nord-slate">Reads real pages for you, on your session.</p>
+                    </article>
+                    <article class="card soft-border p-8">
+                        <div class="h-12 w-12 pill bg-nord-terra/30 inline-flex items-center justify-center"><i class="fa-solid fa-folder-open text-nord-terra"></i></div>
+                        <h3 class="serif mt-6 text-xl font-bold">File</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-nord-slate">Organizes where you've allowed. Nowhere else.</p>
+                    </article>
+                    <article class="card soft-border p-8">
+                        <div class="h-12 w-12 pill bg-nord-rose/40 inline-flex items-center justify-center"><i class="fa-solid fa-envelope text-nord-ink"></i></div>
+                        <h3 class="serif mt-6 text-xl font-bold">Reply</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-nord-slate">Handles Slack, Gmail, Discord — in your voice.</p>
+                    </article>
+                    <article class="card soft-border p-8">
+                        <div class="h-12 w-12 pill bg-nord-stone inline-flex items-center justify-center"><i class="fa-solid fa-seedling text-nord-sage2"></i></div>
+                        <h3 class="serif mt-6 text-xl font-bold">Grow</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-nord-slate">Skills you install. Habits the agent learns.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="py-24 bg-nord-sand/50">
+            <div class="mx-auto max-w-4xl px-6 text-center lg:px-10">
+                <div class="caps text-nord-sage2">— Our quiet promise</div>
+                <h2 class="display mt-4 text-4xl text-nord-ink sm:text-5xl">Nothing leaves your desk <em>uninvited.</em></h2>
+                <div class="mt-12 grid gap-5 sm:grid-cols-2 text-left">
+                    <div class="card p-6 soft-border"><div class="caps">Data</div><div class="serif mt-2 text-xl font-bold">Rests at home.</div><div class="mt-1 text-sm text-nord-slate">On your device. Nowhere else.</div></div>
+                    <div class="card p-6 soft-border"><div class="caps">Keys</div><div class="serif mt-2 text-xl font-bold">In the OS keychain.</div><div class="mt-1 text-sm text-nord-slate">Never synced. Never read.</div></div>
+                    <div class="card p-6 soft-border"><div class="caps text-nord-terra">Training</div><div class="serif mt-2 text-xl font-bold text-nord-terra">None.</div><div class="mt-1 text-sm text-nord-slate">Your data isn't a model's breakfast.</div></div>
+                    <div class="card p-6 soft-border"><div class="caps">Model calls</div><div class="serif mt-2 text-xl font-bold">Direct.</div><div class="mt-1 text-sm text-nord-slate">You pick the provider, we step aside.</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-10 inline-block pill soft-border px-6 py-3 hover:border-nord-terra hover:text-nord-terra">Read the full promise →</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-24">
+            <div class="mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <div class="caps text-nord-sage2">— Take it with you</div>
+                <h2 class="display mt-4 text-4xl sm:text-5xl">Three homes, one binary.</h2>
+                <div class="mt-14 grid gap-5 sm:grid-cols-3">
+                    <a href="#" class="card group soft-border p-8 hover:bg-nord-sand/50"><i class="fa-brands fa-apple text-3xl text-nord-ink"></i><div class="serif mt-5 text-2xl font-bold">macOS</div><div class="caps mt-2">arm64 · x86_64</div></a>
+                    <a href="#" class="card group soft-border p-8 hover:bg-nord-sand/50"><i class="fa-brands fa-windows text-3xl text-nord-ink"></i><div class="serif mt-5 text-2xl font-bold">Windows</div><div class="caps mt-2">x86_64 · 10+</div></a>
+                    <a href="#" class="card group soft-border p-8 hover:bg-nord-sand/50"><i class="fa-brands fa-linux text-3xl text-nord-ink"></i><div class="serif mt-5 text-2xl font-bold">Linux</div><div class="caps mt-2">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t hair py-8">
+        <div class="mx-auto max-w-6xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> · Mins Bot · slow software</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-nord-terra">Privacy</a><a href="/terms.html" class="hover:text-nord-terra">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-nord-terra">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

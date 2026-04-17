@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 18 Receipt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { tty: ['VT323','monospace'], mono: ['Courier Prime','Courier New','monospace'] },
+            colors: { paper:'#f5f0e0', paper2:'#ebe4d0', ink:'#0f0e0c', stamp:'#b92222' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Courier Prime', 'Courier New', monospace; }
+        body {
+            background: #d4ccb4;
+            color: #0f0e0c;
+            background-image:
+                radial-gradient(#bcae90 1px, transparent 1.5px),
+                radial-gradient(#bcae90 1px, transparent 1.5px);
+            background-size: 8px 8px;
+            background-position: 0 0, 4px 4px;
+        }
+        .paper {
+            background: #f5f0e0;
+            background-image:
+                linear-gradient(90deg, transparent 0, rgba(15,14,12,0.02) 50%, transparent 100%),
+                radial-gradient(circle at 30% 20%, rgba(15,14,12,0.03), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(15,14,12,0.04), transparent 40%);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .tty { font-family:'VT323',monospace; }
+        .dash-rule { border-top: 1px dashed #0f0e0c; }
+        .double-rule { border-top: 3px double #0f0e0c; }
+        .stamp {
+            display: inline-block;
+            border: 3px double #b92222;
+            color: #b92222;
+            padding: .4rem 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            font-size: .75rem;
+            transform: rotate(-6deg);
+        }
+        .barcode {
+            background: repeating-linear-gradient(90deg, #0f0e0c 0 2px, transparent 2px 4px, #0f0e0c 4px 5px, transparent 5px 9px, #0f0e0c 9px 12px, transparent 12px 14px);
+            height: 38px;
+        }
+        .torn-edge-top {
+            background:
+                radial-gradient(circle at 6px 0, transparent 5px, #f5f0e0 5px) 0 0/12px 10px repeat-x;
+            height: 10px;
+        }
+        .torn-edge-bot {
+            background:
+                radial-gradient(circle at 6px 10px, transparent 5px, #f5f0e0 5px) 0 0/12px 10px repeat-x;
+            height: 10px;
+        }
+        .caps { text-transform: uppercase; letter-spacing: .08em; }
+        .switcher { font-family:'Courier Prime',monospace; font-size:.85rem; background:#f5f0e0; color:#0f0e0c; border:1px solid #0f0e0c; padding:.2rem .4rem; }
+    </style>
+</head>
+<body class="min-h-screen py-10 px-4 flex items-start justify-center">
+    <div class="w-full max-w-md">
+        <!-- Floating switcher above the receipt -->
+        <div class="flex justify-between items-center mb-4 text-xs text-ink/70">
+            <span class="caps">// switch template</span>
+            <span data-design-switcher data-select-class="switcher"></span>
+        </div>
+
+        <!-- Receipt -->
+        <div class="relative">
+            <div class="torn-edge-top"></div>
+            <div class="paper px-8 py-6">
+                <!-- Header -->
+                <header class="text-center">
+                    <div class="tty text-5xl leading-none">*** MINS BOT ***</div>
+                    <div class="mt-1 text-xs caps">DESKTOP AGENT CO.</div>
+                    <div class="mt-1 text-[11px] caps text-ink/70">LOCAL · ON-DEVICE · NO SERVER</div>
+                    <div class="mt-3 text-[11px]">──── APR 18, 2026 ────</div>
+                    <div class="text-[11px]">RECEIPT № 00042 · LOT 0.4.2</div>
+                </header>
+
+                <div class="dash-rule my-4"></div>
+
+                <!-- Item: the product -->
+                <section class="text-sm leading-relaxed">
+                    <div class="flex justify-between"><span class="caps font-bold">ITEM</span><span class="caps font-bold">QTY</span></div>
+                    <div class="flex justify-between mt-2"><span>Desktop AI Agent</span><span>x1</span></div>
+                    <div class="text-[11px] text-ink/70 pl-1">browses, files, messages,<br>runs extensible skills</div>
+                </section>
+
+                <div class="dash-rule my-4"></div>
+
+                <!-- Capabilities as "line items" -->
+                <section class="text-sm">
+                    <div class="caps font-bold mb-2">LINE ITEMS</div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between"><span>01 Browse .........</span><span>LOCAL</span></div>
+                        <div class="text-[11px] text-ink/70 pl-3">chromium / per-task</div>
+                        <div class="flex justify-between"><span>02 Filesystem .....</span><span>LOCAL</span></div>
+                        <div class="text-[11px] text-ink/70 pl-3">allow-list / audit log</div>
+                        <div class="flex justify-between"><span>03 Messaging ......</span><span>LOCAL</span></div>
+                        <div class="text-[11px] text-ink/70 pl-3">os keychain / direct</div>
+                        <div class="flex justify-between"><span>04 Skills .........</span><span>LOCAL</span></div>
+                        <div class="text-[11px] text-ink/70 pl-3">manifest + code</div>
+                    </div>
+                </section>
+
+                <div class="dash-rule my-4"></div>
+
+                <!-- "Subtotal" / policy -->
+                <section class="text-sm">
+                    <div class="caps font-bold mb-2">DATA EXPORT</div>
+                    <div class="space-y-1">
+                        <div class="flex justify-between"><span>At rest ...........</span><span>0 B</span></div>
+                        <div class="flex justify-between"><span>Telemetry .........</span><span>0 B</span></div>
+                        <div class="flex justify-between"><span>Training use ......</span><span>0 B</span></div>
+                        <div class="flex justify-between"><span>3rd-party sent ....</span><span>0 B</span></div>
+                    </div>
+                    <div class="double-rule mt-3 pt-2">
+                        <div class="flex justify-between font-bold text-lg"><span class="caps">TOTAL SENT</span><span>$0.00</span></div>
+                    </div>
+                </section>
+
+                <div class="dash-rule my-4"></div>
+
+                <!-- Stamp & thanks -->
+                <section class="text-center">
+                    <div class="stamp inline-block">PAID IN FULL · KEEP PRIVATE</div>
+                    <div class="mt-4 text-[11px] caps">DOWNLOAD BELOW</div>
+                </section>
+
+                <!-- Install -->
+                <section class="mt-4 text-sm">
+                    <a href="#" class="flex justify-between border-t border-dashed border-ink/70 pt-2 hover:bg-paper2"><span class="caps flex items-center gap-2"><i class="fa-brands fa-apple"></i> macOS · dmg</span><span class="caps">↓</span></a>
+                    <a href="#" class="flex justify-between border-t border-dashed border-ink/70 pt-2 mt-2 hover:bg-paper2"><span class="caps flex items-center gap-2"><i class="fa-brands fa-windows"></i> Windows · msi</span><span class="caps">↓</span></a>
+                    <a href="#" class="flex justify-between border-t border-dashed border-ink/70 pt-2 mt-2 hover:bg-paper2"><span class="caps flex items-center gap-2"><i class="fa-brands fa-linux"></i> Linux · appimage</span><span class="caps">↓</span></a>
+                </section>
+
+                <div class="dash-rule my-4"></div>
+
+                <!-- CTA -->
+                <section class="text-center">
+                    <div class="caps text-sm">>>> THANK YOU <<<</div>
+                    <div class="mt-1 text-[11px] text-ink/70">please come again</div>
+                    <a href="/privacy.html" class="block mt-4 text-xs caps underline">read full policy →</a>
+                </section>
+
+                <!-- Barcode -->
+                <div class="mt-5">
+                    <div class="barcode"></div>
+                    <div class="mt-1 text-center tty text-lg">0 4182026 00042 4</div>
+                </div>
+
+                <!-- Footer links -->
+                <div class="dash-rule mt-4 pt-2 text-[11px] caps text-ink/70 flex justify-between">
+                    <a href="/privacy.html" class="underline hover:text-ink">PRIVACY</a>
+                    <a href="/terms.html" class="underline hover:text-ink">TERMS</a>
+                    <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="underline hover:text-ink">GITHUB</a>
+                </div>
+                <div class="mt-2 text-[10px] caps text-center text-ink/60">© <span id="year"></span> · MINS BOT · END OF RECEIPT</div>
+            </div>
+            <div class="torn-edge-bot"></div>
+        </div>
+    </div>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

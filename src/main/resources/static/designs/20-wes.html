@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 20 Wes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Archer:wght@400;500&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Playfair Display','Georgia','serif'], sans: ['Archivo','system-ui','sans-serif'] },
+            colors: {
+                w: { peach:'#f4c4a0', butter:'#f5e2a8', mint:'#d4e4c8', pink:'#f0b7ba', sky:'#b5c8d9', plum:'#6b4a5c', ink:'#3a2a2e', cream:'#faf3e0', navy:'#2a3a52' }
+            }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Archivo', system-ui, sans-serif; }
+        body { background:#faf3e0; color:#3a2a2e; }
+        .display { font-family:'Playfair Display','Georgia',serif; }
+        .caps { font-family:'Archivo',sans-serif; font-size:.72rem; letter-spacing:.3em; text-transform:uppercase; color:#6b4a5c; font-weight:500; }
+        .frame {
+            border: 2px solid #3a2a2e;
+            padding: 2.5rem 1.5rem;
+            position: relative;
+        }
+        .frame::before, .frame::after {
+            content:''; position:absolute; width:calc(100% - 20px); height:calc(100% - 20px); border:1px solid #3a2a2e; top:10px; left:10px; pointer-events:none;
+        }
+        .ornament { font-size: 1.25rem; color:#6b4a5c; letter-spacing:.4em; }
+        .chapter-num { font-family:'Playfair Display',serif; font-size:5rem; font-style:italic; color:#6b4a5c; }
+        .switcher { font-family:'Archivo',sans-serif; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:#faf3e0; color:#3a2a2e; border:1px solid #3a2a2e; padding:.35rem .6rem; }
+        .plate { background: #faf3e0; border: 1px solid #3a2a2e; padding: .3rem .8rem; font-family:'Archivo'; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; font-weight:500; display:inline-block; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 bg-w-cream/95 backdrop-blur border-b border-w-ink/30">
+        <nav class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="caps">A</span><span class="display italic text-2xl">Mins&nbsp;Bot</span><span class="caps">Production</span></a>
+            <div class="flex items-center gap-4 caps">
+                <a href="#capabilities" class="hidden hover:text-w-plum md:inline-block">Ch. II</a>
+                <a href="#install" class="hidden hover:text-w-plum md:inline-block">Ch. V</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Chapter 1 - opening frame -->
+        <section class="pt-20 pb-24 px-6 lg:px-10">
+            <div class="mx-auto max-w-4xl text-center">
+                <div class="caps">Prologue</div>
+                <div class="chapter-num">I</div>
+                <div class="ornament">✦ ✦ ✦</div>
+                <h1 class="display mt-6 text-5xl sm:text-7xl font-bold leading-[1.05]">
+                    A Brief, Polite History<br>
+                    of <em class="italic font-normal">Desktop Agents</em>
+                </h1>
+                <div class="mt-6 flex items-center justify-center gap-4 caps text-w-plum">
+                    <span class="flex-1 max-w-24 border-t border-w-ink"></span>
+                    <span>Presented in Five Chapters</span>
+                    <span class="flex-1 max-w-24 border-t border-w-ink"></span>
+                </div>
+                <p class="mt-10 mx-auto max-w-xl text-lg leading-relaxed">
+                    Mins Bot is a desktop AI agent. It browses the web, arranges files, and answers correspondence — entirely on the machine it lives upon. It keeps meticulous notes, and shares none of them.
+                </p>
+                <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <a href="#install" class="display italic bg-w-navy text-w-cream px-10 py-3 text-xl hover:bg-w-plum">Obtain a copy →</a>
+                    <a href="#capabilities" class="caps border-b border-w-ink pb-1 hover:text-w-plum">Continue reading</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pastel palette strip (symmetrical) -->
+        <section class="grid grid-cols-5">
+            <div class="h-8 bg-w-peach"></div>
+            <div class="h-8 bg-w-butter"></div>
+            <div class="h-8 bg-w-mint"></div>
+            <div class="h-8 bg-w-pink"></div>
+            <div class="h-8 bg-w-sky"></div>
+        </section>
+
+        <!-- Chapter 2 - Capabilities -->
+        <section id="capabilities" class="py-24 px-6 lg:px-10 bg-w-butter/40">
+            <div class="mx-auto max-w-5xl text-center">
+                <div class="caps">Chapter</div>
+                <div class="chapter-num">II</div>
+                <h2 class="display italic text-4xl sm:text-5xl">The Four Attributes of the Agent.</h2>
+                <div class="mt-4 ornament">✦</div>
+                <div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                    <article class="frame bg-w-peach/40 text-center">
+                        <div class="plate absolute -top-3 left-1/2 -translate-x-1/2">Fig. A</div>
+                        <i class="fa-solid fa-compass text-3xl text-w-navy"></i>
+                        <h3 class="display italic mt-4 text-2xl">Browses</h3>
+                        <p class="mt-2 text-sm">with gentle curiosity, the pages of the web.</p>
+                    </article>
+                    <article class="frame bg-w-mint/50 text-center">
+                        <div class="plate absolute -top-3 left-1/2 -translate-x-1/2">Fig. B</div>
+                        <i class="fa-solid fa-folder-open text-3xl text-w-navy"></i>
+                        <h3 class="display italic mt-4 text-2xl">Arranges</h3>
+                        <p class="mt-2 text-sm">files neatly, only where invited to do so.</p>
+                    </article>
+                    <article class="frame bg-w-pink/40 text-center">
+                        <div class="plate absolute -top-3 left-1/2 -translate-x-1/2">Fig. C</div>
+                        <i class="fa-solid fa-envelope text-3xl text-w-navy"></i>
+                        <h3 class="display italic mt-4 text-2xl">Replies</h3>
+                        <p class="mt-2 text-sm">to the day's correspondence, in one's own hand.</p>
+                    </article>
+                    <article class="frame bg-w-sky/50 text-center">
+                        <div class="plate absolute -top-3 left-1/2 -translate-x-1/2">Fig. D</div>
+                        <i class="fa-solid fa-book text-3xl text-w-navy"></i>
+                        <h3 class="display italic mt-4 text-2xl">Learns</h3>
+                        <p class="mt-2 text-sm">the trades one installs in its lovely library.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ch III - Pull quote -->
+        <section class="py-24 px-6 lg:px-10">
+            <div class="mx-auto max-w-3xl text-center">
+                <div class="caps">Chapter</div>
+                <div class="chapter-num">III</div>
+                <div class="ornament mt-2">— ✦ —</div>
+                <blockquote class="display italic mt-10 text-3xl sm:text-4xl leading-[1.3]">
+                    "I should be most obliged if nothing of mine ever left the premises."
+                </blockquote>
+                <div class="caps mt-8">— The User, Privately</div>
+            </div>
+        </section>
+
+        <!-- Ch IV - Policy -->
+        <section class="py-24 px-6 lg:px-10 bg-w-mint/40">
+            <div class="mx-auto max-w-4xl text-center">
+                <div class="caps">Chapter</div>
+                <div class="chapter-num">IV</div>
+                <h2 class="display italic text-4xl sm:text-5xl">A Register of Things Not Taken.</h2>
+                <div class="mt-12 grid gap-4 sm:grid-cols-2">
+                    <div class="frame bg-w-cream text-left"><div class="caps">Inventory § A</div><div class="display italic mt-2 text-xl">Data — kept at home.</div></div>
+                    <div class="frame bg-w-cream text-left"><div class="caps">Inventory § B</div><div class="display italic mt-2 text-xl">Keys — in the keychain.</div></div>
+                    <div class="frame bg-w-cream text-left"><div class="caps text-w-plum">Inventory § C</div><div class="display italic mt-2 text-xl text-w-plum">Training — abstained.</div></div>
+                    <div class="frame bg-w-cream text-left"><div class="caps">Inventory § D</div><div class="display italic mt-2 text-xl">Calls — direct.</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-10 inline-block border-b border-w-ink pb-1 hover:text-w-plum">The Complete Register →</a>
+            </div>
+        </section>
+
+        <!-- Ch V - Install -->
+        <section id="install" class="py-24 px-6 lg:px-10">
+            <div class="mx-auto max-w-4xl text-center">
+                <div class="caps">Chapter</div>
+                <div class="chapter-num">V</div>
+                <h2 class="display italic text-4xl sm:text-5xl">A Choice of Three Editions.</h2>
+                <div class="mt-14 grid gap-6 sm:grid-cols-3">
+                    <a href="#" class="frame group bg-w-peach/40 hover:bg-w-peach/70 text-center"><i class="fa-brands fa-apple text-3xl text-w-navy"></i><div class="display italic mt-4 text-2xl">macOS</div><div class="caps mt-1">First Printing</div></a>
+                    <a href="#" class="frame group bg-w-butter/50 hover:bg-w-butter text-center"><i class="fa-brands fa-windows text-3xl text-w-navy"></i><div class="display italic mt-4 text-2xl">Windows</div><div class="caps mt-1">Second Printing</div></a>
+                    <a href="#" class="frame group bg-w-sky/50 hover:bg-w-sky text-center"><i class="fa-brands fa-linux text-3xl text-w-navy"></i><div class="display italic mt-4 text-2xl">Linux</div><div class="caps mt-1">Third Printing</div></a>
+                </div>
+                <div class="mt-16 ornament">FIN.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-w-ink/30 py-8">
+        <div class="mx-auto max-w-5xl px-6 lg:px-10 flex flex-col items-center justify-between gap-3 sm:flex-row caps">
+            <p>© <span id="year"></span> · Mins Bot · Volume I</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-w-plum">Privacy</a><a href="/terms.html" class="hover:text-w-plum">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-w-plum">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

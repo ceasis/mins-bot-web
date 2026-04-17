@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 19 Zine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Special+Elite&family=Bungee+Shade&family=Rubik+Mono+One&family=Abril+Fatface&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: {
+                slab: ['Archivo Black','Impact','sans-serif'],
+                type: ['Special Elite','Courier','monospace'],
+                shade: ['Bungee Shade','cursive'],
+                mono1: ['Rubik Mono One','monospace'],
+                display: ['Abril Fatface','serif'],
+                mono: ['IBM Plex Mono','monospace'],
+            },
+            colors: { paper:'#efe9d8', paper2:'#e2d9c0', ink:'#0a0a0a', blood:'#c72525', tape:'#f4d06f', tapepink:'#ff99aa', stamp:'#2e5eaa' }
+        }}}
+    </script>
+    <style>
+        body { background:#efe9d8; color:#0a0a0a; font-family:'Special Elite', monospace; }
+        .paper-grain {
+            background-image:
+                radial-gradient(rgba(10,10,10,0.04) 1px, transparent 1.5px),
+                radial-gradient(rgba(10,10,10,0.03) 1px, transparent 1.5px);
+            background-size: 3px 3px, 7px 7px;
+        }
+        .tape {
+            position: absolute;
+            background: #f4d06f;
+            opacity: .85;
+            box-shadow: 2px 2px 4px rgba(0,0,0,.15);
+        }
+        .tape-p { background: #ff99aa; }
+        .xerox {
+            filter: contrast(1.1) brightness(0.98);
+            background:
+                repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0 1px, transparent 1px 2px);
+        }
+        .stamp-round {
+            border: 3px double #c72525;
+            color: #c72525;
+            border-radius: 9999px;
+            padding: .5rem 1.2rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: .15em;
+            font-size: .75rem;
+            display: inline-block;
+            transform: rotate(-8deg);
+            font-family:'Special Elite';
+        }
+        .stamp-rect {
+            border: 3px solid #c72525;
+            color: #c72525;
+            padding: .4rem 1rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: .15em;
+            display: inline-block;
+            transform: rotate(2deg);
+            font-family:'Archivo Black';
+        }
+        .scratchy { filter: url('#roughen'); }
+        .highlight-bar { background: #000; color: #efe9d8; padding: .1rem .3rem; }
+        .switcher { font-family:'Special Elite',monospace; font-size:.8rem; text-transform:uppercase; background:#efe9d8; color:#0a0a0a; border:2px solid #0a0a0a; padding:.2rem .4rem; box-shadow: 3px 3px 0 #0a0a0a; }
+        .card-shadow { box-shadow: 4px 4px 0 #0a0a0a; }
+        .asterisk-divider { background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'><text x='50' y='15' text-anchor='middle' font-family='monospace' font-size='20' font-weight='900'>✱ ✱ ✱</text></svg>") no-repeat center/auto 20px; height:20px; }
+    </style>
+</head>
+<body class="min-h-screen paper-grain">
+    <!-- sticky switcher/nav -->
+    <header class="sticky top-0 z-50 bg-paper/95 backdrop-blur border-b-4 border-ink">
+        <nav class="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
+            <a href="/" class="flex items-center gap-2">
+                <span class="slab text-xl bg-ink text-paper px-2">MINS</span><span class="display text-2xl italic">bot</span><span class="text-xs type">issue #19</span>
+            </a>
+            <div class="flex items-center gap-3 text-xs type">
+                <a href="#capabilities" class="hidden hover:text-blood md:inline-block">specs!</a>
+                <a href="#install" class="hidden hover:text-blood md:inline-block">grab it</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-6 lg:px-10 py-10 relative">
+        <!-- decorative tape -->
+        <span class="tape tape-p top-16 -left-4 w-32 h-6 -rotate-12"></span>
+        <span class="tape top-40 right-4 w-24 h-5 rotate-6"></span>
+
+        <!-- Hero: ransom-note headline -->
+        <section class="relative">
+            <div class="flex items-baseline gap-2 mb-4"><span class="stamp-rect text-xs">EXPOSÉ</span><span class="text-xs type">— spring 2026</span></div>
+            <h1 class="leading-none select-none">
+                <span class="display text-[6rem] sm:text-[8rem] lg:text-[11rem] leading-[0.9] inline-block -rotate-2">your</span>
+                <span class="slab text-[5rem] sm:text-[7rem] lg:text-[10rem] leading-[0.9] inline-block rotate-1 bg-blood text-paper px-3 align-top">DESKTOP</span>
+                <span class="shade text-[5rem] sm:text-[7rem] lg:text-[10rem] leading-[0.9] inline-block block">is yours.</span>
+            </h1>
+            <div class="mt-10 max-w-xl bg-paper2 border-2 border-ink p-5 card-shadow rotate-[-1deg]">
+                <div class="type text-xs mb-2">// manifesto</div>
+                <p class="text-lg leading-relaxed">
+                    An <span class="highlight-bar">AI agent</span> that lives on <em>your</em> machine. Not theirs.<br>
+                    Browses. Files. Messages. Runs skills. <span class="underline decoration-blood decoration-4">Ships NOTHING home</span>.
+                </p>
+            </div>
+            <div class="mt-10 flex flex-wrap items-center gap-4">
+                <a href="#install" class="slab bg-ink text-paper px-8 py-4 card-shadow text-xl uppercase hover:bg-blood">★ grab it now</a>
+                <a href="#capabilities" class="type text-lg underline decoration-blood hover:text-blood">see what it does →</a>
+                <span class="stamp-round">diy · local only</span>
+            </div>
+        </section>
+
+        <div class="asterisk-divider my-16"></div>
+
+        <!-- Capabilities: collage cards -->
+        <section id="capabilities" class="relative">
+            <span class="tape top-0 right-10 w-28 h-6 rotate-3"></span>
+            <h2 class="slab text-5xl uppercase mb-2">WHAT IT DOES</h2>
+            <div class="type text-sm mb-8">listen up →</div>
+
+            <div class="grid gap-6 md:grid-cols-2">
+                <article class="relative bg-paper2 border-2 border-ink p-5 card-shadow rotate-[-1deg]">
+                    <span class="tape tape-p -top-4 left-6 w-16 h-5 -rotate-6"></span>
+                    <div class="slab text-3xl uppercase">01 / Browse</div>
+                    <p class="mt-2 text-sm leading-relaxed">reads the real web <span class="highlight-bar">under YOUR session</span>. chromium. per-task sandbox. no weird proxies.</p>
+                </article>
+                <article class="relative bg-paper2 border-2 border-ink p-5 card-shadow rotate-[1deg]">
+                    <span class="tape -top-4 right-6 w-16 h-5 rotate-6"></span>
+                    <div class="display text-3xl">02 / File.</div>
+                    <p class="mt-2 text-sm leading-relaxed">tends to the paths you OK. logs every move in a plain local file. easy undo.</p>
+                </article>
+                <article class="relative bg-paper2 border-2 border-ink p-5 card-shadow rotate-[1deg]">
+                    <span class="tape -top-4 left-6 w-16 h-5 rotate-3"></span>
+                    <div class="shade text-3xl">03 / SEND.</div>
+                    <p class="mt-2 text-sm leading-relaxed">slack, gmail, discord. <span class="bg-blood text-paper px-1 font-bold">your tokens</span>, your keychain, your rules.</p>
+                </article>
+                <article class="relative bg-paper2 border-2 border-ink p-5 card-shadow rotate-[-1deg]">
+                    <span class="tape tape-p -top-4 right-6 w-16 h-5 -rotate-3"></span>
+                    <div class="mono1 text-3xl">04 SKILL.</div>
+                    <p class="mt-2 text-sm leading-relaxed">installable. composable. remix as much as you want. bring your own or pin a registry.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="asterisk-divider my-16"></div>
+
+        <!-- Policy -->
+        <section class="relative">
+            <div class="type text-sm mb-2">// IMPORTANT</div>
+            <h2 class="slab text-5xl sm:text-7xl uppercase">WE COLLECT <span class="bg-blood text-paper px-3 rotate-1 inline-block">NADA.</span></h2>
+            <div class="mt-8 grid gap-4 sm:grid-cols-2">
+                <div class="border-2 border-ink p-4 bg-paper card-shadow rotate-[-1deg] flex items-center gap-4"><div class="slab text-3xl">✗</div><div><div class="type text-xs uppercase">Data at rest</div><div class="text-lg"><strong>on your device. full stop.</strong></div></div></div>
+                <div class="border-2 border-ink p-4 bg-paper card-shadow rotate-[1deg] flex items-center gap-4"><div class="slab text-3xl">✗</div><div><div class="type text-xs uppercase">Credentials</div><div class="text-lg"><strong>OS keychain only.</strong></div></div></div>
+                <div class="border-2 border-blood p-4 bg-paper card-shadow rotate-[1deg] flex items-center gap-4"><div class="slab text-3xl text-blood">✗</div><div><div class="type text-xs uppercase text-blood">Training use</div><div class="text-lg"><strong class="text-blood">NONE. EVER.</strong></div></div></div>
+                <div class="border-2 border-ink p-4 bg-paper card-shadow rotate-[-1deg] flex items-center gap-4"><div class="slab text-3xl">✗</div><div><div class="type text-xs uppercase">Model calls</div><div class="text-lg"><strong>direct to the provider.</strong></div></div></div>
+            </div>
+            <a href="/privacy.html" class="mt-8 inline-block slab text-lg uppercase underline decoration-blood decoration-4 underline-offset-4 hover:text-blood">the whole deal →</a>
+        </section>
+
+        <div class="asterisk-divider my-16"></div>
+
+        <!-- Install -->
+        <section id="install" class="relative">
+            <span class="tape bottom-24 -right-6 w-28 h-6 rotate-6"></span>
+            <h2 class="display text-5xl mb-2">grab it.</h2>
+            <div class="type text-sm mb-8">// three flavors</div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <a href="#" class="block border-2 border-ink bg-paper p-6 card-shadow rotate-[-1deg] hover:bg-tape"><i class="fa-brands fa-apple text-4xl"></i><div class="slab mt-4 text-2xl uppercase">macOS</div><div class="type text-xs mt-1">arm64 · x86_64</div></a>
+                <a href="#" class="block border-2 border-ink bg-paper p-6 card-shadow rotate-[1deg] hover:bg-tape"><i class="fa-brands fa-windows text-4xl"></i><div class="slab mt-4 text-2xl uppercase">Windows</div><div class="type text-xs mt-1">x86_64 · 10+</div></a>
+                <a href="#" class="block border-2 border-ink bg-paper p-6 card-shadow rotate-[-1deg] hover:bg-tape"><i class="fa-brands fa-linux text-4xl"></i><div class="slab mt-4 text-2xl uppercase">Linux</div><div class="type text-xs mt-1">x86_64 · arm64</div></a>
+            </div>
+        </section>
+
+        <footer class="mt-20 border-t-4 border-ink pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs type">
+            <p>© <span id="year"></span> · photocopied in the kitchen · issue 19</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="underline hover:text-blood">privacy</a><a href="/terms.html" class="underline hover:text-blood">terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="underline hover:text-blood">github</a></div>
+        </footer>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 14 Color Swatch</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+            colors: {
+                chip: { cobalt:'#1e47c4', flame:'#e84c1f', canary:'#f5c518', jade:'#0d8a65', bone:'#f2eee5', obsidian:'#161616' }
+            }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body { background:#f2eee5; color:#161616; }
+        .chip-label { border-top: 1px solid rgba(0,0,0,.2); padding: 1rem 1.5rem; background: #f2eee5; color:#161616; display:flex; justify-content:space-between; align-items:baseline; font-family:'JetBrains Mono',monospace; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; }
+        .chip-label-dark { border-top: 1px solid rgba(255,255,255,.2); background:#161616; color:#f2eee5; }
+        .display { font-weight: 900; letter-spacing: -0.04em; line-height: 0.9; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .switcher { font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; background:#f2eee5; color:#161616; border:1px solid #161616; padding:.3rem .5rem; }
+        .caps { font-size:.72rem; letter-spacing:.15em; text-transform:uppercase; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 border-b border-obsidian/20 bg-chip-bone/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="h-5 w-5 bg-chip-flame"></span><span class="h-5 w-5 bg-chip-cobalt"></span><span class="h-5 w-5 bg-chip-canary"></span><span class="ml-2 font-bold tracking-tight">MINS BOT · COLLECTION No. 14</span></a>
+            <div class="flex items-center gap-5 caps">
+                <a href="#capabilities" class="hidden hover:text-chip-flame md:inline-block">Chips</a>
+                <a href="#install" class="hidden hover:text-chip-flame md:inline-block">Stock</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Chip 01 — Cobalt · Hero -->
+        <section class="min-h-[95vh] flex flex-col">
+            <div class="flex-1 bg-chip-cobalt text-chip-bone flex items-end p-10 lg:p-20">
+                <div class="max-w-4xl">
+                    <div class="caps opacity-70">Chip 01 / 05 · Spring 2026</div>
+                    <h1 class="display mt-6 text-6xl sm:text-8xl lg:text-[10rem]">
+                        Made<br>Local.
+                    </h1>
+                    <p class="mt-10 max-w-xl text-lg">Mins Bot is a desktop agent — a small, disciplined piece of software that browses, files, and replies on your behalf, without ever holding your data away from you.</p>
+                    <div class="mt-10 flex flex-wrap items-center gap-4">
+                        <a href="#install" class="bg-chip-bone text-obsidian px-8 py-4 font-bold hover:bg-chip-canary">Acquire →</a>
+                        <a href="#capabilities" class="caps border-b-2 border-chip-bone pb-1">See the collection</a>
+                    </div>
+                </div>
+            </div>
+            <div class="chip-label">
+                <span>Mins Bot / Cobalt 2715</span>
+                <span>CMYK 100·70·0·15 · #1E47C4</span>
+                <span class="hidden sm:inline">Intended for: autonomous browsing · local file management</span>
+                <span>Lot 0.4.2</span>
+            </div>
+        </section>
+
+        <!-- Chip 02 — Flame · Capabilities intro -->
+        <section id="capabilities" class="min-h-[60vh] flex flex-col">
+            <div class="flex-1 bg-chip-flame text-chip-bone flex items-center p-10 lg:p-20">
+                <div class="max-w-4xl">
+                    <div class="caps opacity-80">Chip 02 / 05</div>
+                    <h2 class="display mt-6 text-5xl sm:text-7xl">Four primitives.</h2>
+                    <p class="mt-6 max-w-lg text-lg">Nothing exotic — browse, file, message, skill. The trick is leaving it where it is.</p>
+                </div>
+            </div>
+            <div class="chip-label">
+                <span>Capabilities / Flame 17-1462</span>
+                <span>CMYK 0·75·95·5 · #E84C1F</span>
+                <span class="hidden sm:inline">Intended for: grabbing attention</span>
+                <span>Lot II</span>
+            </div>
+        </section>
+
+        <!-- Capability grid (neutral) -->
+        <section class="bg-chip-bone">
+            <div class="mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-obsidian/20">
+                <article class="border-b lg:border-b-0 lg:border-r border-obsidian/20 p-10">
+                    <div class="mono text-xs tracking-widest text-obsidian/60">01 · Browse</div>
+                    <div class="mt-6 h-24 w-24 bg-chip-cobalt"></div>
+                    <h3 class="mt-5 text-2xl font-bold">Autonomous browsing</h3>
+                    <p class="mt-2 text-sm text-obsidian/70">Chromium, your session, real pages.</p>
+                </article>
+                <article class="border-b lg:border-b-0 lg:border-r border-obsidian/20 p-10">
+                    <div class="mono text-xs tracking-widest text-obsidian/60">02 · File</div>
+                    <div class="mt-6 h-24 w-24 bg-chip-jade"></div>
+                    <h3 class="mt-5 text-2xl font-bold">Filesystem access</h3>
+                    <p class="mt-2 text-sm text-obsidian/70">Allow-list scoped. Local audit log.</p>
+                </article>
+                <article class="border-b sm:border-b-0 sm:border-r border-obsidian/20 p-10">
+                    <div class="mono text-xs tracking-widest text-obsidian/60">03 · Message</div>
+                    <div class="mt-6 h-24 w-24 bg-chip-canary"></div>
+                    <h3 class="mt-5 text-2xl font-bold">Messaging</h3>
+                    <p class="mt-2 text-sm text-obsidian/70">Slack, Gmail, Discord. Tokens in OS keychain.</p>
+                </article>
+                <article class="p-10">
+                    <div class="mono text-xs tracking-widest text-obsidian/60">04 · Skill</div>
+                    <div class="mt-6 h-24 w-24 bg-chip-flame"></div>
+                    <h3 class="mt-5 text-2xl font-bold">Skills inventory</h3>
+                    <p class="mt-2 text-sm text-obsidian/70">Manifest + code. Local or registry.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Chip 03 — Obsidian · Policy -->
+        <section class="min-h-[80vh] flex flex-col">
+            <div class="flex-1 bg-chip-obsidian text-chip-bone flex items-center p-10 lg:p-20">
+                <div class="max-w-4xl w-full">
+                    <div class="caps opacity-70">Chip 03 / 05</div>
+                    <h2 class="display mt-6 text-5xl sm:text-7xl">We retain nothing.</h2>
+                    <div class="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                        <div><div class="h-12 w-12 bg-chip-bone"></div><div class="mono mt-4 text-xs opacity-70">At rest</div><div class="mt-1 text-lg font-bold">On device</div></div>
+                        <div><div class="h-12 w-12 bg-chip-cobalt"></div><div class="mono mt-4 text-xs opacity-70">Credentials</div><div class="mt-1 text-lg font-bold">OS keychain</div></div>
+                        <div><div class="h-12 w-12 bg-chip-flame"></div><div class="mono mt-4 text-xs opacity-70">Training</div><div class="mt-1 text-lg font-bold">None</div></div>
+                        <div><div class="h-12 w-12 bg-chip-canary"></div><div class="mono mt-4 text-xs opacity-70">Model calls</div><div class="mt-1 text-lg font-bold">Direct</div></div>
+                    </div>
+                    <a href="/privacy.html" class="caps mt-12 inline-block border-b-2 border-chip-bone pb-1">Read full policy →</a>
+                </div>
+            </div>
+            <div class="chip-label chip-label-dark">
+                <span>Policy / Obsidian Black 0C-0C-0C</span>
+                <span>CMYK 0·0·0·100 · #161616</span>
+                <span class="hidden sm:inline">Intended for: absolute restraint</span>
+                <span>Lot III</span>
+            </div>
+        </section>
+
+        <!-- Chip 04 — Canary · Install -->
+        <section id="install" class="min-h-[80vh] flex flex-col">
+            <div class="flex-1 bg-chip-canary text-obsidian flex items-center p-10 lg:p-20">
+                <div class="max-w-5xl w-full">
+                    <div class="caps opacity-80">Chip 04 / 05</div>
+                    <h2 class="display mt-6 text-5xl sm:text-7xl">Carry it home.</h2>
+                    <div class="mt-12 grid gap-5 sm:grid-cols-3">
+                        <a href="#" class="bg-chip-bone p-8 hover:bg-white"><i class="fa-brands fa-apple text-3xl"></i><div class="mt-5 text-2xl font-bold">macOS</div><div class="mono mt-2 text-xs tracking-widest">arm64 · x86_64</div></a>
+                        <a href="#" class="bg-chip-bone p-8 hover:bg-white"><i class="fa-brands fa-windows text-3xl"></i><div class="mt-5 text-2xl font-bold">Windows</div><div class="mono mt-2 text-xs tracking-widest">x86_64 · 10+</div></a>
+                        <a href="#" class="bg-chip-bone p-8 hover:bg-white"><i class="fa-brands fa-linux text-3xl"></i><div class="mt-5 text-2xl font-bold">Linux</div><div class="mono mt-2 text-xs tracking-widest">x86_64 · arm64</div></a>
+                    </div>
+                </div>
+            </div>
+            <div class="chip-label">
+                <span>Install / Canary 13-0646</span>
+                <span>CMYK 5·20·95·0 · #F5C518</span>
+                <span class="hidden sm:inline">Intended for: final step</span>
+                <span>Lot IV</span>
+            </div>
+        </section>
+
+        <!-- Chip 05 — Jade · Footer intro -->
+        <section class="min-h-[40vh] flex flex-col">
+            <div class="flex-1 bg-chip-jade text-chip-bone flex items-center p-10 lg:p-20">
+                <div class="max-w-3xl">
+                    <div class="caps opacity-80">Chip 05 / 05</div>
+                    <h2 class="display mt-6 text-4xl sm:text-5xl">End of collection.</h2>
+                    <p class="mt-4 max-w-md text-base">Built in small lots. Every release is numbered, every binary signed. Install once, own it forever.</p>
+                </div>
+            </div>
+            <div class="chip-label">
+                <span>Finale / Jade 17-5641</span>
+                <span>CMYK 90·20·80·20 · #0D8A65</span>
+                <span class="hidden sm:inline">Intended for: closing note</span>
+                <span>Lot V</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-chip-bone border-t border-obsidian/20 py-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center caps text-obsidian/70">
+            <p>© <span id="year"></span> Mins Bot · collection 14</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-chip-flame">Privacy</a><a href="/terms.html" class="hover:text-chip-flame">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-chip-flame">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

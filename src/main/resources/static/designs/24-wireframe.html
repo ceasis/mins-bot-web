@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 24 Wireframe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['Space Mono','monospace'] },
+            colors: { ink:'#0a0a0a', wash:'#fafafa', gray:{1:'#f3f3f3', 2:'#e5e5e5', 3:'#a8a8a8', 4:'#525252'} }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body {
+            background:#fafafa;
+            color:#0a0a0a;
+            background-image:
+                linear-gradient(rgba(10,10,10,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(10,10,10,0.05) 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+        .wire { border: 1px solid #0a0a0a; background: #fafafa; }
+        .wire-dash { border: 1px dashed #0a0a0a; }
+        .wire-thick { border: 2px solid #0a0a0a; }
+        .mono { font-family:'Space Mono',monospace; }
+        .meas { font-family:'Space Mono',monospace; font-size:.7rem; letter-spacing:.02em; color:#525252; }
+        .tag { font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; background:#0a0a0a; color:#fafafa; padding: .15rem .4rem; display:inline-block; }
+        .dim-h { position: relative; border-top: 1px solid #0a0a0a; }
+        .dim-h::before, .dim-h::after { content:''; position:absolute; top:-4px; width:1px; height:9px; background:#0a0a0a; }
+        .dim-h::before { left:0; } .dim-h::after { right:0; }
+        .dim-v { position: relative; border-left: 1px solid #0a0a0a; }
+        .dim-v::before, .dim-v::after { content:''; position:absolute; left:-4px; width:9px; height:1px; background:#0a0a0a; }
+        .dim-v::before { top:0; } .dim-v::after { bottom:0; }
+        .placeholder {
+            background: repeating-linear-gradient(45deg, transparent 0 8px, rgba(10,10,10,0.08) 8px 9px);
+        }
+        .bullet-square { width: 8px; height: 8px; background:#0a0a0a; display:inline-block; vertical-align:middle; margin-right: 8px; }
+        .switcher { font-family:'Space Mono',monospace; font-size:.72rem; background:#fafafa; color:#0a0a0a; border:1px solid #0a0a0a; padding:.3rem .5rem; }
+        .corner-tag { position: absolute; background:#0a0a0a; color:#fafafa; font-family:'Space Mono',monospace; font-size:.6rem; padding:.15rem .35rem; letter-spacing:.05em; }
+        .crosshair::before, .crosshair::after {
+            content:''; position:absolute; background:#0a0a0a;
+        }
+        .crosshair::before { top: 50%; left: 0; right: 0; height: 1px; }
+        .crosshair::after { left: 50%; top: 0; bottom: 0; width: 1px; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 border-b border-ink bg-wash/95 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10">
+            <a href="/" class="flex items-center gap-3">
+                <span class="wire-thick inline-flex items-center justify-center h-7 w-7 text-xs mono font-bold">M</span>
+                <span class="mono font-bold tracking-tight">MINS_BOT</span>
+                <span class="meas">[component.nav]</span>
+            </a>
+            <div class="flex items-center gap-4 meas">
+                <a href="#capabilities" class="hidden hover:text-ink md:inline-block">§02.specs</a>
+                <a href="#install" class="hidden hover:text-ink md:inline-block">§04.install</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+
+        <!-- top dimension line -->
+        <div class="flex items-center gap-3 mb-6">
+            <span class="meas">00</span>
+            <div class="dim-h flex-1"></div>
+            <span class="meas">1440px</span>
+        </div>
+
+        <!-- Hero wireframe -->
+        <section id="overview" class="relative">
+            <div class="wire-thick p-8 lg:p-12 relative">
+                <span class="corner-tag top-0 left-0" style="transform: translate(-1px,-50%);">HERO.SECTION</span>
+                <span class="corner-tag top-0 right-0" style="transform: translate(1px,-50%);">v0.4.2</span>
+                <span class="corner-tag bottom-0 left-0" style="transform: translate(-1px,50%);">w: 100%</span>
+
+                <div class="grid gap-8 lg:grid-cols-12">
+                    <!-- Headline box -->
+                    <div class="lg:col-span-7 relative">
+                        <span class="tag">h1.text</span>
+                        <h1 class="mt-3 text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
+                            A desktop agent,<br>
+                            specified in<br>
+                            <span class="wire inline-block px-2 mono font-bold">1 · container</span>
+                        </h1>
+                        <div class="mt-4 flex items-center gap-3">
+                            <div class="dim-h flex-1 max-w-[240px]"></div>
+                            <span class="meas">≈ 640 × 240</span>
+                        </div>
+
+                        <div class="mt-6 max-w-lg">
+                            <span class="tag">p.body</span>
+                            <p class="mt-2 text-base leading-relaxed text-gray-4">Mins Bot runs on your machine. Browses web, handles files, drives messaging. Nothing retained. Nothing trained on. Direct to provider.</p>
+                        </div>
+
+                        <div class="mt-8 flex flex-wrap items-center gap-3">
+                            <a href="#install" class="wire-thick relative inline-flex items-center gap-3 bg-ink text-wash px-6 py-3 mono text-sm hover:bg-wash hover:text-ink">
+                                <span>▶ download.bin</span>
+                            </a>
+                            <a href="#capabilities" class="wire inline-flex items-center gap-2 px-5 py-3 mono text-sm hover:bg-gray-1">→ spec.pdf</a>
+                            <span class="tag">2 × button</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: mock window wireframe -->
+                    <div class="lg:col-span-5">
+                        <span class="tag">window.mock</span>
+                        <div class="wire mt-3 relative">
+                            <!-- titlebar -->
+                            <div class="wire-dash border-b border-l-0 border-r-0 border-t-0 flex items-center justify-between px-3 py-2 bg-gray-1">
+                                <div class="flex gap-1.5">
+                                    <span class="h-2.5 w-2.5 wire rounded-full"></span>
+                                    <span class="h-2.5 w-2.5 wire rounded-full"></span>
+                                    <span class="h-2.5 w-2.5 wire rounded-full"></span>
+                                </div>
+                                <span class="meas">mins-bot ~ 42MB</span>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <div class="wire-dash h-3 placeholder w-full"></div>
+                                <div class="wire-dash h-3 placeholder w-4/5"></div>
+                                <div class="wire-dash h-3 placeholder w-2/3"></div>
+                                <div class="mt-4 grid grid-cols-3 gap-2">
+                                    <div class="wire aspect-square p-2 flex flex-col justify-between">
+                                        <span class="meas">01</span>
+                                        <i class="fa-solid fa-globe text-sm"></i>
+                                    </div>
+                                    <div class="wire aspect-square p-2 flex flex-col justify-between">
+                                        <span class="meas">02</span>
+                                        <i class="fa-solid fa-folder text-sm"></i>
+                                    </div>
+                                    <div class="wire aspect-square p-2 flex flex-col justify-between">
+                                        <span class="meas">03</span>
+                                        <i class="fa-solid fa-envelope text-sm"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- dimension labels -->
+                        <div class="flex items-center justify-between mt-3 meas"><span>component:window</span><span>state:idle</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider with spec -->
+        <div class="flex items-center gap-3 my-10">
+            <span class="meas">§ 01 → § 02</span>
+            <div class="flex-1 border-t border-dashed border-ink/40"></div>
+            <span class="meas">margin: 80px</span>
+        </div>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="relative">
+            <div class="flex items-baseline justify-between border-b border-ink pb-2 mb-6">
+                <h2 class="text-3xl font-semibold tracking-tight"><span class="mono text-gray-3">§02 </span>capabilities</h2>
+                <span class="meas">count: 4 · grid: 4×1</span>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <article class="wire relative p-5">
+                    <span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">CARD.01</span>
+                    <div class="wire-dash aspect-square flex items-center justify-center relative crosshair mb-4"><i class="fa-solid fa-compass relative text-2xl bg-wash px-2"></i></div>
+                    <h3 class="font-semibold">Browse</h3>
+                    <p class="meas mt-1 text-gray-4">chromium · per-task</p>
+                </article>
+                <article class="wire relative p-5">
+                    <span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">CARD.02</span>
+                    <div class="wire-dash aspect-square flex items-center justify-center relative crosshair mb-4"><i class="fa-solid fa-folder-open relative text-2xl bg-wash px-2"></i></div>
+                    <h3 class="font-semibold">Files</h3>
+                    <p class="meas mt-1 text-gray-4">allow-list · local audit</p>
+                </article>
+                <article class="wire relative p-5">
+                    <span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">CARD.03</span>
+                    <div class="wire-dash aspect-square flex items-center justify-center relative crosshair mb-4"><i class="fa-solid fa-envelope relative text-2xl bg-wash px-2"></i></div>
+                    <h3 class="font-semibold">Message</h3>
+                    <p class="meas mt-1 text-gray-4">keychain · direct</p>
+                </article>
+                <article class="wire relative p-5">
+                    <span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">CARD.04</span>
+                    <div class="wire-dash aspect-square flex items-center justify-center relative crosshair mb-4"><i class="fa-solid fa-cubes relative text-2xl bg-wash px-2"></i></div>
+                    <h3 class="font-semibold">Skills</h3>
+                    <p class="meas mt-1 text-gray-4">manifest + code</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="flex items-center gap-3 my-10">
+            <span class="meas">§ 02 → § 03</span>
+            <div class="flex-1 border-t border-dashed border-ink/40"></div>
+            <span class="meas">margin: 80px</span>
+        </div>
+
+        <!-- Policy -->
+        <section id="policy" class="relative">
+            <div class="flex items-baseline justify-between border-b border-ink pb-2 mb-6">
+                <h2 class="text-3xl font-semibold tracking-tight"><span class="mono text-gray-3">§03 </span>data policy</h2>
+                <span class="meas">retention: 0</span>
+            </div>
+            <div class="wire p-8">
+                <table class="w-full text-left">
+                    <thead><tr class="border-b border-ink"><th class="meas py-2">ITEM</th><th class="meas py-2">VALUE</th><th class="meas py-2">NOTES</th></tr></thead>
+                    <tbody class="mono text-sm">
+                        <tr class="border-b border-gray-2"><td class="py-3"><span class="bullet-square"></span>data.at_rest</td><td>on_device</td><td class="text-gray-4">no server copy</td></tr>
+                        <tr class="border-b border-gray-2"><td class="py-3"><span class="bullet-square"></span>credentials</td><td>os_keychain</td><td class="text-gray-4">keychain / credential mgr / libsecret</td></tr>
+                        <tr class="border-b border-gray-2"><td class="py-3"><span class="bullet-square"></span>training_use</td><td>null</td><td class="text-gray-4">never</td></tr>
+                        <tr><td class="py-3"><span class="bullet-square"></span>model.calls</td><td>direct</td><td class="text-gray-4">to provider of your choice</td></tr>
+                    </tbody>
+                </table>
+                <a href="/privacy.html" class="mt-5 inline-flex items-center gap-2 meas hover:text-ink"><span class="tag">LINK</span> → /privacy.html</a>
+            </div>
+        </section>
+
+        <div class="flex items-center gap-3 my-10">
+            <span class="meas">§ 03 → § 04</span>
+            <div class="flex-1 border-t border-dashed border-ink/40"></div>
+            <span class="meas">margin: 80px</span>
+        </div>
+
+        <!-- Install -->
+        <section id="install">
+            <div class="flex items-baseline justify-between border-b border-ink pb-2 mb-6">
+                <h2 class="text-3xl font-semibold tracking-tight"><span class="mono text-gray-3">§04 </span>install</h2>
+                <span class="meas">grid: 3×1 · gap: 16</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <a href="#" class="wire relative p-6 group hover:bg-gray-1"><span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">BTN.01</span><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-2xl"></i><span class="meas">arch</span></div><div class="mt-6 font-semibold">macOS</div><div class="meas mt-1 text-gray-4">arm64 · x86_64</div></a>
+                <a href="#" class="wire relative p-6 group hover:bg-gray-1"><span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">BTN.02</span><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-2xl"></i><span class="meas">arch</span></div><div class="mt-6 font-semibold">Windows</div><div class="meas mt-1 text-gray-4">x86_64 · 10+</div></a>
+                <a href="#" class="wire relative p-6 group hover:bg-gray-1"><span class="corner-tag top-0 left-0" style="transform:translate(-1px,-50%);">BTN.03</span><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-2xl"></i><span class="meas">arch</span></div><div class="mt-6 font-semibold">Linux</div><div class="meas mt-1 text-gray-4">x86_64 · arm64</div></a>
+            </div>
+        </section>
+
+        <!-- Bottom dim -->
+        <div class="flex items-center gap-3 mt-10">
+            <span class="meas">00</span>
+            <div class="dim-h flex-1"></div>
+            <span class="meas">EOF</span>
+        </div>
+    </main>
+
+    <footer class="border-t border-ink py-6">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center meas">
+            <p>© <span id="year"></span> · mins-bot · wireframe.lo-fi</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-ink">/privacy</a><a href="/terms.html" class="hover:text-ink">/terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-ink">/github</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

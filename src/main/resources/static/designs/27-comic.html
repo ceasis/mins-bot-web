@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 27 Comic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Bangers','Impact','sans-serif'], punch: ['Bungee','sans-serif'], sans: ['Work Sans','sans-serif'] },
+            colors: { pop:'#ffe14a', pop2:'#ffd000', red:'#ee2b24', blue:'#2463eb', pink:'#ff4d8b', ink:'#0a0a0a', paper:'#fbf7e2' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Work Sans', sans-serif; }
+        body {
+            background: #fbf7e2;
+            color: #0a0a0a;
+        }
+        .display { font-family: 'Bangers', Impact, sans-serif; letter-spacing: 0.05em; line-height: 0.9; }
+        .punch { font-family: 'Bungee', sans-serif; letter-spacing: -.01em; }
+        .panel { border: 4px solid #0a0a0a; background: #fff; box-shadow: 6px 6px 0 #0a0a0a; }
+        .halftone {
+            background-image:
+                radial-gradient(#ee2b24 18%, transparent 20%),
+                radial-gradient(#ee2b24 18%, transparent 20%);
+            background-size: 16px 16px;
+            background-position: 0 0, 8px 8px;
+        }
+        .halftone-blue {
+            background-image:
+                radial-gradient(#2463eb 18%, transparent 20%),
+                radial-gradient(#2463eb 18%, transparent 20%);
+            background-size: 12px 12px;
+            background-position: 0 0, 6px 6px;
+        }
+        .halftone-yellow {
+            background-color:#ffe14a;
+            background-image:
+                radial-gradient(rgba(10,10,10,0.2) 15%, transparent 17%);
+            background-size: 10px 10px;
+        }
+        .starburst {
+            background: #ffe14a;
+            color: #0a0a0a;
+            padding: 1.5rem 2rem;
+            position: relative;
+            clip-path: polygon(0% 15%, 15% 15%, 20% 0%, 40% 15%, 50% 0%, 60% 15%, 80% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 80% 100%, 60% 85%, 50% 100%, 40% 85%, 20% 100%, 15% 85%, 0% 85%);
+            display: inline-block;
+            font-family:'Bangers',sans-serif;
+        }
+        .burst {
+            position: relative;
+            display: inline-block;
+            padding: 1.5rem 2.5rem;
+            background: #ee2b24;
+            color: #ffe14a;
+            clip-path: polygon(4% 11%, 17% 7%, 25% 0%, 34% 12%, 46% 4%, 52% 14%, 63% 3%, 72% 14%, 81% 5%, 88% 16%, 96% 10%, 100% 22%, 92% 33%, 99% 44%, 88% 52%, 98% 63%, 87% 72%, 96% 81%, 84% 88%, 92% 100%, 78% 93%, 67% 100%, 57% 91%, 46% 100%, 37% 91%, 26% 100%, 18% 91%, 8% 98%, 4% 86%, 0% 76%, 8% 66%, 0% 56%, 9% 46%, 2% 37%, 11% 28%, 3% 19%);
+            font-family:'Bangers',sans-serif;
+            letter-spacing: .04em;
+        }
+        .bubble {
+            background: #fff;
+            border: 3px solid #0a0a0a;
+            border-radius: 28px;
+            padding: 1rem 1.25rem;
+            position: relative;
+            box-shadow: 4px 4px 0 #0a0a0a;
+        }
+        .bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 30px;
+            width: 0; height: 0;
+            border-top: 20px solid #0a0a0a;
+            border-right: 14px solid transparent;
+        }
+        .bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 33px;
+            width: 0; height: 0;
+            border-top: 14px solid #fff;
+            border-right: 10px solid transparent;
+            z-index: 1;
+        }
+        .zap-text { font-family:'Bungee'; -webkit-text-stroke: 2px #0a0a0a; color:#ffe14a; text-shadow: 4px 4px 0 #ee2b24; }
+        .speed-lines {
+            background:
+                repeating-linear-gradient(90deg, transparent 0 8px, rgba(10,10,10,0.2) 8px 10px);
+        }
+        .caps { font-family:'Bangers',sans-serif; letter-spacing:.15em; text-transform:uppercase; font-size:.95rem; }
+        .switcher { font-family:'Bangers',sans-serif; letter-spacing:.08em; font-size:1rem; background:#fbf7e2; color:#0a0a0a; border:3px solid #0a0a0a; padding:.2rem .4rem; box-shadow: 3px 3px 0 #0a0a0a; }
+        .rotate-a { transform: rotate(-2deg); }
+        .rotate-b { transform: rotate(1.5deg); }
+        .corner-num { position: absolute; top: -8px; left: -8px; background:#0a0a0a; color:#fff; padding:.1rem .6rem; font-family:'Bungee'; font-size: .9rem; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 border-b-4 border-ink bg-paper">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+            <a href="/" class="flex items-center gap-3">
+                <span class="punch text-2xl bg-red text-paper px-2 rotate-a inline-block">MINS!</span>
+                <span class="display text-3xl">BOT</span>
+            </a>
+            <div class="flex items-center gap-4 caps">
+                <a href="#capabilities" class="hidden hover:text-red md:inline-block">POW!</a>
+                <a href="#install" class="hidden hover:text-red md:inline-block">GRAB!</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-4 py-10 space-y-10">
+        <!-- Hero panel -->
+        <section class="panel p-8 lg:p-12 relative overflow-hidden">
+            <span class="corner-num">#27</span>
+            <!-- halftone bg -->
+            <div class="absolute inset-0 opacity-20 halftone-yellow"></div>
+            <!-- starburst badge -->
+            <span class="absolute top-6 right-6 starburst text-xl rotate-b">★ NEW! ★</span>
+
+            <div class="relative grid gap-8 lg:grid-cols-12">
+                <div class="lg:col-span-8">
+                    <div class="caps">ISSUE · SPRING '26</div>
+                    <h1 class="mt-3 text-6xl sm:text-7xl lg:text-8xl leading-none display">
+                        <span class="block">THE AMAZING</span>
+                        <span class="block zap-text text-[6rem] sm:text-[8rem] lg:text-[11rem] leading-none">MINS BOT!</span>
+                        <span class="block">desktop agent extraordinaire!</span>
+                    </h1>
+                    <div class="bubble mt-10 max-w-lg text-lg font-medium">
+                        <strong>"I run on YOUR machine!"</strong> he proclaimed.<br>
+                        <em>"Your data stays HERE. Not a byte escapes!"</em>
+                    </div>
+                    <div class="mt-12 flex flex-wrap items-center gap-5">
+                        <a href="#install" class="burst text-2xl hover:brightness-110">GRAB IT!</a>
+                        <a href="#capabilities" class="caps bg-blue text-paper px-5 py-3 rotate-a inline-block border-4 border-ink">SEE POWERS →</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-4 flex items-center justify-center">
+                    <div class="relative h-48 w-48 sm:h-64 sm:w-64 rounded-full halftone flex items-center justify-center">
+                        <div class="h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-paper border-4 border-ink flex items-center justify-center">
+                            <i class="fa-solid fa-robot text-6xl"></i>
+                        </div>
+                        <span class="absolute -top-3 -right-3 starburst text-sm rotate-b">!!!</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities - 4-panel grid -->
+        <section id="capabilities">
+            <div class="caps text-2xl mb-4">★ FOUR INCREDIBLE POWERS! ★</div>
+            <div class="grid gap-5 md:grid-cols-2">
+                <div class="panel p-6 relative rotate-a">
+                    <span class="corner-num">01</span>
+                    <span class="absolute top-4 right-4 punch text-2xl text-red">POW!</span>
+                    <div class="halftone-blue h-3 mb-4"></div>
+                    <h3 class="display text-4xl">Browse!</h3>
+                    <p class="mt-2 font-medium">Chromium under YOUR session! Fills forms like a hero!</p>
+                </div>
+                <div class="panel p-6 relative rotate-b">
+                    <span class="corner-num">02</span>
+                    <span class="absolute top-4 right-4 punch text-2xl text-blue">ZAP!</span>
+                    <div class="halftone h-3 mb-4"></div>
+                    <h3 class="display text-4xl">File!</h3>
+                    <p class="mt-2 font-medium">Allow-list scoped! LOCAL audit! Reversible!</p>
+                </div>
+                <div class="panel p-6 relative rotate-b">
+                    <span class="corner-num">03</span>
+                    <span class="absolute top-4 right-4 punch text-2xl text-red">WHAM!</span>
+                    <div class="halftone-yellow h-3 mb-4"></div>
+                    <h3 class="display text-4xl">Message!</h3>
+                    <p class="mt-2 font-medium">Slack, Discord, Gmail — keychain tokens! Direct!</p>
+                </div>
+                <div class="panel p-6 relative rotate-a">
+                    <span class="corner-num">04</span>
+                    <span class="absolute top-4 right-4 punch text-2xl text-blue">BAM!</span>
+                    <div class="halftone-blue h-3 mb-4"></div>
+                    <h3 class="display text-4xl">Skills!</h3>
+                    <p class="mt-2 font-medium">Installable powers! Compose! Remix!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy panel -->
+        <section class="panel bg-red text-paper p-8 relative overflow-hidden">
+            <div class="absolute top-4 right-6 starburst rotate-b text-xl">ZERO!</div>
+            <div class="caps text-pop text-lg">★ THE VILLAIN SPEAKS ★</div>
+            <div class="bubble text-ink mt-4 max-w-md">
+                <em>"Surely you keep <strong>something</strong> of theirs? A log? A cookie?"</em><br>
+                <span class="caps text-xs">— THE DATA BROKER</span>
+            </div>
+            <h2 class="display mt-6 text-5xl sm:text-7xl zap-text">"NOTHING!"</h2>
+            <div class="mt-8 grid gap-4 sm:grid-cols-4">
+                <div class="bg-paper text-ink border-4 border-ink p-4"><div class="caps">DATA</div><div class="display text-2xl mt-1">ON DEVICE.</div></div>
+                <div class="bg-paper text-ink border-4 border-ink p-4"><div class="caps">KEYS</div><div class="display text-2xl mt-1">KEYCHAIN.</div></div>
+                <div class="bg-pop text-ink border-4 border-ink p-4"><div class="caps text-red">TRAINING</div><div class="display text-2xl mt-1 text-red">NONE!!!</div></div>
+                <div class="bg-paper text-ink border-4 border-ink p-4"><div class="caps">CALLS</div><div class="display text-2xl mt-1">DIRECT.</div></div>
+            </div>
+            <a href="/privacy.html" class="caps mt-6 inline-block bg-pop text-ink border-4 border-ink px-5 py-2 hover:bg-paper">▸ READ THE ORIGIN STORY!</a>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="panel p-8 relative">
+            <div class="caps text-2xl mb-4">★ CHOOSE YOUR EDITION! ★</div>
+            <div class="grid gap-5 sm:grid-cols-3">
+                <a href="#" class="panel bg-pop text-ink p-6 rotate-a hover:bg-pop2"><i class="fa-brands fa-apple text-4xl"></i><div class="display mt-3 text-3xl">macOS</div><div class="caps mt-1 text-sm">arm64 · x86_64</div></a>
+                <a href="#" class="panel bg-blue text-paper p-6 rotate-b hover:brightness-110"><i class="fa-brands fa-windows text-4xl"></i><div class="display mt-3 text-3xl">Windows</div><div class="caps mt-1 text-sm">x86_64 · 10+</div></a>
+                <a href="#" class="panel bg-red text-paper p-6 rotate-a hover:brightness-110"><i class="fa-brands fa-linux text-4xl"></i><div class="display mt-3 text-3xl">Linux</div><div class="caps mt-1 text-sm">x86_64 · arm64</div></a>
+            </div>
+        </section>
+
+        <footer class="panel bg-ink text-paper p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 caps">
+            <p>© <span id="year"></span> · MINS BOT COMICS · ISSUE #27</p>
+            <div class="flex items-center gap-5"><a href="/privacy.html" class="hover:text-pop">Privacy</a><a href="/terms.html" class="hover:text-pop">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-pop">GitHub</a></div>
+        </footer>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

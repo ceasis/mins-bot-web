@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 26 Cassette</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Space+Grotesk:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Major Mono Display','monospace'], sans: ['Space Grotesk','sans-serif'], mono: ['Share Tech Mono','monospace'] },
+            colors: { tape:'#0f0f14', tape2:'#1a1a22', shell:'#ededda', shell2:'#d9d6b9', amber:'#f0a500', cranberry:'#c62f3a', teal:'#0faea6', cream:'#f5efd9' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Space Grotesk', sans-serif; }
+        body { background:#b0ad91; color:#1a1a22; min-height:100vh; padding: 2rem 1rem; }
+        .display { font-family:'Major Mono Display',monospace; letter-spacing:.02em; text-transform:lowercase; }
+        .mono { font-family:'Share Tech Mono',monospace; letter-spacing:.05em; }
+        .caps { font-family:'Share Tech Mono',monospace; font-size:.8rem; letter-spacing:.22em; text-transform:uppercase; }
+
+        .cassette {
+            background: #ededda;
+            border-radius: 14px;
+            position: relative;
+            box-shadow:
+                0 30px 60px rgba(0,0,0,0.35),
+                0 5px 15px rgba(0,0,0,0.2),
+                inset 0 2px 0 rgba(255,255,255,0.6),
+                inset 0 -4px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .label-band {
+            background:
+                linear-gradient(180deg, #f5efd9 0%, #ede4c0 100%);
+            border-top: 2px solid #0f0f14;
+            border-bottom: 2px solid #0f0f14;
+            position: relative;
+        }
+        .label-band::before, .label-band::after {
+            content:''; position:absolute; left:0; right:0; height:4px; background: repeating-linear-gradient(90deg, #c62f3a 0 20px, #ededda 20px 22px, #0faea6 22px 42px, #ededda 42px 44px);
+        }
+        .label-band::before { top:-6px; }
+        .label-band::after { bottom:-6px; }
+        .reel {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: radial-gradient(circle at 50% 50%, #ededda 0 12px, #0f0f14 12px 14px, transparent 14px);
+            border: 2px solid #0f0f14;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .reel::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background:
+                conic-gradient(from 0deg, #0f0f14 0 15deg, transparent 15deg 45deg, #0f0f14 45deg 60deg, transparent 60deg 90deg, #0f0f14 90deg 105deg, transparent 105deg 135deg, #0f0f14 135deg 150deg, transparent 150deg 180deg, #0f0f14 180deg 195deg, transparent 195deg 225deg, #0f0f14 225deg 240deg, transparent 240deg 270deg, #0f0f14 270deg 285deg, transparent 285deg 315deg, #0f0f14 315deg 330deg, transparent 330deg 360deg);
+            mask: radial-gradient(circle at 50% 50%, transparent 14px, #000 14px);
+            -webkit-mask: radial-gradient(circle at 50% 50%, transparent 14px, #000 14px);
+        }
+        .reel-spin { animation: spin 3s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .tape-window {
+            background: #0f0f14;
+            position: relative;
+            overflow: hidden;
+        }
+        .tape-window::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 50%; height: 24%;
+            background: linear-gradient(180deg, #4a3520 0%, #8b5a2b 50%, #4a3520 100%);
+            transform: translateY(-50%);
+            opacity: 0.85;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .sprocket-hole {
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #0f0f14;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+        .side-marker {
+            background: #c62f3a;
+            color: #f5efd9;
+            padding: 0.25rem 0.85rem;
+            border-radius: 999px;
+            font-family:'Share Tech Mono',monospace;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-size: .7rem;
+            display: inline-block;
+        }
+        .track-row { border-bottom: 1px dotted rgba(15,15,20,0.4); }
+        .barcode {
+            background: repeating-linear-gradient(90deg, #0f0f14 0 2px, transparent 2px 4px, #0f0f14 4px 5px, transparent 5px 9px, #0f0f14 9px 12px, transparent 12px 14px);
+            height: 30px;
+        }
+        .switcher { font-family:'Share Tech Mono',monospace; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; background:#ededda; color:#0f0f14; border:2px solid #0f0f14; padding:.25rem .4rem; border-radius:4px; }
+        .dot-led { width:6px; height:6px; border-radius:50%; background:#f0a500; box-shadow: 0 0 6px #f0a500; }
+        .dot-led-red { background:#c62f3a; box-shadow: 0 0 6px #c62f3a; }
+    </style>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto mb-5 flex items-center justify-between caps text-shell">
+        <a href="/" class="hover:text-amber">◂ MINS/BOT · MIXTAPE SERIES</a>
+        <span data-design-switcher data-select-class="switcher"></span>
+    </div>
+
+    <!-- Cassette shell -->
+    <main class="max-w-4xl mx-auto cassette">
+        <!-- Top info strip (side label) -->
+        <div class="flex items-center justify-between px-6 py-3 bg-tape text-shell">
+            <div class="flex items-center gap-3">
+                <span class="dot-led"></span>
+                <span class="mono text-xs">▶ PLAYING · SIDE A · 45 MIN</span>
+            </div>
+            <div class="flex items-center gap-4 mono text-xs">
+                <span>TYPE II / CrO₂</span>
+                <span>DOLBY NR · B</span>
+                <span class="dot-led-red"></span>
+            </div>
+        </div>
+
+        <!-- Main J-card label -->
+        <section class="label-band px-6 sm:px-10 py-8">
+            <div class="grid items-center gap-6 sm:grid-cols-12">
+                <!-- Left reel -->
+                <div class="sm:col-span-2 flex justify-center"><div class="reel reel-spin"></div></div>
+
+                <!-- Center tape window with title -->
+                <div class="sm:col-span-8">
+                    <div class="text-center">
+                        <div class="side-marker">SIDE A · 0.4.2</div>
+                        <h1 class="display text-4xl sm:text-6xl lg:text-7xl mt-4 text-tape">mins/bot<br><span class="text-cranberry">/the desktop tapes.</span></h1>
+                        <div class="caps mt-4 text-tape/70">a local agent · 10 tracks · no skips</div>
+                    </div>
+                </div>
+
+                <!-- Right reel -->
+                <div class="sm:col-span-2 flex justify-center"><div class="reel reel-spin" style="animation-duration: 4s;"></div></div>
+            </div>
+
+            <!-- Tape window visualization -->
+            <div class="tape-window mt-8 h-16 rounded"></div>
+
+            <!-- Sprocket holes -->
+            <div class="mt-6 flex items-center justify-between px-4">
+                <span class="sprocket-hole"></span>
+                <span class="flex-1 border-b border-dashed border-tape mx-3"></span>
+                <span class="sprocket-hole"></span>
+                <span class="flex-1 border-b border-dashed border-tape mx-3"></span>
+                <span class="sprocket-hole"></span>
+                <span class="flex-1 border-b border-dashed border-tape mx-3"></span>
+                <span class="sprocket-hole"></span>
+            </div>
+        </section>
+
+        <!-- Now "liner notes" inside -->
+        <section class="bg-shell px-6 sm:px-10 py-10">
+            <p class="text-lg leading-relaxed max-w-xl">A personal AI agent pressed to your desktop. Four B-sides of restraint. It plays only when you hit record — and it never sends a copy home.</p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="#install" class="caps bg-tape text-shell px-6 py-3 rounded hover:bg-cranberry">⏵ PLAY / DOWNLOAD</a>
+                <a href="#capabilities" class="caps bg-amber text-tape px-6 py-3 rounded hover:bg-cranberry hover:text-shell">⏶ LINER NOTES</a>
+            </div>
+        </section>
+
+        <!-- Tracklist = capabilities -->
+        <section id="capabilities" class="bg-shell px-6 sm:px-10 pb-10">
+            <div class="flex items-baseline justify-between caps text-tape">
+                <span>SIDE A · TRACKLIST</span>
+                <span>4 TRACKS · 45:00</span>
+            </div>
+            <div class="mt-4 border-t-2 border-b-2 border-tape">
+                <div class="track-row flex items-center gap-4 py-3 px-2">
+                    <span class="caps w-10">A1</span>
+                    <div class="flex-1"><div class="font-bold">Browse</div><div class="mono text-xs text-tape/70">chromium / per-task · 11:23</div></div>
+                    <span class="caps text-cranberry">▶ PLAY</span>
+                </div>
+                <div class="track-row flex items-center gap-4 py-3 px-2">
+                    <span class="caps w-10">A2</span>
+                    <div class="flex-1"><div class="font-bold">File</div><div class="mono text-xs text-tape/70">allow-list / local audit · 10:41</div></div>
+                    <span class="caps text-cranberry">▶ PLAY</span>
+                </div>
+                <div class="track-row flex items-center gap-4 py-3 px-2">
+                    <span class="caps w-10">A3</span>
+                    <div class="flex-1"><div class="font-bold">Message</div><div class="mono text-xs text-tape/70">os keychain / direct · 12:05</div></div>
+                    <span class="caps text-cranberry">▶ PLAY</span>
+                </div>
+                <div class="track-row flex items-center gap-4 py-3 px-2" style="border-bottom: 0">
+                    <span class="caps w-10">A4</span>
+                    <div class="flex-1"><div class="font-bold">Skills</div><div class="mono text-xs text-tape/70">manifest + code · 10:51</div></div>
+                    <span class="caps text-cranberry">▶ PLAY</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Side B - policy -->
+        <section class="bg-tape text-shell px-6 sm:px-10 py-10">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="side-marker" style="background:#0faea6;">SIDE B</span>
+                <span class="caps text-shell/70">DATA PROTOCOL</span>
+            </div>
+            <h2 class="display text-3xl sm:text-5xl text-amber">we don't dub.<br><span class="text-teal">we don't share.</span></h2>
+
+            <div class="mt-8 grid gap-px bg-shell/20 sm:grid-cols-4 border border-shell/30">
+                <div class="bg-tape p-4"><div class="caps text-amber">B1 DATA</div><div class="mt-2 font-bold">on device</div></div>
+                <div class="bg-tape p-4"><div class="caps text-amber">B2 KEYS</div><div class="mt-2 font-bold">os keychain</div></div>
+                <div class="bg-tape p-4"><div class="caps text-cranberry">B3 TRAINING</div><div class="mt-2 font-bold text-cranberry">none</div></div>
+                <div class="bg-tape p-4"><div class="caps text-amber">B4 CALLS</div><div class="mt-2 font-bold">direct</div></div>
+            </div>
+            <a href="/privacy.html" class="caps mt-6 inline-flex items-center gap-2 text-teal hover:text-amber">▶ read the full liner →</a>
+        </section>
+
+        <!-- Install - pressings -->
+        <section id="install" class="bg-shell2 px-6 sm:px-10 py-10">
+            <div class="caps text-tape/70 mb-4">AVAILABLE PRESSINGS</div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <a href="#" class="bg-shell border-2 border-tape p-5 rounded hover:bg-amber"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-2xl"></i><span class="caps">LP1</span></div><div class="font-bold mt-3">macOS</div><div class="mono text-xs mt-1 text-tape/70">arm64 · x86_64</div></a>
+                <a href="#" class="bg-shell border-2 border-tape p-5 rounded hover:bg-amber"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-2xl"></i><span class="caps">LP2</span></div><div class="font-bold mt-3">Windows</div><div class="mono text-xs mt-1 text-tape/70">x86_64 · 10+</div></a>
+                <a href="#" class="bg-shell border-2 border-tape p-5 rounded hover:bg-amber"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-2xl"></i><span class="caps">LP3</span></div><div class="font-bold mt-3">Linux</div><div class="mono text-xs mt-1 text-tape/70">x86_64 · arm64</div></a>
+            </div>
+        </section>
+
+        <!-- Barcode footer -->
+        <footer class="bg-tape text-shell px-6 sm:px-10 py-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <div class="barcode w-40"></div>
+                    <div class="mono text-xs mt-1">0 41820 26042 4</div>
+                </div>
+                <div class="caps text-shell/70 flex items-center gap-6">
+                    <a href="/privacy.html" class="hover:text-amber">privacy</a>
+                    <a href="/terms.html" class="hover:text-amber">terms</a>
+                    <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-amber">github</a>
+                </div>
+                <p class="caps text-shell/70">© <span id="year"></span> · MINS/BOT REC.</p>
+            </div>
+        </footer>
+    </main>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>
