@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 06 Botanical</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { serif: ['Fraunces','Georgia','serif'], sans: ['Work Sans','sans-serif'] },
+            colors: { clay:'#e6d9c4', cream:'#f2ead9', ink:'#2a2318', olive:'#6b7a3b', olive2:'#556433', terra:'#c46a3a', sage:'#8fa078' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Work Sans', sans-serif; }
+        body {
+            background: #f2ead9;
+            color: #2a2318;
+        }
+        .serif { font-family:'Fraunces',Georgia,serif; }
+        .curve { border-radius: 50% 20% 55% 30% / 40% 60% 35% 55%; }
+        .curve-soft { border-radius: 2rem 5rem 3rem 6rem / 4rem 3rem 6rem 2rem; }
+        .blob { background: radial-gradient(circle at 30% 30%, #8fa078, #556433); }
+        .leaf-bg {
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(107,122,59,0.08) 0, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(196,106,58,0.06) 0, transparent 40%);
+        }
+        .hr-vine { height: 1px; background: linear-gradient(90deg, transparent, #6b7a3b, transparent); }
+        .switcher { font-family:'Work Sans',sans-serif; font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; background:#f2ead9; color:#2a2318; border:1px solid #2a2318; border-radius:9999px; padding:.35rem .75rem; }
+        .ornament::before { content:'❦'; color:#c46a3a; margin-right:.5rem; }
+        .cap-label { font-size:.75rem; letter-spacing:.18em; text-transform:uppercase; color:#6b7a3b; }
+    </style>
+</head>
+<body class="min-h-screen leaf-bg">
+    <header class="sticky top-0 z-50 backdrop-blur bg-cream/85 border-b border-ink/10">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="serif text-2xl italic font-semibold">Mins &amp; Bot</span><span class="text-terra">❦</span></a>
+            <div class="flex items-center gap-5 cap-label">
+                <a href="#capabilities" class="hidden hover:text-terra md:inline-block">Capabilities</a>
+                <a href="#install" class="hidden hover:text-terra md:inline-block">Install</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="relative overflow-hidden pt-20 pb-28 lg:pt-32 lg:pb-40">
+            <!-- Organic decorative shapes -->
+            <div class="absolute -top-20 -right-24 h-[420px] w-[420px] blob curve opacity-40"></div>
+            <div class="absolute bottom-0 -left-32 h-[300px] w-[300px] curve-soft bg-terra/20"></div>
+
+            <div class="relative mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="grid items-center gap-16 lg:grid-cols-12">
+                    <div class="lg:col-span-7">
+                        <div class="cap-label ornament">A Companion for Quiet Work</div>
+                        <h1 class="serif mt-6 text-6xl font-light leading-[1.05] text-ink sm:text-7xl lg:text-[5.5rem]">An agent you <em class="text-olive">grow</em> alongside.</h1>
+                        <p class="mt-8 max-w-lg text-lg leading-relaxed text-ink/75">Mins Bot lives quietly on your desktop. It reads the web for you, tends your files, answers your messages, and learns the small rituals of your craft — without ever reporting home.</p>
+                        <div class="mt-10 flex flex-wrap items-center gap-4">
+                            <a href="#install" class="serif inline-flex items-center gap-3 rounded-full bg-olive px-8 py-4 text-base italic text-cream hover:bg-olive2">Bring it home <span aria-hidden>→</span></a>
+                            <a href="#capabilities" class="cap-label underline decoration-terra decoration-2 underline-offset-4 hover:text-terra">See what it does</a>
+                        </div>
+                    </div>
+                    <div class="relative lg:col-span-5">
+                        <div class="relative mx-auto aspect-[4/5] max-w-sm curve-soft bg-clay p-10 shadow-xl shadow-ink/10">
+                            <div class="absolute -top-6 -left-6 h-24 w-24 rounded-full bg-terra/80"></div>
+                            <div class="absolute -bottom-8 -right-4 h-32 w-32 blob curve"></div>
+                            <div class="relative flex h-full flex-col items-center justify-center text-center">
+                                <i class="fa-solid fa-seedling text-6xl text-olive"></i>
+                                <div class="serif mt-6 text-2xl italic">"It helps without hurrying."</div>
+                                <div class="cap-label mt-3">— the field guide</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="mx-auto max-w-6xl px-6 lg:px-10"><div class="hr-vine"></div></div>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="py-24 lg:py-32">
+            <div class="mx-auto max-w-6xl px-6 lg:px-10">
+                <div class="text-center">
+                    <div class="cap-label ornament">Four Gentle Tools</div>
+                    <h2 class="serif mt-4 text-4xl italic text-ink sm:text-5xl">What lives in the garden.</h2>
+                </div>
+                <div class="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="text-center">
+                        <div class="mx-auto h-20 w-20 curve bg-olive/20 flex items-center justify-center"><i class="fa-solid fa-leaf text-2xl text-olive"></i></div>
+                        <h3 class="serif mt-6 text-2xl italic">Browse</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-ink/70">Navigates the real web on your behalf, thoughtfully.</p>
+                    </article>
+                    <article class="text-center">
+                        <div class="mx-auto h-20 w-20 curve bg-terra/20 flex items-center justify-center"><i class="fa-solid fa-folder text-2xl text-terra"></i></div>
+                        <h3 class="serif mt-6 text-2xl italic">File</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-ink/70">Sorts and tends to what lives on your disk.</p>
+                    </article>
+                    <article class="text-center">
+                        <div class="mx-auto h-20 w-20 curve bg-sage/30 flex items-center justify-center"><i class="fa-solid fa-envelope text-2xl text-olive2"></i></div>
+                        <h3 class="serif mt-6 text-2xl italic">Message</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-ink/70">Speaks to Slack, Gmail, and the rest — in your voice.</p>
+                    </article>
+                    <article class="text-center">
+                        <div class="mx-auto h-20 w-20 curve bg-clay flex items-center justify-center"><i class="fa-solid fa-sun text-2xl text-terra"></i></div>
+                        <h3 class="serif mt-6 text-2xl italic">Grow</h3>
+                        <p class="mt-3 text-sm leading-relaxed text-ink/70">Skills you install. Habits the agent learns.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="bg-clay/60 py-24">
+            <div class="mx-auto max-w-4xl px-6 text-center lg:px-10">
+                <div class="cap-label ornament">The Quiet Promise</div>
+                <h2 class="serif mt-4 text-4xl italic text-ink sm:text-5xl">Nothing is taken home but what you send, yourself.</h2>
+                <div class="mt-12 grid gap-8 sm:grid-cols-2 text-left">
+                    <div class="rounded-3xl border border-ink/15 bg-cream p-6"><div class="cap-label">Where your data sleeps</div><div class="serif mt-2 text-xl">At home, on your device.</div></div>
+                    <div class="rounded-3xl border border-ink/15 bg-cream p-6"><div class="cap-label">Where your keys rest</div><div class="serif mt-2 text-xl">In the operating system's keychain.</div></div>
+                    <div class="rounded-3xl border border-ink/15 bg-cream p-6"><div class="cap-label">What we train on</div><div class="serif mt-2 text-xl italic text-terra">Nothing of yours.</div></div>
+                    <div class="rounded-3xl border border-ink/15 bg-cream p-6"><div class="cap-label">Model calls</div><div class="serif mt-2 text-xl">Direct to whomever you choose.</div></div>
+                </div>
+                <a href="/privacy.html" class="mt-10 inline-block serif text-lg italic underline decoration-terra decoration-2 underline-offset-4 hover:text-terra">Read the field guide ↗</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-24">
+            <div class="mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <div class="cap-label ornament">Take it with you</div>
+                <h2 class="serif mt-4 text-4xl italic sm:text-5xl">Plant it on any of three.</h2>
+                <div class="mt-14 grid gap-6 sm:grid-cols-3">
+                    <a href="#" class="group rounded-3xl border border-ink/15 bg-cream p-8 hover:bg-clay"><i class="fa-brands fa-apple text-4xl text-ink group-hover:text-olive"></i><div class="serif mt-4 text-2xl italic">macOS</div><div class="cap-label mt-2">arm64 · x86_64</div></a>
+                    <a href="#" class="group rounded-3xl border border-ink/15 bg-cream p-8 hover:bg-clay"><i class="fa-brands fa-windows text-4xl text-ink group-hover:text-olive"></i><div class="serif mt-4 text-2xl italic">Windows</div><div class="cap-label mt-2">x86_64 · 10+</div></a>
+                    <a href="#" class="group rounded-3xl border border-ink/15 bg-cream p-8 hover:bg-clay"><i class="fa-brands fa-linux text-4xl text-ink group-hover:text-olive"></i><div class="serif mt-4 text-2xl italic">Linux</div><div class="cap-label mt-2">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-ink/10 py-10">
+        <div class="mx-auto max-w-6xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center cap-label">
+            <p>© <span id="year"></span> · Mins &amp; Bot · tended by hand</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-terra">Privacy</a><a href="/terms.html" class="hover:text-terra">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-terra">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

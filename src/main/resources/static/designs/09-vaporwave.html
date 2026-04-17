@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 09 Vaporwave</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Orbitron','sans-serif'], sans: ['Space Grotesk','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+            colors: { void:'#0b0320', deep:'#1a0935', magenta:'#ff2e93', cyan:'#00e1ff', violet:'#7c3aed', peach:'#ffb3d1' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Space Grotesk', sans-serif; }
+        body { background:#0b0320; color:#f3f3ff; overflow-x: hidden; }
+        .display { font-family: 'Orbitron', sans-serif; letter-spacing: 0.01em; }
+        .title-glow { text-shadow: 0 0 30px rgba(255,46,147,0.6), 0 0 60px rgba(124,58,237,0.3); }
+        .cyan-glow { text-shadow: 0 0 25px rgba(0,225,255,0.6); }
+        .mag-grad { background: linear-gradient(90deg, #ff2e93, #00e1ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .horizon {
+            background:
+                linear-gradient(180deg, #0b0320 0%, #1a0935 40%, #4b0f5a 65%, #ff2e93 80%, #ff8ac0 100%);
+        }
+        .vgrid {
+            background-image:
+                linear-gradient(#00e1ff40 1px, transparent 1px),
+                linear-gradient(90deg, #00e1ff40 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(600px) rotateX(60deg) translateY(-10px);
+            transform-origin: bottom;
+        }
+        .sun {
+            background: radial-gradient(circle at 50% 60%, #ffb3d1, #ff2e93 40%, transparent 70%);
+            filter: blur(2px);
+        }
+        .neon-border { border: 1px solid #00e1ff80; box-shadow: 0 0 20px rgba(0,225,255,0.25), inset 0 0 20px rgba(124,58,237,0.15); }
+        .neon-border-mag { border: 1px solid #ff2e9380; box-shadow: 0 0 20px rgba(255,46,147,0.3), inset 0 0 20px rgba(255,46,147,0.1); }
+        .scanline::after { content:''; position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,225,255,0.04) 3px, rgba(0,225,255,0.04) 4px); pointer-events:none; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .caps { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; }
+        .switcher { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:#1a0935; color:#00e1ff; border:1px solid #00e1ff80; padding:.3rem .5rem; }
+        .btn-neon { background: linear-gradient(90deg, #ff2e93, #7c3aed); }
+        .vaporize:hover { animation: vaporize 2s ease-out; }
+        @keyframes blink2 { 50% { opacity: 0.4; } }
+        .blink2 { animation: blink2 2s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-50 border-b border-cyan/30 bg-void/85 backdrop-blur">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3"><span class="display text-lg font-bold mag-grad">MINS_BOT</span><span class="caps text-cyan blink2">◆ online</span></a>
+            <div class="flex items-center gap-4 caps text-peach">
+                <a href="#capabilities" class="hidden hover:text-cyan md:inline-block">// Powers</a>
+                <a href="#install" class="hidden hover:text-cyan md:inline-block">// Get</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero horizon -->
+        <section class="relative overflow-hidden" style="min-height:110vh">
+            <div class="absolute inset-0 horizon"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-[45%] vgrid"></div>
+            <div class="absolute left-1/2 -translate-x-1/2 top-[12%] h-96 w-96 sun"></div>
+
+            <div class="relative mx-auto max-w-7xl px-6 pt-32 lg:px-10 lg:pt-40 text-center">
+                <div class="caps mb-6 text-cyan cyan-glow">▸ system · online · 04.18.2026 ◂</div>
+                <h1 class="display title-glow text-5xl font-black uppercase text-white sm:text-7xl lg:text-8xl">
+                    Your desktop<br>
+                    <span class="mag-grad">is the future.</span>
+                </h1>
+                <p class="mx-auto mt-10 max-w-xl text-lg leading-relaxed text-peach">
+                    A sovereign AI agent living on your machine. Browses. Files. Messages. Runs skills. Ships no data home. Built for the hyper-local decade.
+                </p>
+                <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                    <a href="#install" class="btn-neon display inline-flex items-center gap-3 rounded-full px-10 py-4 text-sm font-bold uppercase tracking-widest text-white hover:brightness-125">⟁ Download ⟁</a>
+                    <a href="#capabilities" class="caps neon-border rounded-full px-8 py-4 text-cyan hover:text-white">∞ Specs ∞</a>
+                </div>
+            </div>
+
+            <!-- scrolling ticker at bottom -->
+            <div class="absolute bottom-2 left-0 right-0 z-10 mono text-xs text-cyan/90">
+                <div class="flex justify-between px-6 lg:px-10"><span>▸ no telemetry</span><span>▸ keys.local</span><span>▸ zero retention</span><span>▸ v0.4.2</span></div>
+            </div>
+        </section>
+
+        <!-- Capabilities: 4 neon cards -->
+        <section id="capabilities" class="relative py-28">
+            <div class="mx-auto max-w-7xl px-6 lg:px-10">
+                <div class="text-center mb-16">
+                    <div class="caps text-magenta">// subsystems</div>
+                    <h2 class="display mt-4 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">Four <span class="mag-grad">primitives.</span></h2>
+                </div>
+                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <article class="scanline neon-border-mag relative rounded-2xl bg-deep/70 p-6 backdrop-blur">
+                        <div class="caps text-peach">P/01</div>
+                        <i class="fa-solid fa-globe mt-5 text-3xl text-cyan cyan-glow"></i>
+                        <h3 class="display mt-4 text-xl text-white">Browse</h3>
+                        <p class="mt-2 text-sm text-peach/90">Navigate the real web under your session. Chromium, on your terms.</p>
+                    </article>
+                    <article class="scanline neon-border relative rounded-2xl bg-deep/70 p-6 backdrop-blur">
+                        <div class="caps text-cyan">P/02</div>
+                        <i class="fa-solid fa-hard-drive mt-5 text-3xl text-magenta title-glow"></i>
+                        <h3 class="display mt-4 text-xl text-white">File</h3>
+                        <p class="mt-2 text-sm text-peach/90">Organize and process under explicit path allow-lists.</p>
+                    </article>
+                    <article class="scanline neon-border-mag relative rounded-2xl bg-deep/70 p-6 backdrop-blur">
+                        <div class="caps text-peach">P/03</div>
+                        <i class="fa-solid fa-satellite-dish mt-5 text-3xl text-cyan cyan-glow"></i>
+                        <h3 class="display mt-4 text-xl text-white">Message</h3>
+                        <p class="mt-2 text-sm text-peach/90">Slack, Discord, Gmail. Tokens live in the OS keychain.</p>
+                    </article>
+                    <article class="scanline neon-border relative rounded-2xl bg-deep/70 p-6 backdrop-blur">
+                        <div class="caps text-cyan">P/04</div>
+                        <i class="fa-solid fa-cubes mt-5 text-3xl text-magenta title-glow"></i>
+                        <h3 class="display mt-4 text-xl text-white">Skills</h3>
+                        <p class="mt-2 text-sm text-peach/90">Installable, composable, local-first.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section class="relative py-28 border-y border-cyan/20">
+            <div class="absolute inset-0 opacity-50" style="background: radial-gradient(circle at 80% 20%, rgba(255,46,147,0.15), transparent 50%), radial-gradient(circle at 20% 80%, rgba(0,225,255,0.12), transparent 50%);"></div>
+            <div class="relative mx-auto max-w-5xl px-6 text-center lg:px-10">
+                <div class="caps text-magenta">// data.protocol</div>
+                <h2 class="display mt-4 text-4xl font-bold text-white sm:text-6xl">No <span class="mag-grad">upload.</span></h2>
+                <p class="mx-auto mt-6 max-w-xl text-peach">The server does not exist. There is no place for your data to go.</p>
+                <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 text-left">
+                    <div class="neon-border rounded-xl bg-deep/60 p-5"><div class="caps text-cyan">data</div><div class="display mt-2 text-lg text-white">on.device</div></div>
+                    <div class="neon-border rounded-xl bg-deep/60 p-5"><div class="caps text-cyan">keys</div><div class="display mt-2 text-lg text-white">os.keychain</div></div>
+                    <div class="neon-border-mag rounded-xl bg-deep/60 p-5"><div class="caps text-peach">training</div><div class="display mt-2 text-lg text-magenta">null</div></div>
+                    <div class="neon-border rounded-xl bg-deep/60 p-5"><div class="caps text-cyan">calls</div><div class="display mt-2 text-lg text-white">direct</div></div>
+                </div>
+                <a href="/privacy.html" class="caps mt-10 inline-flex items-center gap-2 text-cyan hover:text-magenta">▸ read.full.policy</a>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="py-28">
+            <div class="mx-auto max-w-6xl px-6 text-center lg:px-10">
+                <div class="caps text-magenta">// fetch</div>
+                <h2 class="display mt-4 text-4xl font-bold text-white sm:text-6xl">Three <span class="mag-grad">kernels.</span></h2>
+                <div class="mt-14 grid gap-5 sm:grid-cols-3">
+                    <a href="#" class="group neon-border-mag rounded-xl bg-deep/70 p-8 hover:bg-deep"><i class="fa-brands fa-apple text-4xl text-cyan"></i><div class="display mt-4 text-xl text-white">macOS</div><div class="caps mt-2 text-peach">arm64 · x86_64</div></a>
+                    <a href="#" class="group neon-border rounded-xl bg-deep/70 p-8 hover:bg-deep"><i class="fa-brands fa-windows text-4xl text-magenta"></i><div class="display mt-4 text-xl text-white">Windows</div><div class="caps mt-2 text-peach">x86_64 · 10+</div></a>
+                    <a href="#" class="group neon-border-mag rounded-xl bg-deep/70 p-8 hover:bg-deep"><i class="fa-brands fa-linux text-4xl text-cyan"></i><div class="display mt-4 text-xl text-white">Linux</div><div class="caps mt-2 text-peach">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-cyan/20 py-10">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center caps">
+            <p class="text-peach">© <span id="year"></span> · mins_bot · hyper.local</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="text-cyan hover:text-magenta">privacy</a><a href="/terms.html" class="text-cyan hover:text-magenta">terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="text-cyan hover:text-magenta">github</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

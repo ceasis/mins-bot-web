@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 07 Minimal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { sans: ['Noto Sans JP','system-ui','sans-serif'], serif: ['Noto Serif JP','serif'] },
+            colors: { paper:'#fafaf9', ink:'#1a1a1a', gray:{1:'#f5f5f4', 2:'#e5e5e5', 3:'#a8a29e', 4:'#57534e'}, hinomaru:'#bc002d' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Noto Sans JP', system-ui, sans-serif; font-weight: 300; letter-spacing: 0.02em; }
+        body { background:#fafaf9; color:#1a1a1a; font-size: 14px; line-height: 1.9; }
+        .serif { font-family:'Noto Serif JP',serif; }
+        .switcher { font-family:'Noto Sans JP',sans-serif; font-size:11px; letter-spacing:.12em; background:#fafaf9; color:#1a1a1a; border:1px solid #e5e5e5; padding:.3rem .5rem; font-weight:300; }
+        .mark { font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: #57534e; }
+        .hair { border-color: #e5e5e5; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: #bc002d; display: inline-block; }
+        .jp-num::before { content: attr(data-num); font-family:'Noto Serif JP',serif; font-weight: 400; color:#bc002d; margin-right: 1.5rem; font-size: 13px; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="border-b hair bg-paper/95 backdrop-blur sticky top-0 z-50">
+        <nav class="mx-auto flex max-w-5xl items-center justify-between px-8 py-6 lg:px-12">
+            <a href="/" class="flex items-center gap-3"><span class="dot"></span><span class="text-sm tracking-widest">Mins&nbsp;Bot</span></a>
+            <div class="flex items-center gap-6 mark">
+                <a href="#capabilities" class="hidden hover:text-ink md:inline-block">Capabilities</a>
+                <a href="#install" class="hidden hover:text-ink md:inline-block">Install</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-8 lg:px-12">
+        <!-- Hero -->
+        <section class="pt-40 pb-40 lg:pt-56 lg:pb-56">
+            <div class="flex items-center gap-4 mb-20"><span class="dot"></span><span class="mark">—  quietly useful</span></div>
+
+            <h1 class="serif text-4xl font-normal leading-[1.8] sm:text-5xl lg:text-6xl max-w-3xl">
+                A small agent,<br>
+                kept close to the work.
+            </h1>
+
+            <p class="mt-20 max-w-md text-gray-4 leading-loose">
+                Mins Bot runs on your machine. It reads, writes, and replies — then is still. Nothing is saved that wasn't yours to begin with.
+            </p>
+
+            <div class="mt-24 flex items-center gap-10">
+                <a href="#install" class="group inline-flex items-center gap-4 border-b hair pb-2 text-sm tracking-widest hover:border-hinomaru">
+                    <span>Download</span><span class="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+                <a href="#capabilities" class="mark hover:text-hinomaru">Read on</a>
+            </div>
+        </section>
+
+        <div class="flex justify-center pb-40"><span class="dot"></span></div>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="pb-40">
+            <div class="mark">02 — Capabilities</div>
+            <h2 class="serif mt-6 text-3xl font-normal leading-relaxed sm:text-4xl">Four simple things. Done carefully.</h2>
+
+            <div class="mt-20 space-y-16">
+                <div class="grid gap-4 sm:grid-cols-12">
+                    <div class="sm:col-span-1"><span class="serif text-hinomaru">一</span></div>
+                    <div class="sm:col-span-4"><h3 class="text-base font-medium">Browse the web.</h3></div>
+                    <div class="sm:col-span-7 text-gray-4">On your session, for your purposes — the real pages, not summaries of them.</div>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-12">
+                    <div class="sm:col-span-1"><span class="serif text-hinomaru">二</span></div>
+                    <div class="sm:col-span-4"><h3 class="text-base font-medium">Tend to files.</h3></div>
+                    <div class="sm:col-span-7 text-gray-4">Only the paths you've allowed. Every move recorded, every edit reversible.</div>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-12">
+                    <div class="sm:col-span-1"><span class="serif text-hinomaru">三</span></div>
+                    <div class="sm:col-span-4"><h3 class="text-base font-medium">Answer quietly.</h3></div>
+                    <div class="sm:col-span-7 text-gray-4">Slack, Gmail, Discord — in your voice, under your rules. Tokens remain where the OS keeps them.</div>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-12">
+                    <div class="sm:col-span-1"><span class="serif text-hinomaru">四</span></div>
+                    <div class="sm:col-span-4"><h3 class="text-base font-medium">Grow with use.</h3></div>
+                    <div class="sm:col-span-7 text-gray-4">Skills you install. Habits the agent notices. Nothing sent home.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex justify-center pb-40"><span class="dot"></span></div>
+
+        <!-- Policy -->
+        <section class="pb-40">
+            <div class="mark">03 — A short promise</div>
+            <h2 class="serif mt-6 text-3xl font-normal leading-relaxed sm:text-4xl max-w-2xl">We keep nothing. <span class="text-hinomaru">何も残しません。</span></h2>
+            <dl class="mt-16 divide-y divide-gray-2 border-t border-b hair">
+                <div class="grid grid-cols-12 gap-4 py-6 text-sm"><dt class="col-span-4 mark">Data at rest</dt><dd class="col-span-8 text-gray-4">On your device only.</dd></div>
+                <div class="grid grid-cols-12 gap-4 py-6 text-sm"><dt class="col-span-4 mark">Credentials</dt><dd class="col-span-8 text-gray-4">OS keychain. Never read, never synced.</dd></div>
+                <div class="grid grid-cols-12 gap-4 py-6 text-sm"><dt class="col-span-4 mark">Training use</dt><dd class="col-span-8 text-hinomaru">None.</dd></div>
+                <div class="grid grid-cols-12 gap-4 py-6 text-sm"><dt class="col-span-4 mark">Model calls</dt><dd class="col-span-8 text-gray-4">Direct to the provider of your choice.</dd></div>
+            </dl>
+            <a href="/privacy.html" class="mt-10 inline-block mark hover:text-hinomaru">Read the full policy →</a>
+        </section>
+
+        <div class="flex justify-center pb-40"><span class="dot"></span></div>
+
+        <!-- Install -->
+        <section id="install" class="pb-40">
+            <div class="mark">04 — Install</div>
+            <h2 class="serif mt-6 text-3xl font-normal leading-relaxed sm:text-4xl">Three doors. One binary.</h2>
+            <div class="mt-16 grid gap-0 sm:grid-cols-3 border-t border-b hair">
+                <a href="#" class="group flex items-center justify-between py-8 px-4 border-b sm:border-b-0 sm:border-r hair hover:bg-gray-1"><div><i class="fa-brands fa-apple text-xl text-gray-4 group-hover:text-ink"></i><div class="serif mt-4 text-xl">macOS</div><div class="mark mt-1">arm64 · x86_64</div></div><span class="mark group-hover:text-hinomaru">→</span></a>
+                <a href="#" class="group flex items-center justify-between py-8 px-4 border-b sm:border-b-0 sm:border-r hair hover:bg-gray-1"><div><i class="fa-brands fa-windows text-xl text-gray-4 group-hover:text-ink"></i><div class="serif mt-4 text-xl">Windows</div><div class="mark mt-1">x86_64 · 10+</div></div><span class="mark group-hover:text-hinomaru">→</span></a>
+                <a href="#" class="group flex items-center justify-between py-8 px-4 hover:bg-gray-1"><div><i class="fa-brands fa-linux text-xl text-gray-4 group-hover:text-ink"></i><div class="serif mt-4 text-xl">Linux</div><div class="mark mt-1">x86_64 · arm64</div></div><span class="mark group-hover:text-hinomaru">→</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t hair py-10">
+        <div class="mx-auto max-w-5xl px-8 lg:px-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center mark">
+            <p>© <span id="year"></span> &nbsp; Mins Bot</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-hinomaru">Privacy</a><a href="/terms.html" class="hover:text-hinomaru">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-hinomaru">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

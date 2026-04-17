@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 08 Bauhaus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { display: ['Bungee','Impact','sans-serif'], sans: ['Work Sans','sans-serif'] },
+            colors: { cream:'#f4f0e6', ink:'#1a1a1a', bred:'#e53935', byellow:'#fdd835', bblue:'#1e88e5', bblack:'#111' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Work Sans', sans-serif; }
+        body { background: #f4f0e6; color: #1a1a1a; }
+        .display { font-family: 'Bungee', Impact, sans-serif; letter-spacing: -0.01em; line-height: 0.95; text-transform: uppercase; }
+        .block-b { border: 3px solid #1a1a1a; }
+        .caps { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; font-weight:700; }
+        .switcher { font-family:'Work Sans',sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:#f4f0e6; color:#1a1a1a; border:3px solid #1a1a1a; padding:.3rem .5rem; }
+        .circle { border-radius: 50%; }
+        .triangle { width:0; height:0; border-left: 60px solid transparent; border-right: 60px solid transparent; border-bottom: 104px solid #1e88e5; }
+        @keyframes drift { 0%,100%{transform:translate(0,0);} 50%{transform:translate(10px,-8px);} }
+        .drift { animation: drift 9s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="block-b border-t-0 border-l-0 border-r-0 bg-cream sticky top-0 z-50">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+            <a href="/" class="flex items-center gap-3">
+                <span class="block h-7 w-7 circle bg-bred"></span>
+                <span class="block h-7 w-7 bg-byellow"></span>
+                <span class="triangle" style="border-left-width:14px;border-right-width:14px;border-bottom-width:24px;"></span>
+                <span class="display ml-2 text-lg">Mins/Bot</span>
+            </a>
+            <div class="flex items-center gap-4 caps">
+                <a href="#capabilities" class="hidden hover:text-bred md:inline-block">Form</a>
+                <a href="#install" class="hidden hover:text-bred md:inline-block">Fabric</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero: geometric composition -->
+        <section class="block-b border-t-0 relative overflow-hidden">
+            <div class="mx-auto max-w-7xl grid lg:grid-cols-12 min-h-[80vh]">
+                <!-- left text -->
+                <div class="lg:col-span-7 relative p-8 lg:p-16 flex items-center">
+                    <!-- decorative shapes -->
+                    <span class="absolute top-8 right-8 h-32 w-32 circle bg-byellow drift"></span>
+                    <div>
+                        <div class="caps text-bred">Werkstatt 08 / 26</div>
+                        <h1 class="display mt-6 text-5xl sm:text-7xl lg:text-[6.5rem]">
+                            Form<br>
+                            <span class="text-bred">follows</span><br>
+                            <span class="bg-ink px-4 text-cream">function.</span>
+                        </h1>
+                        <p class="mt-8 max-w-md text-lg leading-snug font-medium">A desktop agent assembled from four primitives. Nothing ornamental. Nothing collected.</p>
+                        <div class="mt-10 flex flex-wrap gap-3">
+                            <a href="#install" class="block-b bg-ink px-8 py-4 display text-base text-cream hover:bg-bred">Download ▶</a>
+                            <a href="#capabilities" class="block-b bg-byellow px-8 py-4 display text-base text-ink hover:bg-bred hover:text-cream">See form</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- right composition -->
+                <div class="block-b lg:border-b-0 lg:border-l-3 border-t-3 lg:border-t-0 lg:col-span-5 bg-bblue relative overflow-hidden flex items-center justify-center">
+                    <span class="absolute top-0 right-0 h-1/2 w-1/2 bg-byellow"></span>
+                    <span class="absolute bottom-0 left-0 h-1/2 w-1/2 circle bg-bred drift"></span>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="block h-40 w-40 circle bg-cream block-b"></span>
+                    </div>
+                    <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between caps text-cream">
+                        <span>N° 08</span><span>Tafel · 01</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities: 2x2 color grid -->
+        <section id="capabilities" class="block-b border-t-0">
+            <div class="mx-auto max-w-7xl">
+                <div class="px-6 lg:px-10 py-6 flex items-center justify-between block-b border-t-0 border-l-0 border-r-0"><h2 class="display text-3xl">§ Capabilities</h2><span class="caps">Four Primitives</span></div>
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="block-b border-t-0 border-l-0 bg-bred text-cream p-10 min-h-[280px] flex flex-col justify-between">
+                        <div class="flex items-center gap-3"><span class="h-10 w-10 circle bg-cream"></span><span class="caps">01</span></div>
+                        <div><h3 class="display text-4xl">Browse</h3><p class="mt-2 max-w-xs text-base font-medium">Navigate the web under your session. Read, act, write back.</p></div>
+                    </div>
+                    <div class="block-b border-t-0 md:border-l-0 bg-byellow text-ink p-10 min-h-[280px] flex flex-col justify-between">
+                        <div class="flex items-center gap-3"><span class="h-10 w-10 bg-ink"></span><span class="caps">02</span></div>
+                        <div><h3 class="display text-4xl">File</h3><p class="mt-2 max-w-xs text-base font-medium">Tend to paths you allow. Move, rename, process.</p></div>
+                    </div>
+                    <div class="block-b border-t-0 border-l-0 bg-cream text-ink p-10 min-h-[280px] flex flex-col justify-between">
+                        <div class="flex items-center gap-3"><span class="triangle"></span><span class="caps">03</span></div>
+                        <div><h3 class="display text-4xl">Message</h3><p class="mt-2 max-w-xs text-base font-medium">Slack. Discord. Gmail. Your tokens, your keychain.</p></div>
+                    </div>
+                    <div class="block-b border-t-0 md:border-l-0 bg-bblue text-cream p-10 min-h-[280px] flex flex-col justify-between">
+                        <div class="flex items-center gap-3"><span class="h-10 w-10 circle bg-byellow"></span><span class="caps">04</span></div>
+                        <div><h3 class="display text-4xl">Skill</h3><p class="mt-2 max-w-xs text-base font-medium">Installable units of capability. Compose your own set.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy: stacked geometric -->
+        <section class="block-b border-t-0 bg-ink text-cream">
+            <div class="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+                <div class="grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7">
+                        <div class="caps text-byellow">Data Protocol</div>
+                        <h2 class="display mt-4 text-5xl sm:text-7xl">Zero<br><span class="text-bred">retention.</span></h2>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <ul class="space-y-4 text-lg font-medium">
+                            <li class="flex items-center gap-4"><span class="h-4 w-4 circle bg-bred shrink-0"></span><span>Data at rest · on device</span></li>
+                            <li class="flex items-center gap-4"><span class="h-4 w-4 bg-byellow shrink-0"></span><span>Credentials · OS keychain</span></li>
+                            <li class="flex items-center gap-4"><span class="h-4 w-4 bg-cream shrink-0"></span><span>Training · none</span></li>
+                            <li class="flex items-center gap-4"><span class="h-4 w-4 circle bg-bblue shrink-0"></span><span>Model calls · direct to provider</span></li>
+                        </ul>
+                        <a href="/privacy.html" class="caps mt-8 inline-flex items-center gap-2 border-b-2 border-byellow pb-1 text-byellow hover:text-cream">Read the full policy →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="block-b border-t-0">
+            <div class="mx-auto max-w-7xl">
+                <div class="px-6 lg:px-10 py-6 block-b border-t-0 border-l-0 border-r-0"><h2 class="display text-3xl">§ Fabric</h2></div>
+                <div class="grid grid-cols-1 md:grid-cols-3">
+                    <a href="#" class="block-b border-t-0 border-l-0 p-10 min-h-[220px] flex items-center justify-between hover:bg-bred hover:text-cream"><div><div class="caps">01</div><div class="display text-3xl mt-2">macOS</div><div class="caps mt-1 opacity-70">arm64 · x86_64</div></div><i class="fa-brands fa-apple text-4xl"></i></a>
+                    <a href="#" class="block-b border-t-0 md:border-l-0 p-10 min-h-[220px] flex items-center justify-between hover:bg-byellow"><div><div class="caps">02</div><div class="display text-3xl mt-2">Windows</div><div class="caps mt-1 opacity-70">x86_64 · 10+</div></div><i class="fa-brands fa-windows text-4xl"></i></a>
+                    <a href="#" class="block-b border-t-0 md:border-l-0 p-10 min-h-[220px] flex items-center justify-between hover:bg-bblue hover:text-cream"><div><div class="caps">03</div><div class="display text-3xl mt-2">Linux</div><div class="caps mt-1 opacity-70">x86_64 · arm64</div></div><i class="fa-brands fa-linux text-4xl"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> · Mins/Bot · Werkstatt</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-bred">Privacy</a><a href="/terms.html" class="hover:text-bred">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-bred">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 04 Editorial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { serif: ['Fraunces','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] },
+            colors: { paper:'#f4ede0', papery:'#ebe1cf', ink:'#1a1510', maroon:'#7a1b1b', gold:'#a07015' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body { background: #f4ede0; color: #1a1510; }
+        .serif { font-family: 'Fraunces', Georgia, serif; }
+        .hair { border-color: #1a1510; }
+        .rule-thin { border-top: 1px solid #1a1510; }
+        .rule-thick { border-top: 3px double #1a1510; }
+        .caps-label { font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; }
+        .masthead-rule { border-top: 6px double #1a1510; border-bottom: 1px solid #1a1510; }
+        .dropcap::first-letter { font-family: 'Fraunces', serif; font-size: 5.5rem; font-weight: 700; float: left; line-height: .9; padding-right: .5rem; padding-top: .25rem; color: #7a1b1b; }
+        .justify-body { text-align: justify; hyphens: auto; }
+        .switcher { font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; background:#f4ede0; color:#1a1510; border:1px solid #1a1510; padding:.3rem .5rem; }
+        .col-rule { column-rule: 1px solid #1a1510; }
+        @media (min-width: 768px) {
+            .cols-2 { columns: 2; column-gap: 2.5rem; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Masthead -->
+    <header class="masthead-rule bg-paper">
+        <div class="mx-auto max-w-6xl px-6 py-6 lg:px-10">
+            <div class="flex items-baseline justify-between">
+                <span class="caps-label">Vol. 0.4 · No. 02</span>
+                <span class="caps-label hidden sm:inline">Apr 18, 2026 · Saturday Edition</span>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="/" class="serif block text-6xl font-semibold italic sm:text-7xl">The Mins Bot Gazette</a>
+                <div class="caps-label mt-2 text-ink/70">Dispatches on a Desktop Agent — Local by Design · Quietly Useful · Source Available</div>
+            </div>
+        </div>
+        <div class="mx-auto max-w-6xl border-t hair px-6 py-2 lg:px-10 flex flex-wrap items-center justify-between gap-3 caps-label text-ink/80">
+            <a href="#overview" class="hover:text-maroon">Overview</a>
+            <a href="#capabilities" class="hover:text-maroon">Capabilities</a>
+            <a href="#policy" class="hover:text-maroon">Policy</a>
+            <a href="#install" class="hover:text-maroon">Install</a>
+            <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-maroon">Archive</a>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-6 py-16 lg:px-10">
+        <!-- Overview -->
+        <section id="overview">
+            <div class="caps-label text-maroon">Feature · From the Editor</div>
+            <h1 class="serif mt-2 text-5xl font-semibold leading-[1.02] sm:text-6xl lg:text-[5rem]">
+                An agent that lives<br>
+                <em class="text-maroon">where the work does.</em>
+            </h1>
+            <div class="rule-thick mt-10"></div>
+            <div class="mt-10 cols-2 col-rule">
+                <p class="dropcap justify-body text-base leading-relaxed">Mins Bot runs on your own desktop. It browses the web on your behalf, tends to the files you keep, and speaks to the messaging tools you already pay for — all without a middleman. We do not run a server for it. Your files, your drafts, your browsing trails, your credentials: none of it leaves your machine except at your direct instruction, and then only to the provider you picked.</p>
+                <p class="justify-body mt-4 text-base leading-relaxed">The ambition is modest: to put one general-purpose agent on the side of the person using it, rather than the side of the company renting it. Skills are installable. Integrations are yours to revoke. The audit log is a plain file on your disk. Nothing here is novel; what is uncommon is the refusal to collect.</p>
+                <p class="justify-body mt-4 text-base leading-relaxed">This edition details the four core capabilities — browsing, filesystem, messaging, skills — and the data policy that governs them all: nothing retained, nothing trained on, nothing sold.</p>
+            </div>
+            <div class="mt-10 flex flex-wrap items-center gap-6">
+                <a href="#install" class="serif inline-flex items-center gap-3 bg-ink px-8 py-4 text-lg font-semibold text-paper hover:bg-maroon">Download the binary →</a>
+                <a href="#capabilities" class="caps-label border-b-2 hair pb-1 hover:text-maroon">Continue reading</a>
+            </div>
+        </section>
+
+        <!-- Capabilities -->
+        <section id="capabilities" class="mt-24">
+            <div class="rule-thick"></div>
+            <div class="flex items-baseline justify-between py-3 caps-label"><span class="text-maroon">Section II</span><span>Four Primitives</span></div>
+            <div class="rule-thin"></div>
+            <h2 class="serif mt-8 text-4xl font-semibold italic sm:text-5xl">The capabilities, dispassionately.</h2>
+
+            <div class="mt-10 grid gap-10 md:grid-cols-2">
+                <article>
+                    <div class="caps-label text-maroon">I — Browsing</div>
+                    <h3 class="serif mt-2 text-2xl font-semibold">The agent reads the web like you.</h3>
+                    <p class="justify-body mt-3 text-base leading-relaxed">Chromium under your own session. It fills forms, follows links, and writes briefs from actual pages — not a crawler's caricature of them.</p>
+                </article>
+                <article>
+                    <div class="caps-label text-maroon">II — Filesystem</div>
+                    <h3 class="serif mt-2 text-2xl font-semibold">Only the paths you allow.</h3>
+                    <p class="justify-body mt-3 text-base leading-relaxed">An allow-list is the whole policy. Moves, renames, and edits are logged to a local journal you can review and undo.</p>
+                </article>
+                <article>
+                    <div class="caps-label text-maroon">III — Messaging</div>
+                    <h3 class="serif mt-2 text-2xl font-semibold">In the channels you already keep.</h3>
+                    <p class="justify-body mt-3 text-base leading-relaxed">Slack, Discord, Gmail. Tokens live in the OS keychain. Revocation is a single visit to the provider's security page.</p>
+                </article>
+                <article>
+                    <div class="caps-label text-maroon">IV — Skills</div>
+                    <h3 class="serif mt-2 text-2xl font-semibold">Composable by design.</h3>
+                    <p class="justify-body mt-3 text-base leading-relaxed">Skills are manifests plus code. Bring your own, pin to a shared registry, or write one over a coffee. The agent discovers them at launch.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Policy -->
+        <section id="policy" class="mt-24">
+            <div class="rule-thick"></div>
+            <div class="flex items-baseline justify-between py-3 caps-label"><span class="text-maroon">Section III</span><span>Op-Ed · Data Policy</span></div>
+            <div class="rule-thin"></div>
+            <h2 class="serif mt-8 text-4xl font-semibold italic sm:text-5xl">In defense of keeping nothing.</h2>
+            <p class="mt-6 text-lg leading-relaxed italic">By the editors.</p>
+            <div class="mt-6 cols-2 col-rule">
+                <p class="justify-body text-base leading-relaxed">The industry has reached a curious equilibrium in which software performs for its user and reports to its vendor. A desktop agent that inherits this posture would be worse than useless — it would be a burglar with a helpful manner.</p>
+                <p class="justify-body mt-4 text-base leading-relaxed">Our position is plain: data at rest stays on the device; credentials are handed to the operating system's keychain and never touched otherwise; training pipelines see none of it; model calls travel direct from your hardware to the provider you picked. We do not proxy. We do not log. There is, deliberately, no server on which to mishandle your things.</p>
+                <p class="justify-body mt-4 text-base leading-relaxed">The full policy is published in plain English. If an incident ever forced us to revise it, we would tell you before we did.</p>
+            </div>
+            <a href="/privacy.html" class="caps-label mt-8 inline-block border-b-2 border-maroon pb-1 text-maroon hover:text-ink">Read the full policy →</a>
+        </section>
+
+        <!-- Install -->
+        <section id="install" class="mt-24">
+            <div class="rule-thick"></div>
+            <div class="flex items-baseline justify-between py-3 caps-label"><span class="text-maroon">Section IV</span><span>Classifieds · Install</span></div>
+            <div class="rule-thin"></div>
+            <h2 class="serif mt-8 text-4xl font-semibold italic sm:text-5xl">Three platforms, one binary.</h2>
+            <div class="mt-10 grid gap-px bg-ink border hair sm:grid-cols-3">
+                <a href="#" class="flex flex-col justify-between gap-6 bg-paper p-8 hover:bg-papery">
+                    <div class="flex items-center justify-between"><i class="fa-brands fa-apple text-3xl"></i><span class="caps-label text-ink/60">dmg</span></div>
+                    <div><div class="serif text-2xl font-semibold">macOS</div><div class="caps-label mt-1 text-ink/60">arm64 · x86_64</div></div>
+                </a>
+                <a href="#" class="flex flex-col justify-between gap-6 bg-paper p-8 hover:bg-papery">
+                    <div class="flex items-center justify-between"><i class="fa-brands fa-windows text-3xl"></i><span class="caps-label text-ink/60">msi</span></div>
+                    <div><div class="serif text-2xl font-semibold">Windows</div><div class="caps-label mt-1 text-ink/60">x86_64 · 10+</div></div>
+                </a>
+                <a href="#" class="flex flex-col justify-between gap-6 bg-paper p-8 hover:bg-papery">
+                    <div class="flex items-center justify-between"><i class="fa-brands fa-linux text-3xl"></i><span class="caps-label text-ink/60">appimage</span></div>
+                    <div><div class="serif text-2xl font-semibold">Linux</div><div class="caps-label mt-1 text-ink/60">x86_64 · arm64</div></div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-16 border-t hair">
+        <div class="mx-auto max-w-6xl px-6 py-8 lg:px-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <p class="caps-label">© <span id="year"></span> · Mins Bot · Printed locally</p>
+            <div class="flex items-center gap-6 caps-label"><a href="/privacy.html" class="hover:text-maroon">Privacy</a><a href="/terms.html" class="hover:text-maroon">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-maroon">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>

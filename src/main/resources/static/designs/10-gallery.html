@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot · 10 Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { serif: ['EB Garamond','Garamond','serif'], sans: ['Inter','system-ui','sans-serif'] },
+            colors: { velvet:'#1a0d14', velvet2:'#2a1620', bone:'#f1e9dc', bone2:'#e4d8c2', burgundy:'#912940', gold:'#c9a45a' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body { background: #1a0d14; color: #f1e9dc; }
+        .serif { font-family:'EB Garamond',Garamond,serif; }
+        .display { font-family:'EB Garamond',Garamond,serif; font-weight: 500; letter-spacing: -0.02em; line-height: 1.02; }
+        .caps { font-size:.7rem; letter-spacing:.3em; text-transform:uppercase; color:#c9a45a; }
+        .hair-gold { border-color: rgba(201,164,90,0.28); }
+        .switcher { font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; background:#1a0d14; color:#f1e9dc; border:1px solid #c9a45a80; padding:.3rem .5rem; }
+        .ornament { color:#c9a45a; }
+        .pull-quote { font-family:'EB Garamond',serif; font-style: italic; font-size: 1.5rem; line-height: 1.4; color: #f1e9dc; }
+        .exhibit { position: relative; }
+        .exhibit::before, .exhibit::after { content: ''; position: absolute; width: 40px; height: 1px; background: #c9a45a; }
+        .exhibit::before { left: 0; top: 0; }
+        .exhibit::after { right: 0; bottom: 0; }
+        .bg-frame {
+            background:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,164,90,0.08), transparent 60%),
+                #1a0d14;
+        }
+        .plate { background: linear-gradient(145deg, #2a1620 0%, #1a0d14 100%); }
+    </style>
+</head>
+<body class="min-h-screen bg-frame">
+    <header class="sticky top-0 z-50 border-b hair-gold bg-velvet/90 backdrop-blur">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-8 py-6 lg:px-12">
+            <a href="/" class="flex items-baseline gap-3"><span class="serif text-2xl italic">Mins Bot</span><span class="caps">— An Exhibition</span></a>
+            <div class="flex items-center gap-5 caps">
+                <a href="#room-ii" class="hidden hover:text-bone md:inline-block">Room II</a>
+                <a href="#room-iv" class="hidden hover:text-bone md:inline-block">Room IV</a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Opening plate -->
+        <section class="pt-40 pb-48 lg:pt-56 lg:pb-64">
+            <div class="mx-auto max-w-4xl px-8 text-center lg:px-12">
+                <div class="caps">— Room I · The Entrance —</div>
+                <h1 class="display mt-10 text-6xl sm:text-7xl lg:text-[8rem]">
+                    <span class="italic">A</span> small <span class="italic text-gold">light</span>,<br>
+                    kept on <span class="italic">your</span> desk.
+                </h1>
+                <p class="mt-14 max-w-xl mx-auto text-xl leading-relaxed text-bone2">
+                    Mins Bot is a desktop agent assembled with restraint. It browses. It files. It replies. It carries no messages home.
+                </p>
+                <div class="mt-16 flex flex-col items-center justify-center gap-6 sm:flex-row">
+                    <a href="#room-v" class="serif inline-flex items-center gap-3 border hair-gold bg-velvet2 px-10 py-4 text-lg italic hover:bg-burgundy">Enter the exhibition <span class="ornament">→</span></a>
+                    <a href="#room-ii" class="caps border-b hair-gold pb-1 hover:text-gold">Begin with Room II</a>
+                </div>
+                <div class="mt-24 ornament text-2xl">❦</div>
+            </div>
+        </section>
+
+        <!-- Room II -- The Four Works -->
+        <section id="room-ii" class="border-t hair-gold py-32">
+            <div class="mx-auto max-w-6xl px-8 lg:px-12">
+                <div class="text-center mb-20"><div class="caps">— Room II · The Four Works —</div><h2 class="display mt-6 text-4xl italic sm:text-5xl lg:text-6xl">Capabilities, on their own plinths.</h2></div>
+                <div class="space-y-28">
+                    <!-- Work 1 -->
+                    <div class="grid gap-10 lg:grid-cols-12 items-center">
+                        <div class="lg:col-span-5">
+                            <div class="exhibit plate aspect-square rounded-sm p-10 flex items-center justify-center"><i class="fa-solid fa-compass text-7xl text-gold"></i></div>
+                        </div>
+                        <div class="lg:col-span-7">
+                            <div class="caps">No. I — Browse</div>
+                            <h3 class="display mt-3 text-3xl italic sm:text-4xl">The Wanderer.</h3>
+                            <p class="serif mt-4 text-xl leading-relaxed text-bone2">Chromium, moving through the web on your behalf; filling forms and reading pages as you might, if you had a second pair of hands and infinite patience.</p>
+                            <div class="caps mt-5">Medium: session · scope: per-task</div>
+                        </div>
+                    </div>
+                    <!-- Work 2 -->
+                    <div class="grid gap-10 lg:grid-cols-12 items-center">
+                        <div class="lg:col-span-7 lg:order-1 order-2">
+                            <div class="caps">No. II — File</div>
+                            <h3 class="display mt-3 text-3xl italic sm:text-4xl">The Keeper.</h3>
+                            <p class="serif mt-4 text-xl leading-relaxed text-bone2">An allow-list is the entire constitution. Nothing happens where you haven't opened a door. Every edit recorded in plain text, reversible on request.</p>
+                            <div class="caps mt-5">Medium: local fs · scope: allow-list</div>
+                        </div>
+                        <div class="lg:col-span-5 lg:order-2 order-1">
+                            <div class="exhibit plate aspect-square rounded-sm p-10 flex items-center justify-center"><i class="fa-solid fa-folder-open text-7xl text-gold"></i></div>
+                        </div>
+                    </div>
+                    <!-- Work 3 -->
+                    <div class="grid gap-10 lg:grid-cols-12 items-center">
+                        <div class="lg:col-span-5"><div class="exhibit plate aspect-square rounded-sm p-10 flex items-center justify-center"><i class="fa-solid fa-envelope text-7xl text-gold"></i></div></div>
+                        <div class="lg:col-span-7">
+                            <div class="caps">No. III — Message</div>
+                            <h3 class="display mt-3 text-3xl italic sm:text-4xl">The Courier.</h3>
+                            <p class="serif mt-4 text-xl leading-relaxed text-bone2">Slack, Gmail, Discord — the places where the day's conversations already live. The courier carries your tokens, never ours, and keeps them in the operating system's lockbox.</p>
+                            <div class="caps mt-5">Medium: direct api · credentials: os keychain</div>
+                        </div>
+                    </div>
+                    <!-- Work 4 -->
+                    <div class="grid gap-10 lg:grid-cols-12 items-center">
+                        <div class="lg:col-span-7 lg:order-1 order-2">
+                            <div class="caps">No. IV — Skills</div>
+                            <h3 class="display mt-3 text-3xl italic sm:text-4xl">The Library.</h3>
+                            <p class="serif mt-4 text-xl leading-relaxed text-bone2">Skills are manifests and code, installed as one installs a book. The agent browses its own shelves; you decide what is shelved, and what is taken down.</p>
+                            <div class="caps mt-5">Medium: manifest+code · source: local/registry</div>
+                        </div>
+                        <div class="lg:col-span-5 lg:order-2 order-1"><div class="exhibit plate aspect-square rounded-sm p-10 flex items-center justify-center"><i class="fa-solid fa-book-open text-7xl text-gold"></i></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Room III -- Pull quote -->
+        <section class="border-y hair-gold py-32">
+            <div class="mx-auto max-w-3xl px-8 text-center lg:px-12">
+                <div class="caps">— Room III · A wall text —</div>
+                <blockquote class="pull-quote mt-10 text-3xl lg:text-4xl">
+                    "The quiet software, like the quiet guest, is remembered fondly. <span class="text-gold">It leaves nothing behind.</span>"
+                </blockquote>
+                <div class="caps mt-8 text-bone2">— From the curator's notes</div>
+            </div>
+        </section>
+
+        <!-- Room IV -- Policy -->
+        <section id="room-iv" class="py-32">
+            <div class="mx-auto max-w-5xl px-8 lg:px-12">
+                <div class="text-center mb-16"><div class="caps">— Room IV · The Ledger —</div><h2 class="display mt-6 text-4xl italic sm:text-5xl">What is kept, and what is not.</h2></div>
+                <div class="grid gap-12 md:grid-cols-2">
+                    <div class="border-l-2 hair-gold pl-6"><div class="caps">At rest</div><div class="serif mt-2 text-2xl italic">On your device, alone.</div><p class="mt-2 text-bone2/90">Not a byte copied to any infrastructure we operate.</p></div>
+                    <div class="border-l-2 hair-gold pl-6"><div class="caps">Credentials</div><div class="serif mt-2 text-2xl italic">In the keychain the OS provides.</div><p class="mt-2 text-bone2/90">Keychain, Credential Manager, libsecret.</p></div>
+                    <div class="border-l-2 border-burgundy pl-6"><div class="caps text-burgundy">Training</div><div class="serif mt-2 text-2xl italic text-gold">None, of yours.</div><p class="mt-2 text-bone2/90">Your data enters no training pipeline.</p></div>
+                    <div class="border-l-2 hair-gold pl-6"><div class="caps">Model calls</div><div class="serif mt-2 text-2xl italic">Direct, to the provider you chose.</div><p class="mt-2 text-bone2/90">We do not sit between you and the model.</p></div>
+                </div>
+                <div class="mt-12 text-center"><a href="/privacy.html" class="caps border-b hair-gold pb-1 text-gold hover:text-bone">Read the full policy ↗</a></div>
+            </div>
+        </section>
+
+        <!-- Room V -- Install -->
+        <section id="room-v" class="border-t hair-gold py-32">
+            <div class="mx-auto max-w-5xl px-8 lg:px-12">
+                <div class="text-center mb-14"><div class="caps">— Room V · The Gift Shop —</div><h2 class="display mt-6 text-4xl italic sm:text-5xl">Carry it out, in three editions.</h2></div>
+                <div class="grid gap-5 sm:grid-cols-3">
+                    <a href="#" class="plate group rounded-sm border hair-gold p-8 hover:bg-velvet2"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-3xl text-gold"></i><span class="caps">I</span></div><div class="serif mt-6 text-2xl italic">macOS</div><div class="caps mt-1">arm64 · x86_64</div></a>
+                    <a href="#" class="plate group rounded-sm border hair-gold p-8 hover:bg-velvet2"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-3xl text-gold"></i><span class="caps">II</span></div><div class="serif mt-6 text-2xl italic">Windows</div><div class="caps mt-1">x86_64 · 10+</div></a>
+                    <a href="#" class="plate group rounded-sm border hair-gold p-8 hover:bg-velvet2"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-3xl text-gold"></i><span class="caps">III</span></div><div class="serif mt-6 text-2xl italic">Linux</div><div class="caps mt-1">x86_64 · arm64</div></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t hair-gold py-10">
+        <div class="mx-auto max-w-6xl px-8 lg:px-12 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center caps">
+            <p>© <span id="year"></span> · Mins Bot · Catalogue</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-gold">Privacy</a><a href="/terms.html" class="hover:text-gold">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-gold">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>
