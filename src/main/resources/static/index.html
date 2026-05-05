@@ -1,146 +1,326 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mins Bot — A desktop AI agent that runs locally. Autonomous browsing, filesystem access, messaging integrations, and an extensible skills inventory.">
-    <title>Mins Bot — desktop agent</title>
+    <title>Mins Bot — floating desktop AI assistant</title>
+    <meta name="description" content="Mins Bot — a floating desktop AI assistant. Voice, vision, browser automation, OS control and 180+ skills. Built on Java 17 + Spring Boot 3.5 + JavaFX 21. Runs locally; offline-capable via Ollama and Piper.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = { theme: { extend: {
-            fontFamily: { sans: ['DM Sans','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
-            colors: { ink: {950:'#0a0a0a',900:'#111',800:'#161616'}, signal: '#ef4444' }
+            fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+            colors: { paper:'#fdfcf9', paper2:'#f4f3ef', ink:'#0f172a', ink2:'#334155', ink3:'#64748b', border:'#e2e6ed', brand:'#2563eb', brand2:'#1d4ed8', accent:'#06b6d4', warn:'#f59e0b', ok:'#10b981', err:'#ef4444' }
         }}}
     </script>
     <style>
-        html { font-family: 'DM Sans', system-ui, sans-serif; }
-        body { background:#0a0a0a; color:#e5e5e5; margin:0; }
-        h1.display { color:#fff; font-weight:600; letter-spacing:-.04em; line-height:.92; font-size:3.75rem; margin:0; }
-        @media (min-width:640px){ h1.display { font-size:4.5rem; } }
-        @media (min-width:1024px){ h1.display { font-size:7.5rem; } }
-        .hairline { border-color: rgba(255,255,255,0.09); }
-        .hairline-thick { border-color: rgba(255,255,255,0.16); }
-        .label { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; }
-        .display { letter-spacing:-.04em; line-height:.92; }
-        .signal-rule { background:#ef4444; height:3px; }
-        table.spec { border-collapse:collapse; width:100%; }
-        table.spec th, table.spec td { padding:1.25rem 1rem; text-align:left; vertical-align:top; border-bottom:1px solid rgba(255,255,255,.09); }
-        table.spec th { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:#737373; font-weight:500; border-bottom-color:rgba(255,255,255,.16); }
-        .switcher { font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; background:#0a0a0a; color:#e5e5e5; border:1px solid rgba(255,255,255,.16); padding:.3rem .5rem; }
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body { background:#fdfcf9; color:#0f172a; font-size: 15px; line-height: 1.6; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2.5rem; margin-bottom: 0.75rem; color: #0f172a; scroll-margin-top: 80px; }
+        .prose h2 a { color: #cbd5e1; margin-right: .35rem; text-decoration: none; }
+        .prose h2:hover a { color: #2563eb; }
+        .prose h3 { font-size: 1.15rem; font-weight: 600; margin-top: 1.75rem; margin-bottom: 0.5rem; color: #0f172a; }
+        .prose p { margin-bottom: 1rem; color: #334155; }
+        .prose strong { color: #0f172a; font-weight: 600; }
+        .prose code { font-family:'JetBrains Mono',monospace; background:#f4f3ef; padding: .125rem .35rem; border-radius: 4px; font-size: 0.9em; border: 1px solid #e2e6ed; }
+        .prose a { color: #2563eb; text-decoration: underline; text-underline-offset: 2px; }
+        .prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .prose li { margin-bottom: .25rem; color: #334155; }
+        .codeblock {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-family:'JetBrains Mono',monospace;
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.65;
+            overflow-x: auto;
+            position: relative;
+        }
+        .codeblock .comment { color: #64748b; }
+        .codeblock .kw { color: #60a5fa; }
+        .codeblock .str { color: #86efac; }
+        .codeblock .num { color: #fbbf24; }
+        .sidebar-link { display:block; padding: .3rem .75rem; border-radius: 5px; color: #64748b; font-size: 14px; }
+        .sidebar-link:hover { background: #f4f3ef; color: #0f172a; }
+        .sidebar-link.active { background: #e0e7ff; color: #2563eb; font-weight: 600; border-left: 3px solid #2563eb; padding-left: .5rem; }
+        .toc-link { display:block; padding: .25rem 0; color: #64748b; font-size: 13px; border-left: 2px solid transparent; padding-left: .75rem; }
+        .toc-link:hover { color: #0f172a; }
+        .callout { border-left: 4px solid #2563eb; background: #eff6ff; padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1.25rem 0; }
+        .callout-warn { border-color: #f59e0b; background: #fffbeb; }
+        .callout-ok { border-color: #10b981; background: #f0fdf4; }
+        .kbd { display:inline-block; border:1px solid #e2e6ed; border-bottom-width:2px; background:#fff; padding: .05rem .35rem; font-family:'JetBrains Mono',monospace; font-size: .75rem; border-radius: 4px; color:#334155; }
+        .switcher { font-family:'JetBrains Mono',monospace; font-size:.8rem; background:#fdfcf9; color:#0f172a; border:1px solid #e2e6ed; padding:.3rem .5rem; border-radius: 6px; }
+        .caps { font-size:.68rem; letter-spacing:.1em; text-transform: uppercase; font-weight: 600; color: #64748b; }
+        .tag { font-family:'JetBrains Mono',monospace; font-size:.7rem; background:#f4f3ef; border:1px solid #e2e6ed; color:#334155; padding: .1rem .45rem; border-radius: 4px; }
+        .tag-blue { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+        .tag-green { background:#f0fdf4; border-color:#bbf7d0; color:#047857; }
+        .tag-red { background:#fef2f2; border-color:#fecaca; color:#b91c1c; }
+        table.api { width:100%; border-collapse: collapse; margin: 1rem 0; font-size: 14px; }
+        table.api th, table.api td { border: 1px solid #e2e6ed; padding: .6rem .8rem; text-align: left; vertical-align: top; }
+        table.api th { background:#f4f3ef; font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:#334155; }
+        table.api td { color:#334155; }
+        table.api td code { background:#f4f3ef; }
     </style>
 </head>
-<body class="bg-ink-950 text-neutral-200 antialiased min-h-screen">
-    <header class="fixed top-0 left-0 right-0 z-50 border-b hairline bg-ink-950/90 backdrop-blur-md">
-        <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-            <a href="/" class="flex items-baseline gap-3 text-white">
-                <span class="font-mono text-sm font-semibold tracking-wide">MINS<span class="text-signal">·</span>BOT</span>
-                <span class="label hidden text-neutral-500 sm:inline">Desktop Agent</span>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-40 border-b border-border bg-paper/90 backdrop-blur">
+        <nav class="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3">
+            <a href="/" class="flex items-center gap-3">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-brand text-white font-bold">M</span>
+                <span class="font-semibold">Mins Bot</span>
+                <span class="tag">v1.0.0</span>
             </a>
-            <div class="flex items-center gap-5 label text-neutral-400">
-                <a href="#capabilities" class="hidden transition hover:text-white md:inline-block">§02</a>
-                <a href="#policy" class="hidden transition hover:text-white md:inline-block">§03</a>
-                <a href="#install" class="hidden transition hover:text-white md:inline-block">§04</a>
+            <div class="flex items-center gap-3 text-sm">
+                <input type="search" placeholder="Search docs..." class="hidden md:block border border-border bg-paper rounded-md px-3 py-1.5 w-64 text-sm focus:outline-none focus:border-brand" aria-label="Search">
+                <span class="kbd hidden md:inline">⌘K</span>
+                <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="text-ink3 hover:text-ink text-sm"><i class="fa-brands fa-github text-lg"></i></a>
                 <span data-design-switcher data-select-class="switcher"></span>
             </div>
         </nav>
     </header>
 
-    <main class="pt-14">
-        <section id="overview" class="border-b hairline">
-            <div class="border-b hairline"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10"><div class="label text-signal">§ 01 — Overview</div><div class="label text-neutral-600">p. 01 / 04</div></div></div>
-            <div class="mx-auto max-w-7xl px-6 pt-16 pb-20 sm:pt-24 lg:px-10 lg:pt-32 lg:pb-36">
-                <div class="grid gap-16 lg:grid-cols-12 lg:gap-10">
-                    <div class="lg:col-span-8">
-                        <div class="signal-rule mb-10 w-16"></div>
-                        <h1 class="display text-6xl font-semibold text-white sm:text-7xl lg:text-[7.5rem]">A desktop<br>agent,<br><span class="text-neutral-500">made local.</span></h1>
-                        <p class="mt-12 max-w-xl text-lg leading-relaxed text-neutral-400">Mins Bot runs on your machine. It browses the web, handles files, and drives your messaging tools — under your keys, under your rules. No proxy, no server, no telemetry.</p>
-                        <div class="mt-12 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                            <a href="#install" class="inline-flex items-center gap-3 bg-white px-8 py-4 font-mono text-sm font-medium uppercase tracking-wider text-black transition hover:bg-signal hover:text-white">Download <span aria-hidden>→</span></a>
-                            <a href="#capabilities" class="label border-b border-transparent py-4 text-neutral-300 transition hover:border-signal hover:text-white">Read capabilities →</a>
-                        </div>
+    <div class="mx-auto max-w-[1400px] px-5 py-8">
+        <div class="grid gap-8 lg:grid-cols-[220px_1fr_200px]">
+            <!-- Sidebar -->
+            <aside class="hidden lg:block sticky top-20 self-start h-[calc(100vh-6rem)] overflow-y-auto">
+                <div class="space-y-5">
+                    <div>
+                        <div class="caps mb-2">Getting started</div>
+                        <a href="#overview" class="sidebar-link active">Overview</a>
+                        <a href="#install" class="sidebar-link">Installation</a>
+                        <a href="#first-run" class="sidebar-link">First run</a>
+                        <a href="#examples" class="sidebar-link">Try saying</a>
                     </div>
-                    <aside class="lg:col-span-4">
-                        <div class="border-t border-b hairline-thick">
-                            <div class="label flex items-center justify-between py-3 text-neutral-500"><span>Colophon</span><span class="text-neutral-700">04.18.26</span></div>
-                            <dl class="divide-y divide-white/10 border-t hairline">
-                                <div class="grid grid-cols-3 py-4"><dt class="label text-neutral-600">Version</dt><dd class="col-span-2 font-mono text-sm text-neutral-100">0.4.2</dd></div>
-                                <div class="grid grid-cols-3 py-4"><dt class="label text-neutral-600">Platforms</dt><dd class="col-span-2 font-mono text-sm text-neutral-100">darwin · linux · windows</dd></div>
-                                <div class="grid grid-cols-3 py-4"><dt class="label text-neutral-600">Keys</dt><dd class="col-span-2 font-mono text-sm text-neutral-100">OS Keychain</dd></div>
-                                <div class="grid grid-cols-3 py-4"><dt class="label text-neutral-600">Telemetry</dt><dd class="col-span-2 font-mono text-sm text-signal">None</dd></div>
-                                <div class="grid grid-cols-3 py-4"><dt class="label text-neutral-600">License</dt><dd class="col-span-2 font-mono text-sm text-neutral-100">Source-available</dd></div>
-                            </dl>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <section id="capabilities" class="border-b hairline">
-            <div class="border-b hairline"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10"><div class="label text-signal">§ 02 — Capabilities</div><div class="label text-neutral-600">p. 02 / 04</div></div></div>
-            <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
-                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-                    <div class="lg:col-span-4"><h2 class="display text-4xl font-semibold text-white sm:text-5xl">Four<br>primitives.</h2><p class="mt-8 max-w-sm text-neutral-400 leading-relaxed">Simple surfaces, composed into deep work. Every capability runs on your hardware, in your session, under your allow-list.</p></div>
-                    <div class="lg:col-span-8">
-                        <table class="spec">
-                            <thead><tr><th class="w-10">№</th><th>Capability</th><th>Engine</th><th>Scope</th></tr></thead>
-                            <tbody>
-                                <tr><td class="font-mono text-sm text-signal">01</td><td><div class="text-base font-semibold text-white">Autonomous browsing</div><div class="mt-1 text-sm text-neutral-400">Navigate, read, and act on the real web under your own session.</div></td><td class="font-mono text-sm text-neutral-300">Chromium</td><td class="font-mono text-sm text-neutral-300">Per-task</td></tr>
-                                <tr><td class="font-mono text-sm text-signal">02</td><td><div class="text-base font-semibold text-white">Filesystem access</div><div class="mt-1 text-sm text-neutral-400">Organize, search, move, and process files under explicit allow-lists.</div></td><td class="font-mono text-sm text-neutral-300">Local FS</td><td class="font-mono text-sm text-neutral-300">Allow-list</td></tr>
-                                <tr><td class="font-mono text-sm text-signal">03</td><td><div class="text-base font-semibold text-white">Messaging integrations</div><div class="mt-1 text-sm text-neutral-400">Slack, Discord, Gmail — send, receive, and trigger workflows.</div></td><td class="font-mono text-sm text-neutral-300">Direct APIs</td><td class="font-mono text-sm text-neutral-300">Your tokens</td></tr>
-                                <tr><td class="font-mono text-sm text-signal">04</td><td><div class="text-base font-semibold text-white">Skills inventory</div><div class="mt-1 text-sm text-neutral-400">Installable skills the agent can discover and compose at will.</div></td><td class="font-mono text-sm text-neutral-300">Manifest+code</td><td class="font-mono text-sm text-neutral-300">Local/registry</td></tr>
-                            </tbody>
-                        </table>
+                    <div>
+                        <div class="caps mb-2">Capabilities</div>
+                        <a href="#chat" class="sidebar-link">01 · Chat &amp; agent</a>
+                        <a href="#voice" class="sidebar-link">02 · Voice</a>
+                        <a href="#browser" class="sidebar-link">03 · Browser</a>
+                        <a href="#marketing" class="sidebar-link">04 · Marketing</a>
+                        <a href="#system" class="sidebar-link">05 · System / OS</a>
+                        <a href="#daily" class="sidebar-link">06 · Daily ops</a>
+                        <a href="#deliverables" class="sidebar-link">07 · Deliverables</a>
+                        <a href="#files" class="sidebar-link">08 · File &amp; text</a>
+                    </div>
+                    <div>
+                        <div class="caps mb-2">Policy</div>
+                        <a href="#policy" class="sidebar-link">Data &amp; privacy</a>
+                        <a href="/privacy.html" class="sidebar-link">Privacy policy ↗</a>
+                        <a href="/terms.html" class="sidebar-link">Terms of service ↗</a>
+                    </div>
+                    <div>
+                        <div class="caps mb-2">Reference</div>
+                        <a href="#api" class="sidebar-link">Spec table</a>
+                        <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="sidebar-link">GitHub ↗</a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </aside>
 
-        <section id="policy" class="border-b hairline">
-            <div class="border-b hairline"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10"><div class="label text-signal">§ 03 — Data Policy</div><div class="label text-neutral-600">p. 03 / 04</div></div></div>
-            <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
-                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-                    <div class="lg:col-span-4"><h2 class="display text-4xl font-semibold text-white sm:text-5xl">Nothing<br><span class="text-neutral-500">goes out.</span></h2><p class="mt-8 max-w-sm text-neutral-400 leading-relaxed">We don't run a server. Model calls travel direct from your machine to the provider you configure.</p><a href="/privacy.html" class="label mt-6 inline-flex items-center gap-2 border-b border-signal pb-1 text-white hover:text-signal">Read full policy →</a></div>
-                    <div class="lg:col-span-8">
-                        <dl class="divide-y divide-white/10 border-t border-b hairline-thick">
-                            <div class="grid grid-cols-12 gap-6 py-6"><dt class="label col-span-2 pt-1 text-signal">01</dt><dd class="col-span-4 text-base font-semibold text-white">Data at rest</dd><dd class="col-span-6 text-neutral-400">On your device only.</dd></div>
-                            <div class="grid grid-cols-12 gap-6 py-6"><dt class="label col-span-2 pt-1 text-signal">02</dt><dd class="col-span-4 text-base font-semibold text-white">Credentials</dd><dd class="col-span-6 text-neutral-400">macOS Keychain, Windows Credential Manager, or libsecret.</dd></div>
-                            <div class="grid grid-cols-12 gap-6 py-6"><dt class="label col-span-2 pt-1 text-signal">03</dt><dd class="col-span-4 text-base font-semibold text-white">Training use</dd><dd class="col-span-6 text-neutral-400">None. Your data never enters a training pipeline.</dd></div>
-                            <div class="grid grid-cols-12 gap-6 py-6"><dt class="label col-span-2 pt-1 text-signal">04</dt><dd class="col-span-4 text-base font-semibold text-white">Model calls</dd><dd class="col-span-6 text-neutral-400">Direct from your machine to the model provider.</dd></div>
-                        </dl>
-                    </div>
+            <!-- Main content -->
+            <main class="min-w-0 prose">
+                <div class="caps" id="overview">Docs › Getting Started › Overview</div>
+                <h1 class="mt-3 text-4xl font-bold tracking-tight text-ink sm:text-5xl">Mins Bot</h1>
+                <p class="mt-3 text-lg text-ink2">A floating desktop AI assistant. A swirling orb sits on your desktop and expands into a full chat panel with voice, vision, browser automation, OS control, and 180+ skills that actually <em>do</em> things instead of just talking.</p>
+
+                <div class="mt-5 flex flex-wrap gap-2 items-center">
+                    <span class="tag tag-green">stable</span>
+                    <span class="tag tag-blue">v1.0.0</span>
+                    <span class="tag">Java 17 · Spring Boot 3.5 · JavaFX 21</span>
+                    <span class="tag">Windows · macOS · Linux</span>
+                    <span class="tag">180+ skills</span>
                 </div>
-            </div>
-        </section>
 
-        <section id="install" class="border-b hairline">
-            <div class="border-b hairline"><div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-10"><div class="label text-signal">§ 04 — Install</div><div class="label text-neutral-600">p. 04 / 04</div></div></div>
-            <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
-                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
-                    <div class="lg:col-span-4"><h2 class="display text-4xl font-semibold text-white sm:text-5xl">Three<br>platforms.<br><span class="text-neutral-500">One binary.</span></h2></div>
-                    <div class="lg:col-span-8">
-                        <div class="grid grid-cols-1 border-t border-l hairline-thick sm:grid-cols-3">
-                            <a href="#" class="group flex flex-col justify-between gap-8 border-r border-b hairline-thick p-6 transition hover:bg-ink-900"><div class="flex items-center justify-between"><span class="label text-neutral-500">01</span><i class="fa-brands fa-apple text-2xl text-neutral-300 group-hover:text-signal"></i></div><div><div class="text-sm font-semibold text-white">macOS</div><div class="label mt-1 text-neutral-500">arm64 · x86_64</div></div></a>
-                            <a href="#" class="group flex flex-col justify-between gap-8 border-r border-b hairline-thick p-6 transition hover:bg-ink-900"><div class="flex items-center justify-between"><span class="label text-neutral-500">02</span><i class="fa-brands fa-windows text-2xl text-neutral-300 group-hover:text-signal"></i></div><div><div class="text-sm font-semibold text-white">Windows</div><div class="label mt-1 text-neutral-500">x86_64 · 10+</div></div></a>
-                            <a href="#" class="group flex flex-col justify-between gap-8 border-r border-b hairline-thick p-6 transition hover:bg-ink-900"><div class="flex items-center justify-between"><span class="label text-neutral-500">03</span><i class="fa-brands fa-linux text-2xl text-neutral-300 group-hover:text-signal"></i></div><div><div class="text-sm font-semibold text-white">Linux</div><div class="label mt-1 text-neutral-500">x86_64 · arm64</div></div></a>
-                        </div>
-                    </div>
+                <div class="callout mt-6">
+                    <strong>TL;DR.</strong> Runs locally. Fully offline once a local LLM (Ollama) and the Piper voice models are installed. Cloud LLM calls go direct from your machine to the provider you pick — Mins operates no server, ships no telemetry, and bundles no API keys.
                 </div>
-            </div>
-        </section>
-    </main>
 
-    <footer class="bg-ink-950 py-10">
-        <div class="mx-auto max-w-7xl px-6 lg:px-10 flex flex-col items-start justify-between gap-4 border-t hairline pt-6 sm:flex-row sm:items-center">
-            <p class="label text-neutral-600">© <span id="year"></span> Mins Bot</p>
-            <div class="flex items-center gap-6 label text-neutral-500">
-                <a href="/privacy.html" class="hover:text-white">Privacy</a>
-                <a href="/terms.html" class="hover:text-white">Terms</a>
-                <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-white">GitHub ↗</a>
-            </div>
+                <h2 id="install"><a href="#install">#</a> Installation</h2>
+                <p>Download the package for your OS and run it. The bundled JRE means no separate Java install is required.</p>
+
+                <table class="api">
+                    <thead><tr><th>OS</th><th>File</th><th>Steps</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Windows</strong></td><td><code>MinsBot-1.0.0.exe</code></td><td>Double-click → Next → Next → Finish</td></tr>
+                        <tr><td><strong>Windows portable</strong></td><td><code>MinsBot-1.0.0-windows.zip</code></td><td>Unzip → run <code>MinsBot/MinsBot.exe</code></td></tr>
+                        <tr><td><strong>macOS</strong></td><td><code>MinsBot-1.0.0.dmg</code></td><td>Open → drag to Applications</td></tr>
+                        <tr><td><strong>Linux</strong></td><td><code>minsbot_1.0.0_amd64.deb</code></td><td><code>sudo dpkg -i minsbot_1.0.0_amd64.deb</code></td></tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                    <a href="#" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-xl text-ink2"></i><span class="tag">.dmg</span></div><div class="font-semibold mt-3">macOS</div><div class="text-xs text-ink3 mt-0.5">arm64 · x86_64</div></a>
+                    <a href="#" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-xl text-ink2"></i><span class="tag">.exe / .zip</span></div><div class="font-semibold mt-3">Windows</div><div class="text-xs text-ink3 mt-0.5">x86_64 · 10+</div></a>
+                    <a href="#" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-xl text-ink2"></i><span class="tag">.deb</span></div><div class="font-semibold mt-3">Linux</div><div class="text-xs text-ink3 mt-0.5">x86_64 · arm64</div></a>
+                </div>
+
+                <h3 class="mt-6">Run from source</h3>
+                <div class="codeblock mt-2">
+<span class="kw">$</span> git clone &lt;repo&gt;
+<span class="kw">$</span> cd mins-bot
+<span class="kw">$</span> mvn clean package -DskipTests
+<span class="kw">$</span> mvn spring-boot:run
+<span class="comment"># app: http://localhost:8765</span>
+                </div>
+
+                <h2 id="first-run"><a href="#first-run">#</a> First run</h2>
+                <p>On first launch a setup wizard prompts for the three primary LLM keys (OpenAI, Anthropic, Gemini). The rest is configurable from the Setup tab. Keys are written to a local <code>application-secrets.properties</code> file at the project root — gitignored, never bundled into installers, and rejected at build time if a populated key is detected on the classpath.</p>
+
+                <div class="callout callout-ok"><strong>Offline-only mode.</strong> Leave every cloud key blank and the agent runs entirely against a local Ollama model plus Piper voices. Nothing leaves the machine.</div>
+
+                <h2 id="examples"><a href="#examples">#</a> Try saying</h2>
+                <p>Type any of these into the floating chat panel:</p>
+                <div class="codeblock mt-2">
+<span class="comment"># system</span>
+kill port <span class="num">8080</span>
+how many files in my downloads folder
+take a screenshot
+zip C:\projects\mins-bot to D:\backup.zip
+auto-start yourself on login
+
+<span class="comment"># media + voice</span>
+play music by radiohead
+narrate me a bedtime story for my dog
+use a jarvis voice
+
+<span class="comment"># browser (with Chrome open)</span>
+explain this page
+read the article aloud
+extract all rows from this table
+
+<span class="comment"># marketing</span>
+audit a landing page
+market the app and publish to bluesky
+                </div>
+
+                <h2 id="capabilities"><a href="#capabilities">#</a> Capabilities</h2>
+                <p>180+ skills auto-discovered via Spring component scan. The LLM picks the relevant subset per turn through a dynamic-tool router that respects the 128-tool limits of the cloud APIs.</p>
+
+                <h3 id="chat">01 · Chat &amp; agent</h3>
+                <ul>
+                    <li>Multi-LLM: OpenAI, Anthropic Claude, Google Gemini, Groq, plus local <strong>Ollama</strong> for offline operation</li>
+                    <li>Persistent memory and chat transcripts across restarts</li>
+                    <li>Autonomous mode that works on standing directives while you're idle</li>
+                </ul>
+
+                <h3 id="voice">02 · Voice (offline-capable)</h3>
+                <ul>
+                    <li><strong>Piper TTS</strong> with 11+ curated voices including a <strong>JARVIS preset</strong> (British male + −2 semitones for baritone)</li>
+                    <li>Per-mode speech rate (faster for status updates, slower for narration)</li>
+                    <li>Cloud TTS fallbacks: ElevenLabs, Fish Audio, OpenAI TTS</li>
+                </ul>
+
+                <h3 id="browser">03 · Browser — “AI guide for any website”</h3>
+                <ul>
+                    <li>Chrome CDP integration: click, fill, navigate, extract</li>
+                    <li><code>explainCurrentPage</code> · spoken summary of the active tab</li>
+                    <li><code>readAloudCurrentPage</code> · narrates the article through your voice</li>
+                    <li><code>guidedWalkthrough</code> · step-by-step instructions grounded in the page's actual buttons</li>
+                    <li><code>extractStructuredData</code> · CSV of all matching records on the page</li>
+                </ul>
+                <div class="callout callout-ok"><strong>Note.</strong> Browser sessions run under your own profile. No traffic is routed through Mins infrastructure.</div>
+
+                <h3 id="marketing">04 · Marketing automation</h3>
+                <ul>
+                    <li><code>selfmarket</code> orchestrator: trends → competitor analysis → ad copy → social posts → outreach drafts</li>
+                    <li>Building blocks: <code>gighunter</code>, <code>leadgen</code>, <code>arbiscout</code>, <code>contentresearch</code>, <code>marketresearch</code>, <code>competitor</code>, <code>adcopygen</code>, <code>socialschedule</code>, <code>landingpageaudit</code>, <code>proposalwriter</code>, <code>reviewmonitor</code>, <code>personabuilder</code></li>
+                    <li>Execution: <code>socialposter</code> (Bluesky / Mastodon / webhook), <code>emailsender</code> (Resend / SMTP), <code>mentiontracker</code>, <code>blogwriter</code></li>
+                </ul>
+
+                <h3 id="system">05 · System / OS control</h3>
+                <ul>
+                    <li>Process / port / service / window / disk: <code>processkiller</code>, <code>portkiller</code>, <code>appkill</code>, <code>windowctl</code>, <code>bigfilescan</code>, <code>duplicatefinder</code>, <code>diskcleaner</code></li>
+                    <li>Network / VPN / firewall, Docker, Git, build runner</li>
+                    <li>Power: lock, sleep, scheduled shutdown</li>
+                    <li>Auto-start the bot on login (<code>autostartmanager</code>)</li>
+                </ul>
+
+                <h3 id="daily">06 · Daily ops</h3>
+                <ul>
+                    <li>Multi-monitor screenshots, media keys, music via <code>musicplayer</code> with library search and YouTube fallback</li>
+                    <li>Archive (zip / unzip), bulk file rename with regex, log tail with filter</li>
+                    <li>Pet entertainment: cat tv, dog calming music, bedtime stories for pets</li>
+                </ul>
+
+                <h3 id="deliverables">07 · Deliverables</h3>
+                <ul>
+                    <li>Generate <strong>PDF / Word / PowerPoint</strong> decks from a chat prompt — “create a PPT about top EVs of 2025”</li>
+                    <li>Charts, tables, and images embedded; markdown tables rendered as native PPT tables</li>
+                </ul>
+
+                <h3 id="files">08 · File &amp; text ops</h3>
+                <p><code>filefind</code>, <code>filegrep</code>, <code>filediff</code>, <code>fileinspect</code> (head / tail / wc), <code>fileinfo</code>, <code>fileopen</code>, <code>filestats</code>, <code>clipboardctl</code>.</p>
+
+                <h2 id="policy"><a href="#policy">#</a> Data &amp; privacy</h2>
+                <div class="callout callout-warn"><strong>In one line.</strong> Your data never leaves your device. We operate no server. Nothing of yours enters any training pipeline.</div>
+                <ul>
+                    <li>Chat memory, transcripts, voice prefs, and bot data live in <code>~/mins_bot_data/</code> and <code>./memory/</code> — local only</li>
+                    <li>Cloud LLM calls go directly to the providers you configure; leave them blank to run fully offline via Ollama</li>
+                    <li>No telemetry. No outbound calls beyond the providers you've configured and skill-supplied URLs</li>
+                    <li>Installers bundle no API keys. A build-time guard fails the build if a populated key is found on the classpath</li>
+                </ul>
+
+                <h2 id="api"><a href="#api">#</a> Spec table</h2>
+                <p>Quick reference of what is retained, where, and by whom.</p>
+                <table class="api">
+                    <thead>
+                        <tr><th>Item</th><th>Value</th><th>Location</th><th>Notes</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>data.at_rest</code></td><td><span class="tag tag-green">on_device</span></td><td><code>~/mins_bot_data/</code> · <code>./memory/</code></td><td>No copy elsewhere</td></tr>
+                        <tr><td><code>credentials</code></td><td><span class="tag tag-green">local_file</span></td><td><code>application-secrets.properties</code></td><td>Gitignored · never bundled</td></tr>
+                        <tr><td><code>training_use</code></td><td><span class="tag tag-red">null</span></td><td>—</td><td>Never</td></tr>
+                        <tr><td><code>telemetry</code></td><td><span class="tag tag-red">null</span></td><td>—</td><td>None emitted</td></tr>
+                        <tr><td><code>model.calls</code></td><td><span class="tag tag-blue">direct</span></td><td>Device → provider</td><td>Or fully offline via Ollama</td></tr>
+                        <tr><td><code>default.port</code></td><td><code>8765</code></td><td>localhost</td><td>Configurable in <code>application.properties</code></td></tr>
+                        <tr><td><code>license.app</code></td><td><span class="tag">proprietary</span></td><td>EULA</td><td>See <code>LICENSE</code></td></tr>
+                        <tr><td><code>license.skills_sdk</code></td><td><span class="tag tag-green">MIT</span></td><td>Standalone skills</td><td>Redistributable</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-8 flex items-center justify-between border-t border-border pt-6 text-sm">
+                    <a href="#overview" class="text-brand hover:underline">← Overview</a>
+                    <a href="/privacy.html" class="text-brand hover:underline">Privacy policy →</a>
+                </div>
+
+                <div class="mt-4 text-xs text-ink3">Edit on <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+            </main>
+
+            <!-- Right TOC -->
+            <aside class="hidden lg:block sticky top-20 self-start h-[calc(100vh-6rem)]">
+                <div class="caps mb-3">On this page</div>
+                <nav class="border-l border-border">
+                    <a href="#install" class="toc-link">Installation</a>
+                    <a href="#first-run" class="toc-link">First run</a>
+                    <a href="#examples" class="toc-link">Try saying</a>
+                    <a href="#capabilities" class="toc-link">Capabilities</a>
+                    <a href="#chat" class="toc-link pl-5">01 · Chat &amp; agent</a>
+                    <a href="#voice" class="toc-link pl-5">02 · Voice</a>
+                    <a href="#browser" class="toc-link pl-5">03 · Browser</a>
+                    <a href="#marketing" class="toc-link pl-5">04 · Marketing</a>
+                    <a href="#system" class="toc-link pl-5">05 · System</a>
+                    <a href="#daily" class="toc-link pl-5">06 · Daily ops</a>
+                    <a href="#deliverables" class="toc-link pl-5">07 · Deliverables</a>
+                    <a href="#files" class="toc-link pl-5">08 · File &amp; text</a>
+                    <a href="#policy" class="toc-link">Data &amp; privacy</a>
+                    <a href="#api" class="toc-link">Spec table</a>
+                </nav>
+                <div class="mt-8 p-3 border border-border rounded-lg text-sm">
+                    <div class="caps mb-2">Help</div>
+                    <p class="text-ink3 text-[13px] leading-5">File an issue on <a href="https://github.com/ceasis/mins-bot" class="text-brand hover:underline">GitHub</a>, or read the <a href="/privacy.html" class="text-brand hover:underline">privacy policy</a>.</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer class="border-t border-border py-6 mt-8">
+        <div class="mx-auto max-w-[1400px] px-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-ink3">
+            <p>© <span id="year"></span> Mins Bot · Documentation</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-brand">Privacy</a><a href="/terms.html" class="hover:text-brand">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-brand">GitHub</a></div>
         </div>
     </footer>
     <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
