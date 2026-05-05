@@ -76,8 +76,9 @@
                 <span class="tag">v1.0.0</span>
             </a>
             <div class="flex items-center gap-3 text-sm">
-                <input type="search" placeholder="Search docs..." class="hidden md:block border border-border bg-paper rounded-md px-3 py-1.5 w-64 text-sm focus:outline-none focus:border-brand" aria-label="Search">
+                <input type="search" placeholder="Search docs..." class="hidden md:block border border-border bg-paper rounded-md px-3 py-1.5 w-56 text-sm focus:outline-none focus:border-brand" aria-label="Search">
                 <span class="kbd hidden md:inline">⌘K</span>
+                <a href="#download" class="hidden sm:inline-flex items-center gap-1.5 bg-brand text-white px-3 py-1.5 rounded-md font-medium text-sm hover:bg-brand2"><i class="fa-solid fa-download text-xs"></i> Download</a>
                 <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="text-ink3 hover:text-ink text-sm"><i class="fa-brands fa-github text-lg"></i></a>
                 <span data-design-switcher data-select-class="switcher"></span>
             </div>
@@ -90,8 +91,12 @@
             <aside class="hidden lg:block sticky top-20 self-start h-[calc(100vh-6rem)] overflow-y-auto">
                 <div class="space-y-5">
                     <div>
+                        <a href="#download" class="flex items-center justify-between rounded-md bg-brand text-white px-3 py-2 text-sm font-semibold hover:bg-brand2"><span><i class="fa-solid fa-download text-xs mr-1.5"></i> Download</span><span class="text-[11px] font-mono opacity-80">v1.0</span></a>
+                    </div>
+                    <div>
                         <div class="caps mb-2">Getting started</div>
                         <a href="#overview" class="sidebar-link active">Overview</a>
+                        <a href="#download" class="sidebar-link">Download</a>
                         <a href="#install" class="sidebar-link">Installation</a>
                         <a href="#first-run" class="sidebar-link">First run</a>
                         <a href="#examples" class="sidebar-link">Try saying</a>
@@ -140,6 +145,34 @@
                     <strong>TL;DR.</strong> Runs locally. Fully offline once a local LLM (Ollama) and the Piper voice models are installed. Cloud LLM calls go direct from your machine to the provider you pick — Mins operates no server, ships no telemetry, and bundles no API keys.
                 </div>
 
+                <h2 id="download"><a href="#download">#</a> Download</h2>
+                <p>Grab the latest build for your machine. The Windows package is a portable ZIP — unzip and run, no installer needed. macOS and Linux builds are coming soon.</p>
+
+                <a href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" download="MinsBot-1.0-windows-latest.zip" target="_blank" rel="noopener" class="mt-5 flex items-center justify-between gap-4 rounded-xl border border-brand bg-brand text-white p-5 hover:bg-brand2 transition shadow-sm">
+                    <div class="flex items-center gap-4">
+                        <i class="fa-brands fa-windows text-3xl"></i>
+                        <div>
+                            <div class="text-xs uppercase tracking-wider opacity-80">Latest · v1.0</div>
+                            <div class="text-lg font-semibold leading-tight">Download for Windows</div>
+                            <div class="text-xs opacity-80 mt-0.5">x86_64 · Windows 10 and up · ~300 MB · portable .zip</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-download text-2xl opacity-90"></i>
+                </a>
+
+                <div class="mt-3 grid gap-3 sm:grid-cols-2 text-sm">
+                    <div class="border border-border rounded-lg p-3 bg-paper2/40">
+                        <div class="caps mb-1">macOS</div>
+                        <div class="text-ink2">Coming soon · <code>.dmg</code> for Apple Silicon and Intel</div>
+                    </div>
+                    <div class="border border-border rounded-lg p-3 bg-paper2/40">
+                        <div class="caps mb-1">Linux</div>
+                        <div class="text-ink2">Coming soon · <code>.deb</code> · <code>.AppImage</code></div>
+                    </div>
+                </div>
+
+                <div class="mt-3 text-xs text-ink3">After downloading: unzip anywhere on your drive, then double-click <code>MinsBot\MinsBot.exe</code>. The bundled JRE means you don't need a separate Java install.</div>
+
                 <h2 id="install"><a href="#install">#</a> Installation</h2>
                 <p>Download the package for your OS and run it. The bundled JRE means no separate Java install is required.</p>
 
@@ -150,7 +183,7 @@
                     <tbody>
                         <tr>
                             <td><strong>Windows</strong> <span class="tag tag-green">latest</span></td>
-                            <td><a class="text-brand" href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip"><code>MinsBot-1.0-windows-latest.zip</code></a> · always points to the latest build</td>
+                            <td><a class="text-brand" href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" download="MinsBot-1.0-windows-latest.zip" target="_blank" rel="noopener"><code>MinsBot-1.0-windows-latest.zip</code></a> · always points to the latest build</td>
                             <td>Unzip → run <code>MinsBot\MinsBot.exe</code></td>
                         </tr>
                         <tr><td><strong>macOS</strong> <span class="tag">soon</span></td><td>—</td><td>Coming soon</td></tr>
@@ -160,7 +193,7 @@
 
                 <div class="mt-4 grid gap-3 sm:grid-cols-3">
                     <div class="border border-border rounded-lg p-4 opacity-60 cursor-not-allowed"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-xl text-ink2"></i><span class="tag">soon</span></div><div class="font-semibold mt-3">macOS</div><div class="text-xs text-ink3 mt-0.5">arm64 · x86_64</div></div>
-                    <a href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition bg-paper"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-xl text-brand"></i><span class="tag tag-green">latest · .zip</span></div><div class="font-semibold mt-3">Windows</div><div class="text-xs text-ink3 mt-0.5">portable · always the newest build</div></a>
+                    <a href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" download="MinsBot-1.0-windows-latest.zip" target="_blank" rel="noopener" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition bg-paper"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-xl text-brand"></i><span class="tag tag-green">latest · .zip</span></div><div class="font-semibold mt-3">Windows</div><div class="text-xs text-ink3 mt-0.5">portable · always the newest build</div></a>
                     <div class="border border-border rounded-lg p-4 opacity-60 cursor-not-allowed"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-xl text-ink2"></i><span class="tag">soon</span></div><div class="font-semibold mt-3">Linux</div><div class="text-xs text-ink3 mt-0.5">x86_64 · arm64</div></div>
                 </div>
 
@@ -323,6 +356,7 @@
             <aside class="hidden lg:block sticky top-20 self-start h-[calc(100vh-6rem)]">
                 <div class="caps mb-3">On this page</div>
                 <nav class="border-l border-border">
+                    <a href="#download" class="toc-link">Download</a>
                     <a href="#install" class="toc-link">Installation</a>
                     <a href="#first-run" class="toc-link">First run</a>
                     <a href="#examples" class="toc-link">Try saying</a>
