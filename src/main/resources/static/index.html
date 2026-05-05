@@ -95,6 +95,7 @@
                         <a href="#install" class="sidebar-link">Installation</a>
                         <a href="#first-run" class="sidebar-link">First run</a>
                         <a href="#examples" class="sidebar-link">Try saying</a>
+                        <a href="/skills.html" class="sidebar-link">Full skill list ↗</a>
                     </div>
                     <div>
                         <div class="caps mb-2">Capabilities</div>
@@ -211,63 +212,72 @@
                     </div>
                 </div>
 
+                <div class="callout mt-8">
+                    <strong>Want the full list?</strong> See every command grouped by how complex it is and roughly how long it takes — <a href="/skills.html" class="text-brand hover:underline">browse the full skill list →</a>
+                </div>
+
+
                 <h2 id="capabilities"><a href="#capabilities">#</a> Capabilities</h2>
-                <p>180+ skills auto-discovered via Spring component scan. The LLM picks the relevant subset per turn through a dynamic-tool router that respects the 128-tool limits of the cloud APIs.</p>
+                <p>The agent picks the right tool from 180+ built-in skills the moment you say what you want — no command names to remember.</p>
 
                 <h3 id="chat">01 · Chat &amp; agent</h3>
                 <ul>
-                    <li>Multi-LLM: OpenAI, Anthropic Claude, Google Gemini, Groq, plus local <strong>Ollama</strong> for offline operation</li>
+                    <li>Multiple model providers — OpenAI, Anthropic, Gemini, Groq, plus a local model for fully offline use</li>
                     <li>Persistent memory and chat transcripts across restarts</li>
-                    <li>Autonomous mode that works on standing directives while you're idle</li>
+                    <li>Autonomous mode that works on standing instructions while you're away</li>
                 </ul>
 
                 <h3 id="voice">02 · Voice (offline-capable)</h3>
                 <ul>
-                    <li><strong>Piper TTS</strong> with 11+ curated voices including a <strong>JARVIS preset</strong> (British male + −2 semitones for baritone)</li>
-                    <li>Per-mode speech rate (faster for status updates, slower for narration)</li>
-                    <li>Cloud TTS fallbacks: ElevenLabs, Fish Audio, OpenAI TTS</li>
+                    <li>Local text-to-speech with 11+ curated voices, including a “Jarvis” preset</li>
+                    <li>Speeds up for status updates, slows down for narration</li>
+                    <li>Optional cloud voices (ElevenLabs, Fish Audio, OpenAI) when you want them</li>
                 </ul>
 
-                <h3 id="browser">03 · Browser — “AI guide for any website”</h3>
+                <h3 id="browser">03 · Browser — "AI guide for any website"</h3>
                 <ul>
-                    <li>Chrome CDP integration: click, fill, navigate, extract</li>
-                    <li><code>explainCurrentPage</code> · spoken summary of the active tab</li>
-                    <li><code>readAloudCurrentPage</code> · narrates the article through your voice</li>
-                    <li><code>guidedWalkthrough</code> · step-by-step instructions grounded in the page's actual buttons</li>
-                    <li><code>extractStructuredData</code> · CSV of all matching records on the page</li>
+                    <li>Drives your Chrome — click, fill, navigate, extract — under your own profile</li>
+                    <li>Explain the current page out loud</li>
+                    <li>Read articles aloud in your chosen voice</li>
+                    <li>Walk you step-by-step through how to use a site you've never seen</li>
+                    <li>Pull every matching row off a page into a clean spreadsheet</li>
                 </ul>
-                <div class="callout callout-ok"><strong>Note.</strong> Browser sessions run under your own profile. No traffic is routed through Mins infrastructure.</div>
+                <div class="callout callout-ok"><strong>Note.</strong> Browser sessions run under your own Chrome profile. No traffic is routed through Mins infrastructure.</div>
 
                 <h3 id="marketing">04 · Marketing automation</h3>
                 <ul>
-                    <li><code>selfmarket</code> orchestrator: trends → competitor analysis → ad copy → social posts → outreach drafts</li>
-                    <li>Building blocks: <code>gighunter</code>, <code>leadgen</code>, <code>arbiscout</code>, <code>contentresearch</code>, <code>marketresearch</code>, <code>competitor</code>, <code>adcopygen</code>, <code>socialschedule</code>, <code>landingpageaudit</code>, <code>proposalwriter</code>, <code>reviewmonitor</code>, <code>personabuilder</code></li>
-                    <li>Execution: <code>socialposter</code> (Bluesky / Mastodon / webhook), <code>emailsender</code> (Resend / SMTP), <code>mentiontracker</code>, <code>blogwriter</code></li>
+                    <li>One-shot growth flow — find trends, study competitors, draft ad copy, schedule posts, line up outreach</li>
+                    <li>Building blocks for lead lists, gigs, content research, landing-page audits, proposals, hashtag suggestions, and more</li>
+                    <li>Publishes for you — Bluesky, Mastodon, webhooks, email — only when you ask</li>
                 </ul>
 
                 <h3 id="system">05 · System / OS control</h3>
                 <ul>
-                    <li>Process / port / service / window / disk: <code>processkiller</code>, <code>portkiller</code>, <code>appkill</code>, <code>windowctl</code>, <code>bigfilescan</code>, <code>duplicatefinder</code>, <code>diskcleaner</code></li>
-                    <li>Network / VPN / firewall, Docker, Git, build runner</li>
-                    <li>Power: lock, sleep, scheduled shutdown</li>
-                    <li>Auto-start the bot on login (<code>autostartmanager</code>)</li>
+                    <li>Kill a stuck app, free a busy port, quit any program, control any window</li>
+                    <li>Find big files, clean up temp clutter, hunt down duplicates, tidy your disk</li>
+                    <li>Network, VPN, firewall, Docker, Git, build status</li>
+                    <li>Lock the screen, sleep, schedule a shutdown — or auto-start the bot on login</li>
                 </ul>
 
                 <h3 id="daily">06 · Daily ops</h3>
                 <ul>
-                    <li>Multi-monitor screenshots, media keys, music via <code>musicplayer</code> with library search and YouTube fallback</li>
-                    <li>Archive (zip / unzip), bulk file rename with regex, log tail with filter</li>
-                    <li>Pet entertainment: cat tv, dog calming music, bedtime stories for pets</li>
+                    <li>Multi-monitor screenshots, media keys, play music from your library or online</li>
+                    <li>Zip and unzip folders, bulk-rename files, watch a log live</li>
+                    <li>Soothing audio for pets — cat TV, dog calming music, bedtime stories for the dog</li>
                 </ul>
 
                 <h3 id="deliverables">07 · Deliverables</h3>
                 <ul>
-                    <li>Generate <strong>PDF / Word / PowerPoint</strong> decks from a chat prompt — “create a PPT about top EVs of 2025”</li>
-                    <li>Charts, tables, and images embedded; markdown tables rendered as native PPT tables</li>
+                    <li>Generate full <strong>PDF, Word, and PowerPoint</strong> decks straight from chat — "create a deck about top EVs of 2025"</li>
+                    <li>Charts, tables, and images embedded; markdown tables become real slide tables</li>
                 </ul>
 
                 <h3 id="files">08 · File &amp; text ops</h3>
-                <p><code>filefind</code>, <code>filegrep</code>, <code>filediff</code>, <code>fileinspect</code> (head / tail / wc), <code>fileinfo</code>, <code>fileopen</code>, <code>filestats</code>, <code>clipboardctl</code>.</p>
+                <ul>
+                    <li>Find files by name, search inside files, compare two files, peek at the start/end of a file</li>
+                    <li>See file size, line count, and stats; open anything in its default app</li>
+                    <li>Copy, paste, and recall recent clipboard items</li>
+                </ul>
 
                 <h2 id="policy"><a href="#policy">#</a> Data &amp; privacy</h2>
                 <div class="callout callout-warn"><strong>In one line.</strong> Your data never leaves your device. We operate no server. Nothing of yours enters any training pipeline.</div>
@@ -311,6 +321,7 @@
                     <a href="#install" class="toc-link">Installation</a>
                     <a href="#first-run" class="toc-link">First run</a>
                     <a href="#examples" class="toc-link">Try saying</a>
+                    <a href="/skills.html" class="toc-link">Full skill list ↗</a>
                     <a href="#capabilities" class="toc-link">Capabilities</a>
                     <a href="#chat" class="toc-link pl-5">01 · Chat &amp; agent</a>
                     <a href="#voice" class="toc-link pl-5">02 · Voice</a>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mins Bot — full skill list</title>
+    <meta name="description" content="The complete list of things you can ask Mins Bot to do, grouped by how complex the task is and roughly how long it takes.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: {
+            fontFamily: { sans: ['Inter','system-ui','sans-serif'], mono: ['JetBrains Mono','monospace'] },
+            colors: { paper:'#fdfcf9', paper2:'#f4f3ef', ink:'#0f172a', ink2:'#334155', ink3:'#64748b', border:'#e2e6ed', brand:'#2563eb', brand2:'#1d4ed8', accent:'#06b6d4', warn:'#f59e0b', ok:'#10b981', err:'#ef4444' }
+        }}}
+    </script>
+    <style>
+        html { font-family: 'Inter', system-ui, sans-serif; }
+        body { background:#fdfcf9; color:#0f172a; font-size: 15px; line-height: 1.6; }
+        .caps { font-size:.68rem; letter-spacing:.1em; text-transform: uppercase; font-weight: 600; color: #64748b; }
+        .tag { font-family:'JetBrains Mono',monospace; font-size:.7rem; background:#f4f3ef; border:1px solid #e2e6ed; color:#334155; padding: .1rem .45rem; border-radius: 4px; }
+        .tag-blue { background:#eff6ff; border-color:#bfdbfe; color:#1d4ed8; }
+        .tag-green { background:#f0fdf4; border-color:#bbf7d0; color:#047857; }
+        .tag-amber { background:#fffbeb; border-color:#fde68a; color:#b45309; }
+        .tag-red { background:#fef2f2; border-color:#fecaca; color:#b91c1c; }
+        .switcher { font-family:'JetBrains Mono',monospace; font-size:.8rem; background:#fdfcf9; color:#0f172a; border:1px solid #e2e6ed; padding:.3rem .5rem; border-radius: 6px; }
+        .kbd { display:inline-block; border:1px solid #e2e6ed; border-bottom-width:2px; background:#fff; padding: .05rem .35rem; font-family:'JetBrains Mono',monospace; font-size: .75rem; border-radius: 4px; color:#334155; }
+        table.skill { width:100%; border-collapse: collapse; margin: .25rem 0 1.25rem; font-size: 14px; }
+        table.skill th, table.skill td { border-bottom: 1px solid #e2e6ed; padding: .55rem .75rem; text-align: left; vertical-align: top; }
+        table.skill th { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; color:#64748b; font-weight:600; border-bottom-color:#cbd5e1; }
+        table.skill td.what { color:#0f172a; }
+        table.skill td.say { color:#334155; font-family:'JetBrains Mono',monospace; font-size: 13px; }
+        table.skill td.time { color:#64748b; white-space: nowrap; font-size: 13px; }
+        .tier { border:1px solid #e2e6ed; border-radius: 12px; padding: 1.25rem 1.5rem; background: #fff; margin-bottom: 1.25rem; }
+        .tier-header { display:flex; align-items:flex-start; justify-content:space-between; gap: 1rem; margin-bottom: .5rem; }
+        .tier-num { font-family:'JetBrains Mono',monospace; font-size:.75rem; color:#64748b; }
+        .tier-title { font-size: 1.4rem; font-weight: 700; }
+        .tier-sub { color:#64748b; font-size:.95rem; }
+        .pill { font-family:'JetBrains Mono',monospace; font-size:.72rem; padding: .15rem .55rem; border-radius: 999px; }
+        .pill-simple  { background:#f0fdf4; color:#047857; border:1px solid #bbf7d0; }
+        .pill-medium  { background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; }
+        .pill-complex { background:#fffbeb; color:#b45309; border:1px solid #fde68a; }
+        .pill-orchestrated { background:#fdf2f8; color:#9d174d; border:1px solid #fbcfe8; }
+        .group-h { margin-top: 1.25rem; font-size: .9rem; font-weight: 600; color:#334155; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="sticky top-0 z-40 border-b border-border bg-paper/90 backdrop-blur">
+        <nav class="mx-auto flex max-w-[1200px] items-center justify-between px-5 py-3">
+            <a href="/" class="flex items-center gap-3">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-brand text-white font-bold">M</span>
+                <span class="font-semibold">Mins Bot</span>
+                <span class="tag">v1.0.0</span>
+            </a>
+            <div class="flex items-center gap-3 text-sm">
+                <a href="/" class="text-ink3 hover:text-ink">← Docs</a>
+                <a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="text-ink3 hover:text-ink"><i class="fa-brands fa-github text-lg"></i></a>
+                <span data-design-switcher data-select-class="switcher"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mx-auto max-w-[1200px] px-5 py-10">
+        <div class="caps">Reference</div>
+        <h1 class="mt-2 text-4xl font-bold tracking-tight">What you can say</h1>
+        <p class="mt-3 text-lg text-ink2 max-w-3xl">A complete list of things you can ask Mins Bot to do, grouped by how complex the task is and roughly how long it takes from when you ask to when you have an answer (or a result on disk).</p>
+
+        <div class="mt-5 flex flex-wrap gap-2 items-center">
+            <span class="pill pill-simple">Simple — under 10 sec</span>
+            <span class="pill pill-medium">Medium — 10 sec – 1 min</span>
+            <span class="pill pill-complex">Complex — 1–10 min</span>
+            <span class="pill pill-orchestrated">Orchestrated — 5–30 min</span>
+        </div>
+
+        <div class="mt-3 text-sm text-ink3 max-w-3xl">Times are wall-clock estimates on a typical laptop with normal internet. Cloud-LLM tasks are network-bound; offline tasks (running against a local model) are CPU-bound and may be slower on smaller machines.</div>
+
+        <!-- ===== SIMPLE ===== -->
+        <section class="mt-10 tier">
+            <div class="tier-header">
+                <div>
+                    <div class="tier-num">Tier 01</div>
+                    <div class="tier-title">Simple</div>
+                    <div class="tier-sub">One-shot lookups, conversions, and quick utilities. Answer is on screen almost instantly.</div>
+                </div>
+                <span class="pill pill-simple">under 10 sec</span>
+            </div>
+
+            <div class="group-h">Quick info about your machine</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">what's my IP and gateway</td><td class="what">Local + public IP, default gateway, DNS</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">am I on the VPN</td><td class="what">Yes/no plus which interface</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">how's my battery</td><td class="what">Charge %, time remaining, charging state</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">show CPU and RAM usage</td><td class="what">Live system stats</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">GPU utilization right now</td><td class="what">GPU load + VRAM</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">what's listening on my machine</td><td class="what">Open-port table with the process behind each one</td><td class="time">~3 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Convert &amp; calculate</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">50 miles to km</td><td class="what">Unit conversion (length, weight, volume, temp, data, time…)</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">3 pm PT in London</td><td class="what">Time-zone conversion</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">distance from SF to NYC</td><td class="what">Great-circle distance between any two places</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">my BMI for 5'10" 170 lb</td><td class="what">BMI + healthy-range band</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">my heart-rate zones</td><td class="what">Five-zone HR table from age and resting HR</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">macros for a 2,200 cal day</td><td class="what">Protein / carbs / fat targets</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">my marathon pace for a sub-4</td><td class="what">Per-mile and per-km pace</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">scale this recipe to 6 servings</td><td class="what">Re-scaled ingredient list</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">convert mg/dL to mmol/L</td><td class="what">Medical-unit conversion (glucose, lipids, etc.)</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">spell 1234 in English</td><td class="what">"one thousand two hundred thirty-four"</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">convert #2563eb to HSL</td><td class="what">Color conversions across hex / rgb / hsl / oklch</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">area of this triangle</td><td class="what">Geometry helpers — area, perimeter, volume</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">probability of 3 heads in 5 flips</td><td class="what">Common probability calculations</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">multiply these two matrices</td><td class="what">Matrix arithmetic + transpose / inverse / det</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">mean median stddev of these numbers</td><td class="what">Basic stats summary</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">kinetic energy of a 2 kg object at 10 m/s</td><td class="what">Common physics formulas</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">what grade do I need on the final</td><td class="what">Required-score calculator</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">compound interest at 7% over 10 years</td><td class="what">FV / PV / IRR / NPV</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">mortgage payment on $500k at 6.5%</td><td class="what">Monthly payment + amortization summary</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">straight-line depreciation on this asset</td><td class="what">Year-by-year depreciation schedule</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">how much does this meeting cost</td><td class="what">Headcount × salaries × duration</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">uptime allowed under 99.9% SLA</td><td class="what">Allowed downtime per period</td><td class="time">~1 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Quick utilities</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">take a screenshot</td><td class="what">Saves a PNG (any monitor) and copies path to clipboard</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">copy this to clipboard</td><td class="what">Stores text on the OS clipboard</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">show clipboard history</td><td class="what">Recent clipboard entries with timestamps</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">pause music · skip track · volume up</td><td class="what">Media keys for whatever's playing</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">set a 25-minute timer</td><td class="what">Notification-backed timer</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">remind me to stretch in 30 min</td><td class="what">One-off or recurring reminder</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">silence notifications, I'm in a meeting</td><td class="what">Toggles meeting mode (DND / status)</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">generate a random UUID</td><td class="what">UUIDs, passwords, tokens, lottery numbers</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">how strong is this password</td><td class="what">Strength meter + suggestions</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">base64 encode this</td><td class="what">Encode/decode across base64, url, hex, rot13, etc.</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">SHA-256 of this file</td><td class="what">MD5 / SHA-1 / SHA-256 / SHA-512 / etc.</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">what hash type is this</td><td class="what">Identifies hash algorithm by length + alphabet</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">decode this JWT</td><td class="what">Header + payload, with expiry highlighted</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">explain this cron expression</td><td class="what">"Every Monday at 9am" + next 5 firings</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">test this regex against these strings</td><td class="what">Match table with capture groups</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">build a regex from these examples</td><td class="what">Inferred pattern that matches your samples</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">format this SQL</td><td class="what">Pretty-printed query</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">pretty-print this JSON</td><td class="what">Indented JSON; supports JSON-path queries</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">validate this YAML</td><td class="what">YAML lint + path errors</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">convert markdown to HTML</td><td class="what">Standalone HTML with inline CSS</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">count characters and words</td><td class="what">Char / word / line / token counts</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">what's the reading level here</td><td class="what">Flesch / Flesch-Kincaid / SMOG scores</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">format these citations as APA</td><td class="what">APA / MLA / Chicago / IEEE</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">generate a URL slug for this title</td><td class="what">Clean lowercase-hyphen slug</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">build a UTM-tagged link</td><td class="what">UTM URL with sensible parameter naming</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">save this as a quick note</td><td class="what">Stores into the local notes store</td><td class="time">&lt; 1 s</td></tr>
+                    <tr><td class="say">add a journal entry</td><td class="what">Daily journal, timestamped</td><td class="time">&lt; 1 s</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== MEDIUM ===== -->
+        <section class="mt-10 tier">
+            <div class="tier-header">
+                <div>
+                    <div class="tier-num">Tier 02</div>
+                    <div class="tier-title">Medium</div>
+                    <div class="tier-sub">Small actions on your machine: file ops, network checks, short LLM tasks. A few seconds to a minute.</div>
+                </div>
+                <span class="pill pill-medium">10 s – 1 min</span>
+            </div>
+
+            <div class="group-h">System &amp; OS</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">kill port 8080</td><td class="what">Identifies + terminates the process holding the port</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">kill the chrome process</td><td class="what">Kills matching processes after confirming</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">quit Slack</td><td class="what">Cleanly closes a running app</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">open VS Code</td><td class="what">Launches an installed app by name</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">minimize all windows</td><td class="what">Window control — minimize, maximize, snap, focus</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">restart the Docker service</td><td class="what">Start / stop / restart Windows or systemd services</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">list my scheduled tasks</td><td class="what">Shows registered scheduled / cron tasks</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">auto-start yourself on login</td><td class="what">Adds Mins Bot to OS auto-start</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">schedule shutdown in 1 hour</td><td class="what">Lock / sleep / shutdown — now or scheduled</td><td class="time">~1 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Files &amp; disk</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">find all .pdf files in Downloads</td><td class="what">Recursive file search by name / glob</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">find files containing "invoice"</td><td class="what">Filename / content search</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">grep TODO across the project</td><td class="what">Multi-file content search with previews</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">diff these two files</td><td class="what">Side-by-side unified diff</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">peek at the start / end of this file</td><td class="what">First/last N lines plus char/word count</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">file info for this path</td><td class="what">Size, mime, owner, dates, hashes</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">how many lines of code in src/</td><td class="what">LoC + file-type breakdown</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">open this file in default app</td><td class="what">Launches the OS default handler</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">rename *.JPG to *.jpg in this folder</td><td class="what">Bulk rename with regex / pattern</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">recover the file I just deleted</td><td class="what">Recycle-bin / trash recovery</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">zip C:\projects\mins-bot to D:\backup.zip</td><td class="what">Zip / unzip / 7z / tar.gz</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">find the biggest files on disk</td><td class="what">Top N largest files / dirs by size</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">which folders take the most space</td><td class="what">Disk-usage tree view</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">find duplicates in Downloads</td><td class="what">Hash-based duplicate finder + safe-delete</td><td class="time">~45 s</td></tr>
+                    <tr><td class="say">strip EXIF from these photos</td><td class="what">Removes camera / GPS metadata in place</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">show metadata for this image</td><td class="what">EXIF + dimensions + color profile</td><td class="time">~1 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Network &amp; security</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">diagnose my connection</td><td class="what">Ping, DNS, traceroute, speedtest summary</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">resolve example.com</td><td class="what">A / AAAA / CNAME / MX / TXT records</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">list firewall rules</td><td class="what">Inbound / outbound rules table</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">switch to my work proxy</td><td class="what">Toggle saved proxy profiles</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">inspect TLS cert for github.com</td><td class="what">Issuer, expiry, SAN list, chain</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">look up CVE-2024-1234</td><td class="what">Severity, affected versions, references</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">has my email been pwned</td><td class="what">Have-I-Been-Pwned check</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">audit security headers on this site</td><td class="what">CSP / HSTS / X-Frame / etc. graded</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">scan this folder for committed secrets</td><td class="what">Detected keys / tokens with line numbers</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">redact PII from this text</td><td class="what">Names, emails, phones, SSNs masked</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">encrypt this file with AES</td><td class="what">AES-256 encrypted output + key handling</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">POST this JSON to that endpoint</td><td class="what">HTTP request runner with response viewer</td><td class="time">~2 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Dev &amp; build</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">commit and push these changes</td><td class="what">Git status → stage → commit → push, with summary</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">list my containers, stop the api one</td><td class="what">Docker control — list, start, stop, logs, exec</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">lint this Dockerfile</td><td class="what">Best-practice warnings and fixes</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">tail server.log and filter ERROR</td><td class="what">Live tail with regex filtering</td><td class="time">streams</td></tr>
+                    <tr><td class="say">summarize errors in this log</td><td class="what">Bucketed error summary + first occurrences</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">diff these two strings</td><td class="what">Word-level diff</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">what language is this snippet</td><td class="what">Language detection across 100+ langs</td><td class="time">~1 s</td></tr>
+                    <tr><td class="say">generate 100 fake users as CSV</td><td class="what">Realistic synthetic data, schema-aware</td><td class="time">~5 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Browser-driven</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">explain this page</td><td class="what">Spoken summary of the active tab</td><td class="time">~15 s</td></tr>
+                    <tr><td class="say">read the article aloud</td><td class="what">Narrates the page in your chosen voice</td><td class="time">streams</td></tr>
+                    <tr><td class="say">extract all rows from this table</td><td class="what">CSV of every matching record on the page</td><td class="time">~20 s</td></tr>
+                    <tr><td class="say">check the SEO meta on this page</td><td class="what">Title, meta description, OG tags, headings</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">check this site's sitemap</td><td class="what">Sitemap fetch + URL count + freshness</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">what does robots.txt allow</td><td class="what">Plain-English summary of robots rules</td><td class="time">~3 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Productivity</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">give me my morning briefing</td><td class="what">Summary of inbox, calendar, weather, news</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">what's on my plate today</td><td class="what">Upcoming events, reminders, deadlines</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">every monday, run my weekly report</td><td class="what">Recurring task registered with schedule</td><td class="time">~2 s</td></tr>
+                    <tr><td class="say">plan a pomodoro session</td><td class="what">Suggested focus blocks for the day</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">where am I on my OKRs</td><td class="what">OKR snapshot with progress percentages</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">improve this email subject line</td><td class="what">3–5 rewrites with reasoning</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">tighten this paragraph</td><td class="what">Concise rewrite + word-count delta</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">turn these notes into flashcards</td><td class="what">Q/A pairs, ready to import to Anki</td><td class="time">~10 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Watchers &amp; alerts</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">tell me when the clipboard changes</td><td class="what">Background watcher → desktop notification</td><td class="time">setup ~2 s</td></tr>
+                    <tr><td class="say">alert me when free disk &lt; 10 GB</td><td class="what">Threshold-based alerts</td><td class="time">setup ~2 s</td></tr>
+                    <tr><td class="say">watch this file and notify on change</td><td class="what">File-system watcher</td><td class="time">setup ~2 s</td></tr>
+                    <tr><td class="say">watch Downloads for new PDFs</td><td class="what">Folder watcher with glob filter</td><td class="time">setup ~2 s</td></tr>
+                    <tr><td class="say">poll this URL and alert on diff</td><td class="what">HTTP watcher with body / header diffing</td><td class="time">setup ~2 s</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== COMPLEX ===== -->
+        <section class="mt-10 tier">
+            <div class="tier-header">
+                <div>
+                    <div class="tier-num">Tier 03</div>
+                    <div class="tier-title">Complex</div>
+                    <div class="tier-sub">Multi-step research, audits, and content generation. The bot does several things in sequence and assembles a result.</div>
+                </div>
+                <span class="pill pill-complex">1 – 10 min</span>
+            </div>
+
+            <div class="group-h">Research &amp; analysis</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">research the desktop AI assistant market</td><td class="what">Market overview, key segments, sources</td><td class="time">2–4 min</td></tr>
+                    <tr><td class="say">research content angles for "local AI"</td><td class="what">10+ angle ideas with supporting evidence</td><td class="time">2–4 min</td></tr>
+                    <tr><td class="say">compare us against competitor X</td><td class="what">Feature / pricing / positioning matrix</td><td class="time">2–4 min</td></tr>
+                    <tr><td class="say">find arbitrage opportunities</td><td class="what">Price / margin gaps in selected markets</td><td class="time">2–5 min</td></tr>
+                    <tr><td class="say">cluster these keywords</td><td class="what">Topic clusters with seed terms</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">extract keywords from this article</td><td class="what">Ranked keyword list with frequencies</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">expand this search query</td><td class="what">Variants for SEO / SEM / search</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">build a buyer persona</td><td class="what">Demographics, motivations, objections</td><td class="time">~2 min</td></tr>
+                    <tr><td class="say">recommend pricing tiers</td><td class="what">3–5 tiers with feature splits and rationale</td><td class="time">~2 min</td></tr>
+                    <tr><td class="say">analyze my funnel drop-off</td><td class="what">Stage-by-stage conversion + likely fixes</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">compute cohort retention</td><td class="what">Cohort retention table from CSV</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">is this A/B test significant</td><td class="what">p-value, lift, confidence interval</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">sample size for a 5% lift</td><td class="what">Required N per arm given baseline + power</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">RSI and MACD for AAPL</td><td class="what">Indicator readings with quick interpretation</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">forecast 12 months of cash flow</td><td class="what">Projection + sensitivity bands</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">where do I break even</td><td class="what">Break-even units / revenue + chart</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">generate an invoice</td><td class="what">PDF invoice from line items</td><td class="time">~10 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Browser — guided</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">walk me through how to use this site</td><td class="what">Step-by-step walkthrough grounded in the actual buttons on the page</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">audit this landing page</td><td class="what">Conversion + clarity + above-the-fold review</td><td class="time">~1–2 min</td></tr>
+                    <tr><td class="say">find backlinks to this domain</td><td class="what">Backlink list with referring domain quality</td><td class="time">2–4 min</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Content generation</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">write a blog post about offline AI</td><td class="what">800–1500 word post with headings + meta</td><td class="time">2–4 min</td></tr>
+                    <tr><td class="say">draft a proposal for this RFP</td><td class="what">Multi-section proposal with pricing draft</td><td class="time">3–5 min</td></tr>
+                    <tr><td class="say">write 5 ad variants for this product</td><td class="what">Headline + body + CTA across 5 angles</td><td class="time">~30 s</td></tr>
+                    <tr><td class="say">score these headlines</td><td class="what">Ranked list with strengths and risks</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">build a 3-touch email campaign</td><td class="what">Drafts for touch 1 / 2 / 3 with cadence</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">suggest hashtags for this post</td><td class="what">Network-appropriate hashtag set</td><td class="time">~10 s</td></tr>
+                    <tr><td class="say">find me freelance gigs in Java</td><td class="what">Curated gig list with apply-fit notes</td><td class="time">2–4 min</td></tr>
+                    <tr><td class="say">generate a lead list for SaaS founders</td><td class="what">Lead table with relevance scoring</td><td class="time">2–5 min</td></tr>
+                    <tr><td class="say">monitor reviews on the app stores</td><td class="what">New reviews + sentiment + reply drafts</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">watch for brand mentions</td><td class="what">Web + social mention digest</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">track my outreach pipeline</td><td class="what">Stage-by-stage CRM-lite view</td><td class="time">~5 s</td></tr>
+                    <tr><td class="say">who haven't I followed up with</td><td class="what">Stale-thread list with suggested next sends</td><td class="time">~10 s</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Decks &amp; documents</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">create a PowerPoint about top EVs of 2025</td><td class="what">Native .pptx with charts, tables, and images</td><td class="time">2–5 min</td></tr>
+                    <tr><td class="say">make a Word doc from these notes</td><td class="what">Native .docx with proper headings + TOC</td><td class="time">~1 min</td></tr>
+                    <tr><td class="say">turn this into a PDF report</td><td class="what">Branded PDF with cover, TOC, charts</td><td class="time">~1 min</td></tr>
+                </tbody>
+            </table>
+
+            <div class="group-h">Voice &amp; entertainment</div>
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What you get</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr><td class="say">play music by Radiohead</td><td class="what">Plays from your local library, falls back to streaming</td><td class="time">~3 s</td></tr>
+                    <tr><td class="say">narrate me a bedtime story for my dog</td><td class="what">Calming narration with chosen voice</td><td class="time">~30 s start</td></tr>
+                    <tr><td class="say">use a Jarvis voice</td><td class="what">Switches TTS to the British-baritone preset</td><td class="time">~1 s</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== ORCHESTRATED ===== -->
+        <section class="mt-10 tier">
+            <div class="tier-header">
+                <div>
+                    <div class="tier-num">Tier 04</div>
+                    <div class="tier-title">Orchestrated</div>
+                    <div class="tier-sub">Multi-skill workflows that chain several tools. Best left to run while you do something else.</div>
+                </div>
+                <span class="pill pill-orchestrated">5 – 30 min</span>
+            </div>
+
+            <table class="skill">
+                <thead><tr><th>Try saying</th><th>What it does (chained)</th><th class="text-right">Time</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td class="say">market the app and publish to Bluesky</td>
+                        <td class="what">Trends → competitor scan → ad copy → headline scoring → social drafts → schedule → publish</td>
+                        <td class="time">10–20 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">audit my landing page and post the fixes to Slack</td>
+                        <td class="what">Page audit → meta + headers check → fix list → format → send</td>
+                        <td class="time">3–6 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">research my competitor and build a deck</td>
+                        <td class="what">Market research → competitor compare → key insights → PowerPoint with charts</td>
+                        <td class="time">8–15 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">build a 7-day social schedule and queue it</td>
+                        <td class="what">Idea generation → 7 posts → hashtag pass → schedule across platforms</td>
+                        <td class="time">5–10 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">find weekend gigs and draft applications</td>
+                        <td class="what">Gig hunt → fit scoring → tailored proposal per gig</td>
+                        <td class="time">10–20 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">generate a lead list and send a 3-touch sequence</td>
+                        <td class="what">Lead gen → email validation → 3 emails per lead → schedule sends</td>
+                        <td class="time">10–25 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">clean up my Downloads folder</td>
+                        <td class="what">Big-file scan → duplicate find → safe delete plan → execute on confirm</td>
+                        <td class="time">2–5 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">free up disk space</td>
+                        <td class="what">Disk scan → temp + cache cleanup → big-file review → dedupe</td>
+                        <td class="time">3–8 min</td>
+                    </tr>
+                    <tr>
+                        <td class="say">while I'm idle, keep working on my standing instructions</td>
+                        <td class="what">Autonomous mode picks up your saved directives and runs them in the background</td>
+                        <td class="time">runs while you're away</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="mt-10 p-4 border border-border rounded-lg bg-paper2/40 text-sm text-ink2">
+            <strong class="text-ink">Don't memorize anything.</strong> The chat panel maps natural language to the right action. The phrases above are starting points — say it however feels natural.
+        </div>
+
+        <div class="mt-8 flex items-center justify-between border-t border-border pt-6 text-sm">
+            <a href="/" class="text-brand hover:underline">← Back to docs</a>
+            <a href="/privacy.html" class="text-brand hover:underline">Privacy policy →</a>
+        </div>
+    </main>
+
+    <footer class="border-t border-border py-6 mt-8">
+        <div class="mx-auto max-w-[1200px] px-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-sm text-ink3">
+            <p>© <span id="year"></span> Mins Bot · Skill list</p>
+            <div class="flex items-center gap-6"><a href="/privacy.html" class="hover:text-brand">Privacy</a><a href="/terms.html" class="hover:text-brand">Terms</a><a href="https://github.com/ceasis/mins-bot" target="_blank" rel="noopener noreferrer" class="hover:text-brand">GitHub</a></div>
+        </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script src="/designs/switcher.js" defer></script>
+</body>
+</html>
