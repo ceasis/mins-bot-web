@@ -65,6 +65,8 @@
         table.api th { background:#f4f3ef; font-weight:600; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:#334155; }
         table.api td { color:#334155; }
         table.api td code { background:#f4f3ef; }
+        .download-cta, .download-cta:hover { text-decoration: none; color: inherit; }
+        .download-cta * { text-decoration: none; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -148,16 +150,16 @@
                 <h2 id="download"><a href="#download">#</a> Download</h2>
                 <p>Grab the latest build for your machine. The Windows package is a portable ZIP — unzip and run, no installer needed. macOS and Linux builds are coming soon.</p>
 
-                <a href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" download="MinsBot-1.0-windows-latest.zip" target="_blank" rel="noopener" class="mt-5 flex items-center justify-between gap-4 rounded-xl border border-brand bg-brand text-white p-5 hover:bg-brand2 transition shadow-sm">
+                <a href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" download="MinsBot-1.0-windows-latest.zip" target="_blank" rel="noopener" class="download-cta mt-5 flex items-center justify-between gap-4 rounded-xl border border-border bg-white p-5 hover:border-brand hover:shadow-md transition">
                     <div class="flex items-center gap-4">
-                        <i class="fa-brands fa-windows text-3xl"></i>
+                        <i class="fa-brands fa-windows text-3xl text-ink2"></i>
                         <div>
-                            <div class="text-xs uppercase tracking-wider opacity-80">Latest · v1.0</div>
-                            <div class="text-lg font-semibold leading-tight">Download for Windows</div>
-                            <div class="text-xs opacity-80 mt-0.5">x86_64 · Windows 10 and up · ~300 MB · portable .zip</div>
+                            <div class="text-[11px] uppercase tracking-wider text-ink3 font-semibold">Latest · v1.0</div>
+                            <div class="text-lg font-semibold leading-tight text-ink">Download for Windows</div>
+                            <div class="text-xs text-ink3 mt-0.5">x86_64 · Windows 10 and up · ~300 MB · portable .zip</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-download text-2xl opacity-90"></i>
+                    <span class="inline-flex items-center gap-2 rounded-md bg-brand text-white px-3 py-2 text-sm font-semibold"><i class="fa-solid fa-download text-xs"></i> Get .zip</span>
                 </a>
 
                 <div class="mt-3 grid gap-3 sm:grid-cols-2 text-sm">
