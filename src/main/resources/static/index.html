@@ -143,20 +143,25 @@
                 <h2 id="install"><a href="#install">#</a> Installation</h2>
                 <p>Download the package for your OS and run it. The bundled JRE means no separate Java install is required.</p>
 
+                <!-- TODO: replace with your R2 public URL or custom-domain origin (e.g. https://pub-xxxxx.r2.dev or https://downloads.mins.io) -->
+
                 <table class="api">
                     <thead><tr><th>OS</th><th>File</th><th>Steps</th></tr></thead>
                     <tbody>
-                        <tr><td><strong>Windows</strong></td><td><code>MinsBot-1.0.0.exe</code></td><td>Double-click → Next → Next → Finish</td></tr>
-                        <tr><td><strong>Windows portable</strong></td><td><code>MinsBot-1.0.0-windows.zip</code></td><td>Unzip → run <code>MinsBot/MinsBot.exe</code></td></tr>
-                        <tr><td><strong>macOS</strong></td><td><code>MinsBot-1.0.0.dmg</code></td><td>Open → drag to Applications</td></tr>
-                        <tr><td><strong>Linux</strong></td><td><code>minsbot_1.0.0_amd64.deb</code></td><td><code>sudo dpkg -i minsbot_1.0.0_amd64.deb</code></td></tr>
+                        <tr>
+                            <td><strong>Windows</strong> <span class="tag tag-green">latest</span></td>
+                            <td><a class="text-brand" href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip"><code>MinsBot-1.0-windows-latest.zip</code></a> · always points to the latest build</td>
+                            <td>Unzip → run <code>MinsBot\MinsBot.exe</code></td>
+                        </tr>
+                        <tr><td><strong>macOS</strong> <span class="tag">soon</span></td><td>—</td><td>Coming soon</td></tr>
+                        <tr><td><strong>Linux</strong> <span class="tag">soon</span></td><td>—</td><td>Coming soon</td></tr>
                     </tbody>
                 </table>
 
                 <div class="mt-4 grid gap-3 sm:grid-cols-3">
-                    <a href="#" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-xl text-ink2"></i><span class="tag">.dmg</span></div><div class="font-semibold mt-3">macOS</div><div class="text-xs text-ink3 mt-0.5">arm64 · x86_64</div></a>
-                    <a href="#" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-xl text-ink2"></i><span class="tag">.exe / .zip</span></div><div class="font-semibold mt-3">Windows</div><div class="text-xs text-ink3 mt-0.5">x86_64 · 10+</div></a>
-                    <a href="#" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-xl text-ink2"></i><span class="tag">.deb</span></div><div class="font-semibold mt-3">Linux</div><div class="text-xs text-ink3 mt-0.5">x86_64 · arm64</div></a>
+                    <div class="border border-border rounded-lg p-4 opacity-60 cursor-not-allowed"><div class="flex items-center justify-between"><i class="fa-brands fa-apple text-xl text-ink2"></i><span class="tag">soon</span></div><div class="font-semibold mt-3">macOS</div><div class="text-xs text-ink3 mt-0.5">arm64 · x86_64</div></div>
+                    <a href="https://pub-4109d332def34f3a92a8851db536aae2.r2.dev/MinsBot-1.0-windows-latest.zip" class="border border-border rounded-lg p-4 hover:border-brand hover:shadow-sm transition bg-paper"><div class="flex items-center justify-between"><i class="fa-brands fa-windows text-xl text-brand"></i><span class="tag tag-green">latest · .zip</span></div><div class="font-semibold mt-3">Windows</div><div class="text-xs text-ink3 mt-0.5">portable · always the newest build</div></a>
+                    <div class="border border-border rounded-lg p-4 opacity-60 cursor-not-allowed"><div class="flex items-center justify-between"><i class="fa-brands fa-linux text-xl text-ink2"></i><span class="tag">soon</span></div><div class="font-semibold mt-3">Linux</div><div class="text-xs text-ink3 mt-0.5">x86_64 · arm64</div></div>
                 </div>
 
                 <h3 class="mt-6">Run from source</h3>
